@@ -1,9 +1,10 @@
 package com.witsafe.contracts.entity.common;
 
-public class ResponseData {
+public class ResponseData<T> {
 	private Integer code = 0;
-	private String state;
-	private String content;
+	private String state = "success";
+	private String content;	
+	private T Result;
 
 	public ResponseData(String statusCode, String content) {
 		this.state = statusCode;
@@ -41,6 +42,16 @@ public class ResponseData {
 	public void setCode(Integer code) {
 		this.code = code;
 	}
+
+	public T getResult() {
+		return Result;
+	}
+
+	public void setResult(T result) {
+		Result = result;
+	}
+	
+	
 	
 	
 

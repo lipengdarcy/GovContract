@@ -34,10 +34,7 @@
 	src="${ctx }/scripts/ztree/jquery.ztree.excheck-3.5.js"></script>
 <script type="text/javascript"
 	src="${ctx }/scripts/ztree/jquery.ztree.exedit-3.5.js"></script>
-	
-<SCRIPT type="text/javascript">
-	
-</SCRIPT>
+
 <style type="text/css">
 .ztree li span.button.add {
 	margin-left: 2px;
@@ -86,8 +83,7 @@
 								<ul class="list">
 									<li>此 Demo 演示合理利用自定义控件、事件回调函数配合以增强用户体验，操作时可以对比"基本 增 / 删 /
 										改 节点"的 Demo</li>
-									<li>此 Demo 实现增加节点按钮</li>
-									<li>此 Demo 实现删除节点时进行确认</li>
+									
 									<li>此 Demo 利用 showRenameBtn 对 isLastNode = true 的节点不显示编辑按钮</li>
 									<li>此 Demo 利用 showRemoveBtn 对 isFirstNode = true
 										的节点不显示删除按钮</li>
@@ -122,6 +118,8 @@
 </body>
 
 <script type="text/javascript">
+	//树节点的最大id值，用于连续增加节点时候判断
+	var maxid = ${maxid};
 
 	$(document).ready(function() {
 		//弹窗提示配置
@@ -133,7 +131,7 @@
 			height : 50
 		});
 		//查询机构
-		
+		var orgList = [];
 		$.ajax({
 			url : 'home/queryOrg.do',
 			data : {},
@@ -141,27 +139,28 @@
 			dataType : 'json',
 
 			success : function(data) {
-				orgList = data;
-				for(i=0;i<data.length; i++){
-					var item = {id:data[i].id, pId:data[i].pid, name:data[i].name};
+				r = data.result;
+				for(i=0;i<r.length; i++){
+					var item = {id:r[i].id, pId:r[i].pid, name:r[i].name};
 					orgList[i] = item;
 				}
+				//初始化树节点
+				$.fn.zTree.init($("#treeDemo"), setting, orgList);
+				$("#selectAll").bind("click", selectAll);
+				
 				//hsArtDialog.content("机构总数：" + data.length).showModal();
 			},
 			error : function() {
 				hsArtDialog.content("异常！请重新尝试或者联系管理员！").showModal();
 			}
 		});
-
-		//初始化树节点
-		$.fn.zTree.init($("#treeDemo"), setting, orgList);
-		$("#selectAll").bind("click", selectAll);
+		
+		
 	});
 
 	//新增机构
-	function addOrg() {
-		var $form = $("#form");
-		var postdata = $form.serialize();
+	function addOrg(id, pid, name) {
+		
 		//弹窗提示配置
 		var hsArtDialog = dialog({
 			title : '提示',
@@ -172,7 +171,57 @@
 		});
 		$.ajax({
 			url : 'home/addOrg.do',
-			data : postdata,
+			data : {id:id, pid:pid, name:name},
+			type : 'post',
+			dataType : 'json',
+			success : function(data) {
+				maxid = 1 + data.result;
+				hsArtDialog.content(data.content).showModal();
+			},
+			error : function() {
+				hsArtDialog.content("异常！请重新尝试或者联系管理员！").showModal();
+			}
+		});
+	}
+	
+	//编辑机构名称
+	function editOrg(id, name) {
+		
+		//弹窗提示配置
+		var hsArtDialog = dialog({
+			title : '提示',
+			id : "hs-dialog",
+			fixed : true,
+			width : 300,
+			height : 50
+		});
+		$.ajax({
+			url : 'home/editOrg.do',
+			data : {id:id, name:name},
+			type : 'post',
+			dataType : 'json',
+			success : function(data) {
+				hsArtDialog.content(data.content).showModal();
+			},
+			error : function() {
+				hsArtDialog.content("异常！请重新尝试或者联系管理员！").showModal();
+			}
+		});
+	}
+	
+	//删除机构
+	function delOrg(id) {		
+		//弹窗提示配置
+		var hsArtDialog = dialog({
+			title : '提示',
+			id : "hs-dialog",
+			fixed : true,
+			width : 300,
+			height : 50
+		});
+		$.ajax({
+			url : 'home/delOrg.do',
+			data : {orgid:id},
 			type : 'post',
 			dataType : 'json',
 			success : function(data) {
@@ -192,9 +241,9 @@
 			},
 			edit : {
 				enable : true,
-				editNameSelectAll : true,
-				showRemoveBtn : showRemoveBtn,
-				showRenameBtn : showRenameBtn
+				editNameSelectAll : true
+				//showRemoveBtn : showRemoveBtn,
+				//showRenameBtn : showRenameBtn
 			},
 			data : {
 				simpleData : {
@@ -211,7 +260,6 @@
 			}
 		};
 		
-		var orgList = [];
 
 		var log, className = "dark";
 		function beforeDrag(treeId, treeNodes) {
@@ -223,7 +271,8 @@
 					+ treeNode.name);
 			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
 			zTree.selectNode(treeNode);
-			return confirm("进入节点 -- " + treeNode.name + " 的编辑状态吗？");
+			return true;
+			//return confirm("进入节点 -- " + treeNode.name + " 的编辑状态吗？");
 		}
 		function beforeRemove(treeId, treeNode) {
 			className = (className === "dark" ? "" : "dark");
@@ -233,9 +282,12 @@
 			zTree.selectNode(treeNode);
 			return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
 		}
+		
+		//删除组织
 		function onRemove(e, treeId, treeNode) {
 			showLog("[ " + getTime() + " onRemove ]&nbsp;&nbsp;&nbsp;&nbsp; "
 					+ treeNode.name);
+			delOrg(treeNode.id);
 		}
 		function beforeRename(treeId, treeNode, newName, isCancel) {
 			className = (className === "dark" ? "" : "dark");
@@ -252,15 +304,21 @@
 			}
 			return true;
 		}
+		
+		//编辑组织名称
 		function onRename(e, treeId, treeNode, isCancel) {
 			showLog((isCancel ? "<span style='color:red'>" : "") + "[ " + getTime()
 					+ " onRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name
 					+ (isCancel ? "</span>" : ""));
+			
+			editOrg(treeNode.id, treeNode.name);
 		}
 		function showRemoveBtn(treeId, treeNode) {
+			//最后一个节点不显示删除按钮 
 			return !treeNode.isFirstNode;
 		}
 		function showRenameBtn(treeId, treeNode) {
+			//最后一个节点不显示编辑按钮 
 			return !treeNode.isLastNode;
 		}
 		function showLog(str) {
@@ -277,23 +335,27 @@
 			return (h + ":" + m + ":" + s + " " + ms);
 		}
 
-		var newCount = 1;
+
+		//新增下级组织
 		function addHoverDom(treeId, treeNode) {
 			var sObj = $("#" + treeNode.tId + "_span");
 			if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
 				return;
 			var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
-					+ "' title='增加子节点' onfocus='this.blur();'></span>";
+					+ "' title='增加下级组织' onfocus='this.blur();'></span>";
 			sObj.after(addStr);
 			var btn = $("#addBtn_" + treeNode.tId);
 			if (btn)
 				btn.bind("click", function() {
+					var newid = maxid + 1;
 					var zTree = $.fn.zTree.getZTreeObj("treeDemo");
 					zTree.addNodes(treeNode, {
-						id : (100 + newCount),
+						id : newid,
 						pId : treeNode.id,
-						name : "new node" + (newCount++)
+						name : "新增下级组织"
 					});
+					
+					addOrg(newid, treeNode.id, "新增下级组织");
 					return false;
 				});
 		};

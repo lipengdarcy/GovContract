@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,13 +13,12 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.witsafe.contracts.common.Constant;
 import com.witsafe.contracts.common.util.HtmlUtil;
-import com.witsafe.contracts.dao.AccountMapper;
 import com.witsafe.contracts.dao.NationstandardMapper;
-import com.witsafe.contracts.model.Account;
-import com.witsafe.contracts.model.AccountExample;
 import com.witsafe.contracts.model.Nationstandard;
+import com.witsafe.contracts.model.NationstandardExample;
 
 @Service
 public class NationstandardService implements Runnable {
@@ -120,6 +118,13 @@ public class NationstandardService implements Runnable {
 	public Nationstandard selectByPrimaryKey(int id) {
 		return nationstandardMapper.selectByPrimaryKey(id);
 	}
+	
+	// 分页查询 
+	public List<Nationstandard> selectAll(int pageNumber, int pageSize) {
+		PageHelper.startPage(pageNumber, pageSize);
+		return nationstandardMapper.selectByExample(new NationstandardExample());
+	}
+
 
 	/**
 	 * 保存国际标准文献资料到数据库

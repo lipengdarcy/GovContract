@@ -58,8 +58,8 @@
 		 	</li>
 		 	<li>
 		 		<ul>
-		          <li><strong>| 关于红狮</strong></li>
-		          <li><a href="${ctx}/help/24.html">商城介绍</a></li>
+		          <li><strong>| 关于平台</strong></li>
+		          <li><a href="${ctx}/help/24.html">平台介绍</a></li>
 		          <li><a href="${ctx}/help/25.html">联系我们</a></li>
 		          <li><a href="${ctx}/help/26.html">注册协议</a></li>
 		          <li><a href="${ctx}/help/27.html">短信模版</a></li>
@@ -82,50 +82,5 @@
 	</div>	
 </div>
 <!--eof footer-->
-<div class="copyright">浙ICP证000000号  |  互联网信息服务资格证编号(浙)-经营性-2015  红狮水泥商城 版权所有 @2015, runlion.com Inc. </div>
+<div class="copyright">浙ICP证000000号  |  互联网信息服务资格证编号(浙)-经营性-2015  智慧职安 版权所有 @2015, witsafe.com Inc. </div>
 <!--bof fixed-->
-<!--右侧浮动条开始-->
-<div class="fixed-menu">
-	<div class="fixed-user">
-		<c:choose>
-			<c:when test="${! empty account_session_id}">
-				<a href="${ctx }/ucenter/userinfo.do" class="A_b"><i></i>个人中心</a>
-				<a href="javascript:void(1);" onclick="logout();">退出</a>
-			</c:when>
-			<c:otherwise>
-				<a href="javascript:void(1);" onclick="toLogin();"><i></i>登录</a>
-				<a href="${ctx }/account/register.do">注册</a>
-			</c:otherwise>
-		</c:choose>
-	</div>
-	<div class="fixed-cart">
-		<a href="${ctx }/cart.do"><i></i>购物车</a>
-		<span class="cartnum-ele">
-			<c:if test="${empty sessionScope.cartCount }">0</c:if>
-			<c:if test="${not empty sessionScope.cartCount }">${sessionScope.cartCount }</c:if>		
-		</span>
-	</div>
-	<div class="fixed-service"><a href="###"><i></i>在线客服</a></div>
-	<div class="fixed-feedback"><a href="###"><i></i>反馈</a></div>
-	<div class="fixed-backtop"><a href="#"><i></i>TOP</a></div>
-	<div class="fixed-close"><a href="###"><i></i>close</a></div>
-</div>
-<!--右侧浮动条结束-->
-<!-- Live800在线客服图标:默认图标[浮动图标] 开始-->
-<div style='display: none;'>
-	<a href='http://www.live800.com'>live800Link.customerservicesoftware</a>
-</div>
-<script language="javascript"
-	src="http://chat16.live800.com/live800/chatClient/floatButton.js?jid=2993211091&companyID=543577&configID=80434&codeType=custom"></script>
-<div style='display: none;'>
-	<a href='http://en.live800.com'>live chat</a>
-</div>
-<!-- 在线客服图标:默认图标 结束-->
-<script>
-	//是右侧浮动栏的在线客服可用，实质是触发在线客服图片的单击事件
-	$(".fixed-service").on({
-		click:function(e){
-			$(".lim_float_icon img").trigger("click");
-		}
-	});
-</script>

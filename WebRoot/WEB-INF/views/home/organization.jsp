@@ -307,6 +307,6 @@
 		</div>
 	</div>
 	<div class="main-mask" id="coor-panel-mask"></div>
-	<%@ include file="/WEB-INF/includes/homenew/footer.jsp"%>
+	<%@ include file="/WEB-INF/includes/footer.jsp"%>
 </body>
 </html>

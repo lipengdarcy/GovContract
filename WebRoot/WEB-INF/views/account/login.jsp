@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>用户登录</title>
-<%@ include file="/WEB-INF/includes/home/header.jsp"%>
+<%@ include file="/WEB-INF/includes/header.jsp"%>
 <link href="${ctx }/themes/default/css/account.css" rel="stylesheet"
 	type="text/css" />
 </head>

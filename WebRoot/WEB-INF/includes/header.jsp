@@ -1,4 +1,4 @@
-<%@ include file="../commons/taglibs.jsp"%>
+<%@ include file="/WEB-INF/includes/commons/taglibs.jsp"%>
 
 <link rel="stylesheet" type="text/css" href="${ctx }/themes/default/css/loading/msgbox.css">
 <link rel="stylesheet" type="text/css" href="${ctx }/themes/grey/css/global.css"/>
@@ -30,7 +30,6 @@
 	}) (jQuery);
 </script>
 
-<script type="text/javascript" src="${ctx }/scripts/grey/jquery.jslides.js"></script>
 <script type="text/javascript" src="${ctx }/scripts/grey/main.js"></script>
 
 <script type="text/javascript" src="${ctx }/scripts/jquery.cookie.js" ></script>
@@ -39,9 +38,6 @@
 <script type="text/javascript" src="${ctx }/scripts/jquery.validationEngine-zh_CN.js"></script> 
 <script type="text/javascript" src="${ctx }/scripts/jquery.validationEngine.js"></script>
 <script type="text/javascript" src="${ctx }/scripts/utils.js" ></script>
-<script type="text/javascript" src="${ctx }/scripts/common.js?v=1.0.2"></script>
-<script type="text/javascript" src="${ctx }/scripts/myui/hsAreaTabs.js?v=1.0.3"></script>
-<script type="text/javascript" src="${ctx }/scripts/myui/hsFloatPanel.js?v=1.0.3" ></script>
-<script type="text/javascript" src="${ctx }/scripts/hsAreaUser.js?v=1.0.3"></script>
+
 <script type="text/javascript" src="${ctx }/scripts/art-dialog/dialog-min.js"></script> 
 <script type="text/javascript" src="${ctx }/scripts/jquery.form.js"></script>

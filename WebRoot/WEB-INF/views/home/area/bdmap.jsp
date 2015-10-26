@@ -8,9 +8,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>确认订单-红狮水泥商城</title>
-    <meta name="keywords" content="红狮水泥商城" />
-    <meta name="description" content="红狮水泥商城" />
+    <title>百度地图</title>
     <%@ include file="../../../includes/home/header.jsp"%>
 <style type="text/css">
 	body, html{width: 100%;height: 100%;margin:0;}

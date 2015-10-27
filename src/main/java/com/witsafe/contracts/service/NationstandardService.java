@@ -122,7 +122,7 @@ public class NationstandardService implements Runnable {
 	// 分页查询 
 	public List<Nationstandard> selectAll(int pageNumber, int pageSize) {
 		PageHelper.startPage(pageNumber, pageSize);
-		return nationstandardMapper.selectByExample(new NationstandardExample());
+		return nationstandardMapper.selectByExampleWithBLOBs(new NationstandardExample());
 	}
 
 

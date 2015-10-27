@@ -40,4 +40,15 @@
 <script type="text/javascript" src="${ctx }/scripts/utils.js" ></script>
 
 <script type="text/javascript" src="${ctx }/scripts/art-dialog/dialog-min.js"></script> 
+
 <script type="text/javascript" src="${ctx }/scripts/jquery.form.js"></script>
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${ctx }/scripts/jqgrid/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${ctx }/scripts/jqgrid/ui.jqgrid.css" />
+	
+<script src="${ctx }/scripts/jqgrid/i18n/grid.locale-en.js"
+	type="text/javascript"></script>
+<script src="${ctx }/scripts/jqgrid/jquery.jqGrid.src.js"
+	type="text/javascript"></script>

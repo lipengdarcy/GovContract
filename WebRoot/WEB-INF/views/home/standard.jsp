@@ -21,15 +21,13 @@
 <script type="text/javascript"
 	src="${ctx }/scripts/jquery.validationEngine.js"></script>
 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${ctx }/scripts/jqgrid/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="${ctx }/scripts/jqgrid/ui.jqgrid.css" />
 
-<script src="${ctx }/scripts/jqgrid/i18n/grid.locale-en.js"
-	type="text/javascript"></script>
-<script src="${ctx }/scripts/jqgrid/jquery.jqGrid.min.js"
-	type="text/javascript"></script>
+
+
+
+<script type="text/javascript" src="${ctx }/scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="${ctx }/scripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctx }/scripts/fancybox/jquery.fancybox-1.3.4.css" media="screen"></link>
 
 
 
@@ -47,7 +45,7 @@
 				<%@ include file="/WEB-INF/includes/menu.jsp"%>
 			</div>
 			<div class="user-content right">
-			
+
 				<table id="list2"></table>
 				<div id="pager2"></div>
 
@@ -62,54 +60,128 @@
 </body>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(
+			function() {
 
-		$("#list2").jqGrid({
-			url : 'standard.do',
-			datatype : "json",
-			colNames : [ '标准号', '中文题名', '英文题名', '发布日期' ],
-			colModel : [ {
+				$("#list2").jqGrid(
+						{
+							url : 'standard.do',
+							datatype : "json",
+							colNames : [ '标准号', '中文题名', '英文题名', '发布日期', '实施日期',
+									'中国标准分类', '国际标准分类','validRange','standardNoReplace','nameReplace','publisher' ],
+							colModel : [ {
+								name : 'standardno',
+								index : 'standardno',
+								width : 80,
+								align : "left"
+							}, {
+								name : 'nameCh',
+								index : 'nameCh',
+								width : 150,
+								align : "right"
+							}, {
+								name : 'nameEn',
+								index : 'nameEn',
+								width : 150,
+								align : "right"
+							}, {
+								name : 'publishDate',
+								index : 'publishDate',
+								formatter : 'date',
+								formatoptions : {
+									srcformat : 'u',
+									newformat : 'Y-m-d'
+								},
+								width : 60,
+								sortable : false
+							}, {
+								name : 'effectDate',
+								index : 'effectDate',
+								formatter : 'date',
+								formatoptions : {
+									srcformat : 'u',
+									newformat : 'Y-m-d'
+								},
+								width : 60,
+								sortable : true
+							},
 
-				name : 'standardno',
-				index : 'standardno',
-				width : 80,
-				align : "left"
-			}, {
+							{
+								name : 'typeCh',
+								index : 'typeCh',
+								width : 150,
+								align : "right"
+							}, {
+								name : 'typeIso',
+								index : 'typeIso',
+								width : 150,
+								align : "right"
+							},
+							
+	
+							
+							{name:'validRange', index: 'validRange', hidden : true},
+							{name:'standardNoReplace',hidden : true},
+							{name:'nameReplace',hidden : true},
+							{name:'publisher',hidden : true}
 
-				name : 'nameCh',
-				index : 'nameCh',
-				width : 80,
-				align : "right"
-			}, {
-
-				name : 'nameEn',
-				index : 'nameEn',
-				width : 150,
-				align : "right"
-			}, {
-				name : 'publishDate',
-				index : 'publishDate',
-				width : 200,
-				sortable : false
-			} ],
-			rowNum : 10,
-			rowList : [ 10, 20, 30 ],
-			pager : '#pager2',
-			sortname : 'id',
-			viewrecords : true,
-			sortorder : "desc",
-			caption : "环境卫生国家标准文献"
-		});
-		jQuery("#list2").jqGrid('navGrid', '#pager2', {
-			edit : false,
-			add : false,
-			del : false
-		});
-	});
+							],
+							rowNum : 10,
+							rowList : [ 10, 20, 30 ],
+							height: "100%",
+							ondblClickRow: function(standardno){ showDetails(standardno) },
+							pager : '#pager2',
+							sortname : 'id',
+							viewrecords : true,
+							rownumbers: true, //序号显示
+							sortorder : "desc",
+							caption : "环境卫生国家标准文献"
+						});
+				jQuery("#list2").jqGrid('navGrid', '#pager2', {
+					edit : false,
+					add : false,
+					del : false
+				});
+			});
 </script>
 
 
 <script type="text/javascript">
+
+function showDetails(id){
+	
+	 //获取选择一行的
+	 var rowId=$('#list2').jqGrid('getGridParam','selrow');
+	 //获取选择的行的数据，传入rowId：
+	 var rowData = $('#list2').jqGrid('getRowData',rowId);
+	 //alert(rowData.validRange);
+
+	 var myDialog = dialog({
+		 	id: 'standard-detail',
+			title : '国家标准详情',
+		    content: '标准号：' + rowData.standardno + '<br />'
+		        	+ '中文题名：' + rowData.nameCh + '<br />'
+		        	+ '英文题名：' + rowData.nameEn + '<br />'
+		        	+ '发布日期：' + rowData.publishDate + '<br />'
+		        	+ '实施日期：' + rowData.effectDate + '<br />'
+		        	+ '中国标准分类：' + rowData.typeCh + '<br />'
+		        	+ '国际标准分类：' + rowData.typeIso + '<br />'
+		        	+ '适用范围：' + rowData.validRange + '<br />'
+		        	+ '代替标准号：' + rowData.standardNoReplace + '<br />'
+		        	+ '代替标准号名称：' + rowData.nameReplace + '<br />'
+		        	+ '发布部门：' + rowData.publisher + '<br />'
+		        	,
+		        	
+
+			fixed : true,
+			width : 600,
+			height : 400
+		});
+	 
+	 myDialog.show();
+		
+};
+
 	//新增机构
 	function addOrg(id, pid, name) {
 
@@ -194,4 +266,6 @@
 		});
 	}
 </script>
+
+
 </html>

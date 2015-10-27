@@ -39,11 +39,9 @@ public class HomeController {
 
 	@Autowired
 	private AccountService accountService;
-	
+
 	@Autowired
 	private NationstandardService nationstandardService;
-	
-	
 
 	@Autowired
 	private OrganizationMapper organizationMapper;
@@ -63,7 +61,8 @@ public class HomeController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/addOrg", method = RequestMethod.POST)
-	public ResponseData<Integer> addOrg(HttpSession session, Organization org, ModelMap m) {
+	public ResponseData<Integer> addOrg(HttpSession session, Organization org,
+			ModelMap m) {
 		ResponseData<Integer> data = new ResponseData<Integer>();
 		try {
 			organizationMapper.insertSelective(org);
@@ -80,7 +79,7 @@ public class HomeController {
 		}
 
 	}
-	
+
 	/**
 	 * 删除机构
 	 */
@@ -101,13 +100,14 @@ public class HomeController {
 		}
 
 	}
-	
+
 	/**
 	 * 编辑机构
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/editOrg", method = RequestMethod.POST)
-	public ResponseData editOrg(HttpSession session, Organization org, ModelMap m) {
+	public ResponseData editOrg(HttpSession session, Organization org,
+			ModelMap m) {
 		ResponseData data = new ResponseData();
 		try {
 			organizationMapper.updateByPrimaryKeySelective(org);
@@ -122,16 +122,17 @@ public class HomeController {
 		}
 
 	}
-	
+
 	/**
 	 * 查询所有机构
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/queryOrg", method = RequestMethod.POST)
-	public ResponseData<List<Organization>>queryOrg(ModelMap m) {
+	public ResponseData<List<Organization>> queryOrg(ModelMap m) {
 		ResponseData<List<Organization>> data = new ResponseData<List<Organization>>();
 		try {
-			List<Organization> list = organizationMapper.selectByExample(new OrganizationExample());	
+			List<Organization> list = organizationMapper
+					.selectByExample(new OrganizationExample());
 			data.setContent("查询成功！");
 			data.setResult(list);
 			return data;
@@ -143,7 +144,7 @@ public class HomeController {
 		}
 
 	}
-	
+
 	/**
 	 * 国家标准页面
 	 */
@@ -151,7 +152,7 @@ public class HomeController {
 	public String standardPage(ModelMap m) {
 		return "home/standard";
 	}
-	
+
 	/**
 	 * 国家标准数据
 	 */
@@ -168,17 +169,74 @@ public class HomeController {
 			@RequestParam(required = false, value = "searchString") String searchString,
 			@RequestParam(required = false, value = "filters") String filters,
 			ModelMap m) {
-		
-		List<Nationstandard> list = nationstandardService.selectAll(pageNumber, pageSize);
-		
-		
+
+		List<Nationstandard> list = nationstandardService.selectAll(pageNumber,
+				pageSize);
+
 		Page p = (Page) list;
 		// JqGridData(int total, int page, int records, List<T> rows)
 		JqGridData<Nationstandard> data = new JqGridData<Nationstandard>(
 				p.getPages(), p.getPageNum(), (int) p.getTotal(), list);
 
-		
 		return data;
+	}
+
+	/**
+	 * 机构的人员信息
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getOrgMembers")
+	public JqGridData<Account> getOrgMembers(
+			@RequestParam(required = false, defaultValue = "1", value = "page") int pageNumber, // 表示请求页码的参数名称
+			@RequestParam(required = false, defaultValue = "20", value = "rows") int pageSize, // 表示请求行数的参数名称
+			@RequestParam(required = false, value = "sidx") String sidx, // 表示用于排序的列名的参数名称
+			@RequestParam(required = false, value = "sord") String sord, // 表示采用的排序方式的参数名称
+			@RequestParam(required = false, value = "_search") boolean search, // 表示是否是搜索请求的参数名称
+			@RequestParam(required = false, value = "searchField") String searchField,
+			@RequestParam(required = false, value = "searchOper") String searchOper,
+			@RequestParam(required = false, value = "searchString") String searchString,
+			@RequestParam(required = false, value = "filters") String filters,
+			Integer orgid, ModelMap m) {
+		try {
+			List<Account> list = accountService.getOrgMembers(orgid);
+			Page p = (Page) list;
+			// JqGridData(int total, int page, int records, List<T> rows)
+			JqGridData<Account> data = new JqGridData<Account>(p.getPages(),
+					p.getPageNum(), (int) p.getTotal(), list);
+			return data;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	/**
+	 * 国家标准详情页面
+	 */
+	@RequestMapping(value = "/standardDetail")
+	public String standardDetail(ModelMap m) {
+		return "home/standardDetail";
+	}
+	
+	/**
+	 * 新增用户
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/addAccount", method = RequestMethod.POST)
+	public ResponseData<Integer> addAccount(Account account,
+			ModelMap m) {
+		ResponseData<Integer> data = new ResponseData<Integer>();
+		try {
+			accountService.insert(account);
+			data.setState("success");
+			data.setContent("新增成功！");
+			return data;
+		} catch (Exception e) {
+			data.setCode(-1);
+			data.setState("failed");
+			data.setContent("新增失败！");
+			return data;
+		}
+
 	}
 
 }

@@ -38,7 +38,10 @@
 
 	<!-- 静态资源访问 -->
 	<mvc:resources location="/" mapping="/*.html" />
+	<mvc:resources location="/" mapping="/*.js" />
+	<mvc:resources location="/" mapping="/*.css" />
 	<mvc:resources location="/themes/" mapping="/themes/**" />
+
 
 	<!-- 拦截器 -->
 	<mvc:interceptors>

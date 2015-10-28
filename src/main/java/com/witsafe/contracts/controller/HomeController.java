@@ -1,12 +1,9 @@
 package com.witsafe.contracts.controller;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.Page;
-import com.witsafe.contracts.common.Constant;
-import com.witsafe.contracts.dao.OrganizationMapper;
 import com.witsafe.contracts.entity.common.JqGridData;
 import com.witsafe.contracts.entity.common.ResponseData;
 import com.witsafe.contracts.model.Account;
@@ -27,6 +22,7 @@ import com.witsafe.contracts.model.Organization;
 import com.witsafe.contracts.model.OrganizationExample;
 import com.witsafe.contracts.service.AccountService;
 import com.witsafe.contracts.service.NationstandardService;
+import com.witsafe.contracts.service.OrganizationService;
 
 /**
  * @Description 主页操作，包括查看，编辑，删除通讯录，维护组织机构等
@@ -35,24 +31,23 @@ import com.witsafe.contracts.service.NationstandardService;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-	private static Logger loggerinfo = Logger.getLogger("InfoLogger");
+	private static Logger log = Logger.getLogger("InfoLogger");
 
 	@Autowired
 	private AccountService accountService;
 
 	@Autowired
-	private NationstandardService nationstandardService;
+	private OrganizationService organizationService;
 
 	@Autowired
-	private OrganizationMapper organizationMapper;
+	private NationstandardService nationstandardService;
 
 	/**
 	 * 主页面
 	 */
 	@RequestMapping()
 	public String load(ModelMap m) {
-		int maxid = organizationMapper.selectMaxId();
-		m.put("maxid", maxid);
+		log.info("组织机构页面：");
 		return "home/index";
 	}
 
@@ -65,11 +60,9 @@ public class HomeController {
 			ModelMap m) {
 		ResponseData<Integer> data = new ResponseData<Integer>();
 		try {
-			organizationMapper.insertSelective(org);
+			organizationService.insert(org);
 			data.setState("success");
 			data.setContent("新增成功！");
-			int maxid = organizationMapper.selectMaxId();
-			data.setResult(maxid);
 			return data;
 		} catch (Exception e) {
 			data.setState("failed");
@@ -88,7 +81,7 @@ public class HomeController {
 	public ResponseData delOrg(HttpSession session, int orgid, ModelMap m) {
 		ResponseData data = new ResponseData();
 		try {
-			organizationMapper.deleteByPrimaryKey(orgid);
+			organizationService.delete(orgid);
 			data.setState("success");
 			data.setContent("删除成功！");
 			return data;
@@ -110,7 +103,7 @@ public class HomeController {
 			ModelMap m) {
 		ResponseData data = new ResponseData();
 		try {
-			organizationMapper.updateByPrimaryKeySelective(org);
+			organizationService.update(org);
 			data.setState("success");
 			data.setContent("编辑成功！");
 			return data;
@@ -131,8 +124,8 @@ public class HomeController {
 	public ResponseData<List<Organization>> queryOrg(ModelMap m) {
 		ResponseData<List<Organization>> data = new ResponseData<List<Organization>>();
 		try {
-			List<Organization> list = organizationMapper
-					.selectByExample(new OrganizationExample());
+			log.info("查询所有机构");
+			List<Organization> list = organizationService.selectAll();
 			data.setContent("查询成功！");
 			data.setResult(list);
 			return data;
@@ -197,6 +190,8 @@ public class HomeController {
 			@RequestParam(required = false, value = "searchString") String searchString,
 			@RequestParam(required = false, value = "filters") String filters,
 			Integer orgid, ModelMap m) {
+		if(orgid==null)
+			return null;
 		try {
 			List<Account> list = accountService.getOrgMembers(orgid);
 			Page p = (Page) list;
@@ -216,24 +211,56 @@ public class HomeController {
 	public String standardDetail(ModelMap m) {
 		return "home/standardDetail";
 	}
-	
+
 	/**
-	 * 新增用户
+	 * 新增，编辑，删除用户
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/addAccount", method = RequestMethod.POST)
-	public ResponseData<Integer> addAccount(Account account,
+	@RequestMapping(value = "/operateAccount", method = RequestMethod.POST)
+	public ResponseData<Integer> operateAccount(Account account, String oper,
 			ModelMap m) {
 		ResponseData<Integer> data = new ResponseData<Integer>();
-		try {
-			accountService.insert(account);
-			data.setState("success");
-			data.setContent("新增成功！");
-			return data;
-		} catch (Exception e) {
-			data.setCode(-1);
-			data.setState("failed");
-			data.setContent("新增失败！");
+		switch (oper) {
+		case "add":
+			try {
+				accountService.insert(account);
+				data.setState("success");
+				data.setContent("新增成功！");
+				return data;
+			} catch (Exception e) {
+				data.setCode(-1);
+				data.setState("failed");
+				data.setContent("新增失败！");
+				return data;
+			}
+
+		case "edit":
+			try {
+				accountService.update(account);
+				data.setState("success");
+				data.setContent("编辑成功！");
+				return data;
+			} catch (Exception e) {
+				data.setCode(-1);
+				data.setState("failed");
+				data.setContent("编辑失败！");
+				return data;
+			}
+
+		case "del":
+			try {
+				accountService.delete(account);
+				data.setState("success");
+				data.setContent("删除成功！");
+				return data;
+			} catch (Exception e) {
+				data.setCode(-1);
+				data.setState("failed");
+				data.setContent("删除失败！");
+				return data;
+			}
+
+		default:
 			return data;
 		}
 

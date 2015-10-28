@@ -1,9 +1,15 @@
 package com.witsafe.contracts.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Nationstandard {
-    private Integer id;
+public class Nationstandard implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2897305707146340391L;
+
+	private Integer id;
 
     private String standardno;
 

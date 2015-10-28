@@ -37,6 +37,29 @@ public class AccountService {
 	public int insert(Account record) {
 		return accountMapper.insertSelective(record);
 	}
+	
+	/**
+	 * 编辑用户
+	 * 
+	 * @param record
+	 *            用户详情
+	 * @return 
+	 */
+	public int update(Account record) {
+		return accountMapper.updateByPrimaryKeySelective(record);
+	}
+
+	/**
+	 * 删除用户
+	 * 
+	 * @param record
+	 *            用户详情
+	 * @return 
+	 */
+	public int delete(Account record) {
+		return accountMapper.deleteByPrimaryKey(record.getId());
+	}
+
 
 	/**
 	 * 查询用户

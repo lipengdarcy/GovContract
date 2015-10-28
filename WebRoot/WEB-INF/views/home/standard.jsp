@@ -138,6 +138,7 @@
 							caption : "环境卫生国家标准文献"
 						});
 				jQuery("#list2").jqGrid('navGrid', '#pager2', {
+					view: true,
 					edit : false,
 					add : false,
 					del : false

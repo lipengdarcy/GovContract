@@ -25,6 +25,7 @@
 	</typeAliases>
 
 	<plugins>
+	<!-- mybatis 分页插件 -->
 		<plugin interceptor="com.github.pagehelper.PageHelper">
 			<property name="dialect" value="mysql" />
 			<property name="offsetAsPageNum" value="true" />

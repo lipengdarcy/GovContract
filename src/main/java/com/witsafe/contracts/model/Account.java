@@ -1,7 +1,16 @@
 package com.witsafe.contracts.model;
 
-public class Account {
-    private Integer id;
+import java.io.Serializable;
+
+public class Account implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8732102960614986924L;
+
+	private Integer id;
 
     private Integer orgid;
 

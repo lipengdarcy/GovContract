@@ -5,9 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>找回密码-红狮水泥商城</title>
-<meta name="keywords" content="红狮水泥商城" />
-<meta name="description" content="红狮水泥商城" />
-<%@ include file="../../../includes/home/header.jsp"%>
+
+<%@ include file="/WEB-INF/includes/header.jsp"%>
 <link href="${ctx }/themes/default/css/account.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	var findPwd = function(){
@@ -113,6 +112,6 @@
 	</div>
 		
 
-	<%@ include file="../../../includes/home/footer.jsp"%>
+	<%@ include file="/WEB-INF/includes/footer.jsp"%>
 </body>
 </html>

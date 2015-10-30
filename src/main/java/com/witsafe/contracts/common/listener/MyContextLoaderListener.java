@@ -1,4 +1,4 @@
-package com.witsafe.contracts.common.cache;
+package com.witsafe.contracts.common.listener;
 
 import javax.servlet.ServletContextEvent;
 
@@ -6,12 +6,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ContextLoaderListener;
 
-/**
- * @Description TODO
- * @author 赵威
- * @date 2014-9-23 下午4:03:34
- * @version V1.0
- */
+import com.witsafe.contracts.common.cache.CacheOperater;
+
+
 @Component
 public class MyContextLoaderListener extends ContextLoaderListener {
 

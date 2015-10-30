@@ -26,9 +26,12 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
+	
+	<!-- 自定义监听器 -->
 	<listener>
-		<listener-class>com.runlion.shop.common.cache.MyContextLoaderListener</listener-class>
+		<listener-class>com.witsafe.contracts.common.listener.MyContextLoaderListener</listener-class>
 	</listener>
+	
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -66,11 +69,11 @@
 
 	<error-page>
 		<error-code>403</error-code>
-		<location>/WEB-INF/jsp/common/403.jsp</location>
+		<location>/WEB-INF/views/common/403.jsp</location>
 	</error-page>
 
 	<error-page>
 		<error-code>404</error-code>
-		<location>/WEB-INF/jsp/common/404.jsp</location>
+		<location>/WEB-INF/views/common/404.jsp</location>
 	</error-page>
 </web-app>

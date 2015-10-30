@@ -5,7 +5,7 @@
 	<artifactId>GovernmentContracts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>政企通讯录信息管理平台-智慧职安环保科技有限公司</name>
+	<name>政企通讯录信息管理平台</name>
 
 
 	<properties>
@@ -16,6 +16,18 @@
 
 	<build>
 		<plugins>
+
+			<!-- maven编译的jdk'版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
 			<!-- mybatis.generator 自动生成model,mapper,xml -->
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
@@ -34,13 +46,15 @@
 
 
 
+
+
 	<dependencies>
-	
-	<dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-resources-plugin</artifactId>
-    <version>2.6</version>
-</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-resources-plugin</artifactId>
+			<version>2.6</version>
+		</dependency>
 
 		<!-- poi操作excel，word文档 -->
 		<dependency>
@@ -293,16 +307,13 @@
 		</dependency>
 
 		<!-- 银联在线支付 -->
-		<!-- <dependency>
-			<groupId>com.unionpay</groupId>
-			<artifactId>upacp_sdk</artifactId>
-			<version>1.0</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.unionpay</groupId> <artifactId>upacp_sdk</artifactId> 
+			<version>1.0</version> </dependency> -->
 
 		<dependency>
 			<groupId>com.googlecode.lambdaj</groupId>
 			<artifactId>lambdaj</artifactId>
-			<version>2.3.3</version>	
+			<version>2.3.3</version>
 		</dependency>
 
 		<dependency>
@@ -341,7 +352,34 @@
 			<version>1.1.1</version>
 		</dependency>
 
-
-
 	</dependencies>
+
+
+	<!-- pom.xml 里面配置远程仓库，当连接中央仓库的速度比较慢时，或者公司搭建了自己的仓库，比如 Nexus仓库管理 -->
+	<repositories>
+		<repository>
+			<id>maven-local</id>
+			<name>本地Nexus maven仓库</name>
+			<url>http://192.168.2.83:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven-local</id>
+			<name>本地Nexus maven插件仓库</name>
+			<url>http://192.168.2.83:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>

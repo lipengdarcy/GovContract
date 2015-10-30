@@ -12,8 +12,6 @@ import com.witsafe.contracts.common.cache.CacheOperater;
 @Component
 public class MyContextLoaderListener extends ContextLoaderListener {
 
-	private Logger logger = Logger.getLogger(this.getClass());
-	private Logger loggererror = Logger.getLogger("ErrorLogger");
 	private Logger loggerinfo = Logger.getLogger("InfoLogger");
 
 	/**

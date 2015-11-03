@@ -15,7 +15,7 @@
  *
  */
 
-package com.snakerflow.framework.flow.service;
+package com.witsafe.contracts.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

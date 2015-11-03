@@ -1,4 +1,4 @@
-package com.snakerflow.framework.flow.ext;
+package com.witsafe.contracts.common.flow;
 
 import org.snaker.engine.model.TaskModel;
 

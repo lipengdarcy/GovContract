@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     id, description, name, parent_menu, orderby
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.SecMenuExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.security.SecMenuExample" >
     select
     <if test="distinct" >
       distinct
@@ -93,19 +93,19 @@
     delete from sec_menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.SecMenuExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.security.SecMenuExample" >
     delete from sec_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.SecMenu" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.security.SecMenu" >
     insert into sec_menu (id, description, name, 
       parent_menu, orderby)
     values (#{id,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{parentMenu,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.SecMenu" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.security.SecMenu" >
     insert into sec_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.SecMenuExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.security.SecMenuExample" resultType="java.lang.Integer" >
     select count(*) from sec_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.SecMenu" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.security.SecMenu" >
     update sec_menu
     <set >
       <if test="description != null" >
@@ -200,7 +200,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.SecMenu" >
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.security.SecMenu" >
     update sec_menu
     set description = #{description,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

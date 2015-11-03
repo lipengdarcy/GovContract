@@ -78,7 +78,7 @@
     id, address, age, email, enabled, fullname, password, plainPassword, salt, sex, type, 
     username, org
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.SecUserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.security.SecUserExample" >
     select
     <if test="distinct" >
       distinct
@@ -102,13 +102,13 @@
     delete from sec_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.SecUserExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.security.SecUserExample" >
     delete from sec_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.SecUser" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.security.SecUser" >
     insert into sec_user (id, address, age, 
       email, enabled, fullname, 
       password, plainPassword, salt, 
@@ -120,7 +120,7 @@
       #{sex,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{org,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.SecUser" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.security.SecUser" >
     insert into sec_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.SecUserExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.security.SecUserExample" resultType="java.lang.Integer" >
     select count(*) from sec_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -277,7 +277,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.SecUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.security.SecUser" >
     update sec_user
     <set >
       <if test="address != null" >
@@ -319,7 +319,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.SecUser" >
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.security.SecUser" >
     update sec_user
     set address = #{address,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},

@@ -2,8 +2,7 @@
     <wb-module deploy-name="GovContract">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <dependent-module archiveName="snaker-core-2.5.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/snaker-core/snaker-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -14,6 +13,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/GovContract/WebRoot/WEB-INF/classes"/>
-        <property name="context-root" value="GovernmentContracts"/>
+        <property name="context-root" value="witsafe"/>
     </wb-module>
 </project-modules>

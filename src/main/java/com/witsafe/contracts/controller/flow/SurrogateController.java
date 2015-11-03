@@ -17,13 +17,14 @@ package com.witsafe.contracts.controller.flow;
 import org.snaker.engine.access.Page;
 import org.snaker.engine.access.QueryFilter;
 import org.snaker.engine.entity.Surrogate;
-import com.snakerflow.framework.flow.service.SnakerEngineFacets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.witsafe.contracts.service.SnakerEngineFacets;
 
 /**
  * 委托授权

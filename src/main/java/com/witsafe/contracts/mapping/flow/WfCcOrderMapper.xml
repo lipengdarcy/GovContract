@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.witsafe.contracts.dao.WfCcOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.WfCcOrder" >
+<mapper namespace="com.witsafe.contracts.dao.flow.WfCcOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.flow.WfCcOrder" >
     <result column="order_Id" property="orderId" jdbcType="VARCHAR" />
     <result column="actor_Id" property="actorId" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="BIT" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     order_Id, actor_Id, status, creator, create_Time, finish_Time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.WfCcOrderExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.flow.WfCcOrderExample" >
     select
     <if test="distinct" >
       distinct
@@ -84,13 +84,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.WfCcOrderExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.flow.WfCcOrderExample" >
     delete from wf_cc_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.WfCcOrder" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.flow.WfCcOrder" >
     insert into wf_cc_order (order_Id, actor_Id, status, 
       creator, create_Time, finish_Time
       )
@@ -98,7 +98,7 @@
       #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{finishTime,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.WfCcOrder" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.flow.WfCcOrder" >
     insert into wf_cc_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderId != null" >
@@ -141,7 +141,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.WfCcOrderExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.flow.WfCcOrderExample" resultType="java.lang.Integer" >
     select count(*) from wf_cc_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

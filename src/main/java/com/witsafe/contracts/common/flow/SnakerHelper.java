@@ -14,12 +14,14 @@
  *  * limitations under the License.
  *
  */
-package com.snakerflow.framework.flow;
+package com.witsafe.contracts.common.flow;
 
 import java.beans.PropertyDescriptor;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.snakerflow.framework.flow.ext.ExtTaskModel;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;

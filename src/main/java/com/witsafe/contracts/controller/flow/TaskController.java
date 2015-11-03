@@ -13,16 +13,15 @@ import org.snaker.engine.entity.HistoryOrder;
 import org.snaker.engine.entity.Task;
 import org.snaker.engine.entity.WorkItem;
 import org.snaker.engine.model.TaskModel.TaskType;
-
-import com.snakerflow.framework.flow.service.SnakerEngineFacets;
-import com.witsafe.contracts.common.util.ShiroUtils;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.witsafe.contracts.common.util.ShiroUtils;
+import com.witsafe.contracts.service.SnakerEngineFacets;
 
 /**
  * Snaker流程引擎常用Controller

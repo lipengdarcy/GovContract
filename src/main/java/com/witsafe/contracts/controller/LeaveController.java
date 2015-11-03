@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.snakerflow.framework.flow.service.SnakerEngineFacets;
 import com.witsafe.contracts.common.util.ShiroUtils;
+import com.witsafe.contracts.service.SnakerEngineFacets;
 
 
 /**

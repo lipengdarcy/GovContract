@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.witsafe.contracts.dao.WfHistOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.WfHistOrder" >
+<mapper namespace="com.witsafe.contracts.dao.flow.WfHistOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.flow.WfHistOrder" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="process_Id" property="processId" jdbcType="VARCHAR" />
     <result column="order_State" property="orderState" jdbcType="BIT" />
@@ -76,7 +76,7 @@
     id, process_Id, order_State, creator, create_Time, end_Time, expire_Time, priority, 
     parent_Id, order_No, variable
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.WfHistOrderExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.flow.WfHistOrderExample" >
     select
     <if test="distinct" >
       distinct
@@ -100,13 +100,13 @@
     delete from wf_hist_order
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.WfHistOrderExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.flow.WfHistOrderExample" >
     delete from wf_hist_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.WfHistOrder" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.flow.WfHistOrder" >
     insert into wf_hist_order (id, process_Id, order_State, 
       creator, create_Time, end_Time, 
       expire_Time, priority, parent_Id, 
@@ -116,7 +116,7 @@
       #{expireTime,jdbcType=VARCHAR}, #{priority,jdbcType=BIT}, #{parentId,jdbcType=VARCHAR}, 
       #{orderNo,jdbcType=VARCHAR}, #{variable,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.WfHistOrder" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.flow.WfHistOrder" >
     insert into wf_hist_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -189,7 +189,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.WfHistOrderExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.flow.WfHistOrderExample" resultType="java.lang.Integer" >
     select count(*) from wf_hist_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -253,7 +253,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.WfHistOrder" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.flow.WfHistOrder" >
     update wf_hist_order
     <set >
       <if test="processId != null" >
@@ -289,7 +289,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.WfHistOrder" >
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.flow.WfHistOrder" >
     update wf_hist_order
     set process_Id = #{processId,jdbcType=VARCHAR},
       order_State = #{orderState,jdbcType=BIT},

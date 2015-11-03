@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.witsafe.contracts.dao.WfProcessMapper" >
-  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.WfProcess" >
+<mapper namespace="com.witsafe.contracts.dao.flow.WfProcessMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.flow.WfProcess" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="display_Name" property="displayName" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <result column="create_Time" property="createTime" jdbcType="VARCHAR" />
     <result column="creator" property="creator" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.witsafe.contracts.model.WfProcess" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.witsafe.contracts.model.flow.WfProcess" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -79,7 +79,7 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.witsafe.contracts.model.WfProcessExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.witsafe.contracts.model.flow.WfProcessExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,7 +95,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.WfProcessExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.flow.WfProcessExample" >
     select
     <if test="distinct" >
       distinct
@@ -121,13 +121,13 @@
     delete from wf_process
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.WfProcessExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.flow.WfProcessExample" >
     delete from wf_process
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.WfProcess" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.flow.WfProcess" >
     insert into wf_process (id, name, display_Name, 
       type, instance_Url, state, 
       version, create_Time, creator, 
@@ -137,7 +137,7 @@
       #{version,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
       #{content,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.WfProcess" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.flow.WfProcess" >
     insert into wf_process
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -204,7 +204,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.WfProcessExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.flow.WfProcessExample" resultType="java.lang.Integer" >
     select count(*) from wf_process
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -279,7 +279,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.WfProcess" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.flow.WfProcess" >
     update wf_process
     <set >
       <if test="name != null" >
@@ -312,7 +312,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.witsafe.contracts.model.WfProcess" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.witsafe.contracts.model.flow.WfProcess" >
     update wf_process
     set name = #{name,jdbcType=VARCHAR},
       display_Name = #{displayName,jdbcType=VARCHAR},
@@ -325,7 +325,7 @@
       content = #{content,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.WfProcess" >
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.flow.WfProcess" >
     update wf_process
     set name = #{name,jdbcType=VARCHAR},
       display_Name = #{displayName,jdbcType=VARCHAR},

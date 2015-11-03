@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.witsafe.contracts.dao.WfTaskMapper" >
-  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.WfTask" >
+<mapper namespace="com.witsafe.contracts.dao.flow.WfTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.flow.WfTask" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="order_Id" property="orderId" jdbcType="VARCHAR" />
     <result column="task_Name" property="taskName" jdbcType="VARCHAR" />
@@ -79,7 +79,7 @@
     id, order_Id, task_Name, display_Name, task_Type, perform_Type, operator, create_Time, 
     finish_Time, expire_Time, action_Url, parent_Task_Id, variable, version
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.WfTaskExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.flow.WfTaskExample" >
     select
     <if test="distinct" >
       distinct
@@ -103,13 +103,13 @@
     delete from wf_task
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.WfTaskExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.flow.WfTaskExample" >
     delete from wf_task
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.WfTask" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.flow.WfTask" >
     insert into wf_task (id, order_Id, task_Name, 
       display_Name, task_Type, perform_Type, 
       operator, create_Time, finish_Time, 
@@ -121,7 +121,7 @@
       #{expireTime,jdbcType=VARCHAR}, #{actionUrl,jdbcType=VARCHAR}, #{parentTaskId,jdbcType=VARCHAR}, 
       #{variable,jdbcType=VARCHAR}, #{version,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.WfTask" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.flow.WfTask" >
     insert into wf_task
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -212,7 +212,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.WfTaskExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.flow.WfTaskExample" resultType="java.lang.Integer" >
     select count(*) from wf_task
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -288,7 +288,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.WfTask" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.flow.WfTask" >
     update wf_task
     <set >
       <if test="orderId != null" >
@@ -333,7 +333,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.WfTask" >
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.flow.WfTask" >
     update wf_task
     set order_Id = #{orderId,jdbcType=VARCHAR},
       task_Name = #{taskName,jdbcType=VARCHAR},

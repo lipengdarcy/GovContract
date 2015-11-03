@@ -66,7 +66,7 @@
   <sql id="Base_Column_List" >
     role_id, authority_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.SecRoleAuthorityExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.security.SecRoleAuthorityExample" >
     select
     <if test="distinct" >
       distinct
@@ -80,17 +80,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.SecRoleAuthorityExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.security.SecRoleAuthorityExample" >
     delete from sec_role_authority
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.SecRoleAuthority" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.security.SecRoleAuthority" >
     insert into sec_role_authority (role_id, authority_id)
     values (#{roleId,jdbcType=INTEGER}, #{authorityId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.SecRoleAuthority" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.security.SecRoleAuthority" >
     insert into sec_role_authority
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleId != null" >
@@ -109,7 +109,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.SecRoleAuthorityExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.security.SecRoleAuthorityExample" resultType="java.lang.Integer" >
     select count(*) from sec_role_authority
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

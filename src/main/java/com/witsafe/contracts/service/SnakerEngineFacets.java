@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snakerflow.framework.flow.service;
+package com.witsafe.contracts.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,13 +31,13 @@ import org.snaker.engine.entity.Task;
 import org.snaker.engine.helper.StreamHelper;
 import org.snaker.engine.model.TaskModel.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @author yuqs
  * @since 0.1
  */
-@Component
+@Service
 public class SnakerEngineFacets {
 	@Autowired
 	private SnakerEngine engine;

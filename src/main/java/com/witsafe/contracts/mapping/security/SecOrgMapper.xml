@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     id, active, description, fullname, name, type, parent_org
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.SecOrgExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.security.SecOrgExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from sec_org
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.SecOrgExample" >
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.security.SecOrgExample" >
     delete from sec_org
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.contracts.model.SecOrg" >
+  <insert id="insert" parameterType="com.witsafe.contracts.model.security.SecOrg" >
     insert into sec_org (id, active, description, 
       fullname, name, type, 
       parent_org)
@@ -109,7 +109,7 @@
       #{fullname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
       #{parentOrg,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.SecOrg" >
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.security.SecOrg" >
     insert into sec_org
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.contracts.model.SecOrgExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.security.SecOrgExample" resultType="java.lang.Integer" >
     select count(*) from sec_org
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.SecOrg" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.security.SecOrg" >
     update sec_org
     <set >
       <if test="active != null" >
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.SecOrg" >
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.security.SecOrg" >
     update sec_org
     set active = #{active,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},

@@ -28,7 +28,7 @@
 	<!-- 若只想使用Spring自身提供的缓存器,则注释掉下面的两个关于Ehcache配置的bean,并启用上面的SimpleCacheManager即可 -->
 	<!-- Spring提供的基于的Ehcache实现的缓存管理器 -->
 	<bean id="cacheManagerFactory"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:shared="true">
 		<property name="configLocation" value="classpath:ehcache/ehcache.xml" />
 	</bean>
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">

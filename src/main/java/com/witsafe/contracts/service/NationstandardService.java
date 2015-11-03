@@ -19,6 +19,7 @@ import com.witsafe.contracts.common.util.HtmlUtil;
 import com.witsafe.contracts.dao.NationstandardMapper;
 import com.witsafe.contracts.model.Nationstandard;
 import com.witsafe.contracts.model.NationstandardExample;
+import com.witsafe.contracts.model.NationstandardWithBLOBs;
 
 @Service
 public class NationstandardService implements Runnable {
@@ -42,9 +43,9 @@ public class NationstandardService implements Runnable {
 	/**
 	 * 获取国家标准文献的详情
 	 */
-	public Nationstandard getNationstandard(String url) {
+	public NationstandardWithBLOBs getNationstandard(String url) {
 		// 标准详情
-		Nationstandard standard = new Nationstandard();
+		NationstandardWithBLOBs standard = new NationstandardWithBLOBs();
 		Document doc = null;
 		try {
 			doc = Jsoup.connect(url).get();
@@ -120,7 +121,7 @@ public class NationstandardService implements Runnable {
 	}
 	
 	// 分页查询 
-	public List<Nationstandard> selectAll(int pageNumber, int pageSize) {
+	public List<NationstandardWithBLOBs> selectAll(int pageNumber, int pageSize) {
 		PageHelper.startPage(pageNumber, pageSize);
 		return nationstandardMapper.selectByExampleWithBLOBs(new NationstandardExample());
 	}
@@ -164,7 +165,7 @@ public class NationstandardService implements Runnable {
 			} catch (InterruptedException e) {
 
 			}
-			Nationstandard standard = getNationstandard(url);
+			NationstandardWithBLOBs standard = getNationstandard(url);
 			if (standard != null) {
 				count += nationstandardMapper.insertSelective(standard);
 				loggerinfo.info("序号:" + count + ", 标准号:"
@@ -219,7 +220,7 @@ public class NationstandardService implements Runnable {
 				} catch (InterruptedException e) {
 
 				}
-				Nationstandard standard = getNationstandard(url);
+				NationstandardWithBLOBs standard = getNationstandard(url);
 				if (standard != null) {
 					count += nationstandardMapper.insertSelective(standard);
 					loggerinfo.info("序号:" + count + ", 标准号:"

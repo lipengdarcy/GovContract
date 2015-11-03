@@ -12,43 +12,72 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
+		<snaker.version>2.5.1</snaker.version>
+		<shiro.version>1.2.4</shiro.version>
 	</properties>
 
-	<build>
-		<plugins>
-
-			<!-- maven编译的jdk'版本 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-
-			<!-- mybatis.generator 自动生成model,mapper,xml -->
-			<plugin>
-				<groupId>org.mybatis.generator</groupId>
-				<artifactId>mybatis-generator-maven-plugin</artifactId>
-				<version>1.3.2</version>
-				<configuration>
-					<verbose>true</verbose>
-					<overwrite>true</overwrite>
-				</configuration>
-			</plugin>
-
-		</plugins>
-	</build>
-
-
-
-
-
-
-
 	<dependencies>
+	
+	 <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>13.0.1</version>
+        </dependency>
+
+		<!-- Apache Shiro Java Security Framework -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.2.4</version>
+		</dependency>
+
+		<!-- snaker工作流引擎 -->
+		<dependency>
+			<groupId>com.github.snakerflow</groupId>
+			<artifactId>snaker-core</artifactId>
+			<version>${snaker.version}</version>
+		</dependency>
+
+		<!-- snaker spring -->
+		<dependency>
+			<groupId>com.github.snakerflow</groupId>
+			<artifactId>snaker-spring</artifactId>
+			<version>${snaker.version}</version>
+		</dependency>
+
+		<!-- snaker mybatis -->
+		<dependency>
+			<groupId>com.github.snakerflow</groupId>
+			<artifactId>snaker-mybatis</artifactId>
+			<version>${snaker.version}</version>
+		</dependency>
+
+		<!-- osworkflow工作流引擎 -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>osworkflow</artifactId>
+			<version>2.7.0</version>
+		</dependency>
 
 		<!-- java操作pdf文件 -->
 		<dependency>
@@ -367,6 +396,34 @@
 		</dependency>
 
 	</dependencies>
+
+
+	<build>
+		<plugins>
+			<!-- maven编译的jdk'版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<!-- mybatis.generator 自动生成model,mapper,xml -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
 
 
 	<!-- pom.xml 里面配置远程仓库，当连接中央仓库的速度比较慢时，或者公司搭建了自己的仓库，比如 Nexus仓库管理 -->

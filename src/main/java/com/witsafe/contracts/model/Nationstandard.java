@@ -1,15 +1,9 @@
 package com.witsafe.contracts.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Nationstandard implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2897305707146340391L;
-
-	private Integer id;
+public class Nationstandard {
+    private Integer id;
 
     private String standardno;
 
@@ -21,8 +15,6 @@ public class Nationstandard implements Serializable{
 
     private Date effectDate;
 
-    private String standardnoReplace;
-
     private String nameReplace;
 
     private String typeCh;
@@ -30,8 +22,6 @@ public class Nationstandard implements Serializable{
     private String typeIso;
 
     private String publisher;
-
-    private String validRange;
 
     public Integer getId() {
         return id;
@@ -81,14 +71,6 @@ public class Nationstandard implements Serializable{
         this.effectDate = effectDate;
     }
 
-    public String getStandardnoReplace() {
-        return standardnoReplace;
-    }
-
-    public void setStandardnoReplace(String standardnoReplace) {
-        this.standardnoReplace = standardnoReplace == null ? null : standardnoReplace.trim();
-    }
-
     public String getNameReplace() {
         return nameReplace;
     }
@@ -119,13 +101,5 @@ public class Nationstandard implements Serializable{
 
     public void setPublisher(String publisher) {
         this.publisher = publisher == null ? null : publisher.trim();
-    }
-
-    public String getValidRange() {
-        return validRange;
-    }
-
-    public void setValidRange(String validRange) {
-        this.validRange = validRange == null ? null : validRange.trim();
     }
 }

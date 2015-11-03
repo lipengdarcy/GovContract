@@ -6,9 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrganizationMapper {
-	
-	int selectMaxId();
-	
     int countByExample(OrganizationExample example);
 
     int deleteByExample(OrganizationExample example);

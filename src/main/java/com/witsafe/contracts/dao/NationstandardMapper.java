@@ -2,6 +2,7 @@ package com.witsafe.contracts.dao;
 
 import com.witsafe.contracts.model.Nationstandard;
 import com.witsafe.contracts.model.NationstandardExample;
+import com.witsafe.contracts.model.NationstandardWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,25 +13,25 @@ public interface NationstandardMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Nationstandard record);
+    int insert(NationstandardWithBLOBs record);
 
-    int insertSelective(Nationstandard record);
+    int insertSelective(NationstandardWithBLOBs record);
 
-    List<Nationstandard> selectByExampleWithBLOBs(NationstandardExample example);
+    List<NationstandardWithBLOBs> selectByExampleWithBLOBs(NationstandardExample example);
 
     List<Nationstandard> selectByExample(NationstandardExample example);
 
-    Nationstandard selectByPrimaryKey(Integer id);
+    NationstandardWithBLOBs selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Nationstandard record, @Param("example") NationstandardExample example);
+    int updateByExampleSelective(@Param("record") NationstandardWithBLOBs record, @Param("example") NationstandardExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Nationstandard record, @Param("example") NationstandardExample example);
+    int updateByExampleWithBLOBs(@Param("record") NationstandardWithBLOBs record, @Param("example") NationstandardExample example);
 
     int updateByExample(@Param("record") Nationstandard record, @Param("example") NationstandardExample example);
 
-    int updateByPrimaryKeySelective(Nationstandard record);
+    int updateByPrimaryKeySelective(NationstandardWithBLOBs record);
 
-    int updateByPrimaryKeyWithBLOBs(Nationstandard record);
+    int updateByPrimaryKeyWithBLOBs(NationstandardWithBLOBs record);
 
     int updateByPrimaryKey(Nationstandard record);
 }

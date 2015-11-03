@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.witsafe.contracts.dao.SysParamMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.contracts.model.SysParam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="paramTypeCode" property="paramtypecode" jdbcType="VARCHAR" />
+    <result column="paramTypeName" property="paramtypename" jdbcType="VARCHAR" />
+    <result column="paramFatherType" property="paramfathertype" jdbcType="VARCHAR" />
+    <result column="paramCode" property="paramcode" jdbcType="VARCHAR" />
+    <result column="paramName" property="paramname" jdbcType="VARCHAR" />
+    <result column="paramValue" property="paramvalue" jdbcType="VARCHAR" />
+    <result column="publish_date" property="publishDate" jdbcType="DATE" />
+    <result column="isValid" property="isvalid" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, paramTypeCode, paramTypeName, paramFatherType, paramCode, paramName, paramValue, 
+    publish_date, isValid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.contracts.model.SysParamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_param
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_param
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.witsafe.contracts.model.SysParamExample" >
+    delete from sys_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.witsafe.contracts.model.SysParam" >
+    insert into sys_param (id, paramTypeCode, paramTypeName, 
+      paramFatherType, paramCode, paramName, 
+      paramValue, publish_date, isValid
+      )
+    values (#{id,jdbcType=INTEGER}, #{paramtypecode,jdbcType=VARCHAR}, #{paramtypename,jdbcType=VARCHAR}, 
+      #{paramfathertype,jdbcType=VARCHAR}, #{paramcode,jdbcType=VARCHAR}, #{paramname,jdbcType=VARCHAR}, 
+      #{paramvalue,jdbcType=VARCHAR}, #{publishDate,jdbcType=DATE}, #{isvalid,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.witsafe.contracts.model.SysParam" >
+    insert into sys_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="paramtypecode != null" >
+        paramTypeCode,
+      </if>
+      <if test="paramtypename != null" >
+        paramTypeName,
+      </if>
+      <if test="paramfathertype != null" >
+        paramFatherType,
+      </if>
+      <if test="paramcode != null" >
+        paramCode,
+      </if>
+      <if test="paramname != null" >
+        paramName,
+      </if>
+      <if test="paramvalue != null" >
+        paramValue,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="isvalid != null" >
+        isValid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="paramtypecode != null" >
+        #{paramtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="paramtypename != null" >
+        #{paramtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="paramfathertype != null" >
+        #{paramfathertype,jdbcType=VARCHAR},
+      </if>
+      <if test="paramcode != null" >
+        #{paramcode,jdbcType=VARCHAR},
+      </if>
+      <if test="paramname != null" >
+        #{paramname,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue != null" >
+        #{paramvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="isvalid != null" >
+        #{isvalid,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.witsafe.contracts.model.SysParamExample" resultType="java.lang.Integer" >
+    select count(*) from sys_param
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_param
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.paramtypecode != null" >
+        paramTypeCode = #{record.paramtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramtypename != null" >
+        paramTypeName = #{record.paramtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramfathertype != null" >
+        paramFatherType = #{record.paramfathertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramcode != null" >
+        paramCode = #{record.paramcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramname != null" >
+        paramName = #{record.paramname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramvalue != null" >
+        paramValue = #{record.paramvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishDate != null" >
+        publish_date = #{record.publishDate,jdbcType=DATE},
+      </if>
+      <if test="record.isvalid != null" >
+        isValid = #{record.isvalid,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_param
+    set id = #{record.id,jdbcType=INTEGER},
+      paramTypeCode = #{record.paramtypecode,jdbcType=VARCHAR},
+      paramTypeName = #{record.paramtypename,jdbcType=VARCHAR},
+      paramFatherType = #{record.paramfathertype,jdbcType=VARCHAR},
+      paramCode = #{record.paramcode,jdbcType=VARCHAR},
+      paramName = #{record.paramname,jdbcType=VARCHAR},
+      paramValue = #{record.paramvalue,jdbcType=VARCHAR},
+      publish_date = #{record.publishDate,jdbcType=DATE},
+      isValid = #{record.isvalid,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.contracts.model.SysParam" >
+    update sys_param
+    <set >
+      <if test="paramtypecode != null" >
+        paramTypeCode = #{paramtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="paramtypename != null" >
+        paramTypeName = #{paramtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="paramfathertype != null" >
+        paramFatherType = #{paramfathertype,jdbcType=VARCHAR},
+      </if>
+      <if test="paramcode != null" >
+        paramCode = #{paramcode,jdbcType=VARCHAR},
+      </if>
+      <if test="paramname != null" >
+        paramName = #{paramname,jdbcType=VARCHAR},
+      </if>
+      <if test="paramvalue != null" >
+        paramValue = #{paramvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate,jdbcType=DATE},
+      </if>
+      <if test="isvalid != null" >
+        isValid = #{isvalid,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.contracts.model.SysParam" >
+    update sys_param
+    set paramTypeCode = #{paramtypecode,jdbcType=VARCHAR},
+      paramTypeName = #{paramtypename,jdbcType=VARCHAR},
+      paramFatherType = #{paramfathertype,jdbcType=VARCHAR},
+      paramCode = #{paramcode,jdbcType=VARCHAR},
+      paramName = #{paramname,jdbcType=VARCHAR},
+      paramValue = #{paramvalue,jdbcType=VARCHAR},
+      publish_date = #{publishDate,jdbcType=DATE},
+      isValid = #{isvalid,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -17,6 +17,7 @@ import org.jsoup.select.Elements;
 import com.witsafe.contracts.common.Constant;
 import com.witsafe.contracts.common.util.HtmlUtil;
 import com.witsafe.contracts.model.Nationstandard;
+import com.witsafe.contracts.model.NationstandardWithBLOBs;
 import com.witsafe.contracts.service.NationstandardService;
 
 public class JsoupTest implements Runnable {
@@ -53,7 +54,7 @@ public class JsoupTest implements Runnable {
 	public static Nationstandard getNationstandard(String url)
 			throws IOException, ParseException {
 		// 标准详情
-		Nationstandard standard = new Nationstandard();
+		NationstandardWithBLOBs standard = new NationstandardWithBLOBs();
 		Document doc = Jsoup.connect(url).get();
 		// 标准号
 		String standardno = doc.select("h3").get(0).html();

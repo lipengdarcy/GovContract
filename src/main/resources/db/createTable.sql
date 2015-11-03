@@ -1,3 +1,25 @@
+DROP TABLE IF EXISTS sys_param;
+CREATE TABLE sys_param (
+    id INT NOT NULL AUTO_INCREMENT,
+    paramTypeCode VARCHAR(100) DEFAULT NULL COMMENT '参数类型编码',
+    paramTypeName VARCHAR(100) DEFAULT NULL COMMENT '参数类型名称',
+    paramFatherType VARCHAR(100) DEFAULT NULL COMMENT '参数上级类型',
+    paramCode VARCHAR(100) DEFAULT NULL COMMENT '参数编码',
+    paramName VARCHAR(500) DEFAULT NULL COMMENT '参数名称',
+    paramValue VARCHAR(100) DEFAULT NULL COMMENT '参数值',
+    publish_date DATE DEFAULT NULL COMMENT '发布日期',      
+    isValid TINYINT(1) DEFAULT 1 COMMENT '是否有效，1：有效，0：无效',
+    PRIMARY KEY (id)
+)  ENGINE=MYISAM DEFAULT CHARACTER SET=UTF8 COMMENT '系统参数表';
+
+INSERT INTO `witsafe`.`sys_param` (`id`, `paramTypeCode`, `paramTypeName`, `paramCode`, `paramName`, 
+`paramValue`, `isValid`) VALUES ('1', 'isvalid', '是否有效', 'valid', '有效', '1', '1');
+
+INSERT INTO `witsafe`.`sys_param` (`id`, `paramTypeCode`, `paramTypeName`, `paramCode`, `paramName`, 
+`paramValue`, `isValid`) VALUES ('2', 'isvalid', '是否有效', 'notvalid', '无效', '0', '1');
+
+
+
 DROP TABLE IF EXISTS account;
 CREATE TABLE account (
     id INT NOT NULL AUTO_INCREMENT,

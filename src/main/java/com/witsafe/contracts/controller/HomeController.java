@@ -18,6 +18,7 @@ import com.witsafe.contracts.entity.common.JqGridData;
 import com.witsafe.contracts.entity.common.ResponseData;
 import com.witsafe.contracts.model.Account;
 import com.witsafe.contracts.model.Nationstandard;
+import com.witsafe.contracts.model.NationstandardWithBLOBs;
 import com.witsafe.contracts.model.Organization;
 import com.witsafe.contracts.model.OrganizationExample;
 import com.witsafe.contracts.service.AccountService;
@@ -151,7 +152,7 @@ public class HomeController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/standard")
-	public JqGridData<Nationstandard> standard(
+	public JqGridData<NationstandardWithBLOBs> standard(
 			@RequestParam(required = false, defaultValue = "1", value = "page") int pageNumber, // 表示请求页码的参数名称
 			@RequestParam(required = false, defaultValue = "20", value = "rows") int pageSize, // 表示请求行数的参数名称
 			@RequestParam(required = false, value = "sidx") String sidx, // 表示用于排序的列名的参数名称
@@ -163,12 +164,12 @@ public class HomeController {
 			@RequestParam(required = false, value = "filters") String filters,
 			ModelMap m) {
 
-		List<Nationstandard> list = nationstandardService.selectAll(pageNumber,
+		List<NationstandardWithBLOBs> list = nationstandardService.selectAll(pageNumber,
 				pageSize);
 
 		Page p = (Page) list;
 		// JqGridData(int total, int page, int records, List<T> rows)
-		JqGridData<Nationstandard> data = new JqGridData<Nationstandard>(
+		JqGridData<NationstandardWithBLOBs> data = new JqGridData<NationstandardWithBLOBs>(
 				p.getPages(), p.getPageNum(), (int) p.getTotal(), list);
 
 		return data;

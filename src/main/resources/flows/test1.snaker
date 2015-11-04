@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<process displayName="请假流程" name="leaveProcess">
+<start displayName="start1" layout="66,57,-1,-1" name="start1">
+<transition g="" name="transition1" offset="0,0" to="task1"/>
+</start>
+<end displayName="end1" layout="670,452,-1,-1" name="end1"/>
+<task displayName="请假申请" layout="230,87,-1,-1" name="task1" performType="ANY">
+<transition g="" name="transition2" offset="0,0" to="task2"/>
+</task>
+<task displayName="部门经理审批" layout="211,192,119,52" name="task2" performType="ANY">
+<transition g="" name="transition3" offset="0,0" to="decision1"/>
+</task>
+<decision displayName="decision1" expr="#day&lt;2 ? 'transition5' : 'transition4'" layout="271,367,-1,-1" name="decision1">
+<transition displayName="&gt;2天" g="" name="transition4" offset="0,0" to="task3"/>
+<transition displayName="&lt;2天" g="" name="transition5" offset="0,0" to="end1"/>
+</decision>
+<task displayName="总经理审批" layout="582,165,122,52" name="task3" performType="ANY"/>
+</process>

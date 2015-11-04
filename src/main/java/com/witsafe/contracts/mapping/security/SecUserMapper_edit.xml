@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.witsafe.contracts.dao.security.SecUserMapper">
+	<resultMap id="BaseResultMap" type="com.witsafe.contracts.model.security.SecUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="enabled" property="enabled" jdbcType="VARCHAR" />
+		<result column="fullname" property="fullname" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="plainPassword" property="plainpassword"
+			jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="org" property="org" jdbcType="INTEGER" />
+	</resultMap>
+	
+	
+	<sql id="Base_Column_List">
+		id, address, age, email, enabled, fullname, password,
+		plainPassword,
+		salt, sex, type,
+		username, org
+	</sql>
+
+	<!-- 根据用户ID查询该用户所拥有的权限列表 -->
+	<select id="getAuthoritiesName" resultMap="java.lang.String"
+		parameterType="java.lang.Integer">
+		select a.name from sec_user u
+		left outer join
+		sec_role_user ru on u.id=ru.user_id
+		left outer join sec_role r on
+		ru.role_id=r.id
+		left outer join sec_role_authority ra on r.id =
+		ra.role_id
+		left outer join sec_authority a on ra.authority_id = a.id
+		where u.id= #{userId,jdbcType=INTEGER}
+	</select>
+
+	<!-- 根据用户ID查询该用户所拥有的角色列表 -->
+	<select id="getRolesName" resultMap="java.lang.String"
+		parameterType="java.lang.Integer">
+		select r.name from sec_user u
+		left outer join sec_role_user ru on u.id=ru.user_id
+		left outer join sec_role r on ru.role_id=r.id
+		where u.id= #{userId,jdbcType=INTEGER}
+	</select>
+
+
+
+</mapper>

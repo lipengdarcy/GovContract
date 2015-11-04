@@ -3,40 +3,44 @@ package com.witsafe.contracts.model.security;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class SecMenu {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3488405380107404492L;
-	//菜单资源的根菜单标识为0
+	// 菜单资源的根菜单标识为0
 	public static final Integer ROOT_MENU = 0;
-	//菜单名称
+
+	private Integer id;
+	// 菜单名称
 	private String name;
-	//菜单描述
+	// 菜单描述
 	private String description;
-	//排序字段
+	// 排序字段
 	private Integer orderby;
-	//上级菜单id
+	// 上级菜单id
 	private Integer parentMenu;
-	//上级菜单
+	// 上级菜单
 	private SecMenu parentMenuObject;
-	//子菜单列表（多对多关联）
+	// 子菜单列表（多对多关联）
 	private List<SecMenu> subMenus = new ArrayList<SecMenu>();
-	
-	public SecMenu() {}
+
+	public SecMenu() {
+	}
+
 	/**
 	 * 构造函数，参数为主键ID
+	 * 
 	 * @param id
 	 */
 	public SecMenu(Integer id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * 构造函数，辅助hql查询
+	 * 
 	 * @param id
 	 * @param name
 	 * @param description
@@ -47,50 +51,44 @@ public class SecMenu {
 		this.description = description;
 		this.orderby = orderby;
 	}
-	
 
-	
-    private Integer id;
+	public Integer getId() {
+		return id;
+	}
 
-  
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setDescription(String description) {
+		this.description = description == null ? null : description.trim();
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
+	public void setName(String name) {
+		this.name = name == null ? null : name.trim();
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Integer getParentMenu() {
+		return parentMenu;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setParentMenu(Integer parentMenu) {
+		this.parentMenu = parentMenu;
+	}
 
-    public Integer getParentMenu() {
-        return parentMenu;
-    }
+	public Integer getOrderby() {
+		return orderby;
+	}
 
-    public void setParentMenu(Integer parentMenu) {
-        this.parentMenu = parentMenu;
-    }
-
-    public Integer getOrderby() {
-        return orderby;
-    }
-
-    public void setOrderby(Integer orderby) {
-        this.orderby = orderby;
-    }
+	public void setOrderby(Integer orderby) {
+		this.orderby = orderby;
+	}
 }

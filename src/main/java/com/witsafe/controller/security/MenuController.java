@@ -57,7 +57,7 @@ public class MenuController {
 	 */
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String create(Model model) {
-		model.addAttribute("menu", new Menu(null));
+		model.addAttribute("menu", new SecMenu());
 		return "security/menuEdit";
 	}
 
@@ -68,8 +68,8 @@ public class MenuController {
 	 * @return
 	 */
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") Long id, Model model) {
-		//model.addAttribute("menu", menuManager.get(id));
+	public String edit(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("menu", menuManager.get(id));
 		return "security/menuEdit";
 	}
 	
@@ -80,8 +80,8 @@ public class MenuController {
 	 * @return
 	 */
 	@RequestMapping(value = "view/{id}", method = RequestMethod.GET)
-	public String view(@PathVariable("id") Long id, Model model) {
-		//model.addAttribute("menu", menuManager.get(id));
+	public String view(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("menu", menuManager.get(id));
 		return "security/menuView";
 	}
 	
@@ -95,8 +95,8 @@ public class MenuController {
 		if(parentMenuId != null && parentMenuId.longValue() > 0) {
 			menu.setParentMenu(parentMenuId);
 		}
-		//menuManager.save(menu);
-		return "redirect:/security/menu";
+		menuManager.save(menu);
+		return "redirect:/security/menu.do";
 	}
 	
 	/**
@@ -105,8 +105,8 @@ public class MenuController {
 	 * @return
 	 */
 	@RequestMapping(value = "delete/{id}")
-	public String delete(@PathVariable("id") Long id) {
-		//menuManager.delete(id);
-		return "redirect:/security/menu";
+	public String delete(@PathVariable("id") Integer id) {
+		menuManager.delete(id);
+		return "redirect:/security/menu.do";
 	}
 }

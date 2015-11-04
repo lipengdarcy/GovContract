@@ -33,6 +33,30 @@ public class MenuManager {
 	}
 	
 	/**
+	 * 获取菜单
+	 * @return
+	 */
+	public SecMenu get(Integer id) {
+		return secMenuMapper.selectByPrimaryKey(id);
+	}
+	
+	/**
+	 * 保存菜单
+	 * @return
+	 */
+	public int save(SecMenu record) {
+		return secMenuMapper.updateByPrimaryKeySelective(record);
+	}
+	
+	/**
+	 * 删除菜单
+	 * @return
+	 */
+	public int delete(Integer id) {
+		return secMenuMapper.deleteByPrimaryKey(id);
+	}
+	
+	/**
 	 * 根据用户ID查询该用户允许访问的所有菜单列表
 	 * @param userId
 	 * @return

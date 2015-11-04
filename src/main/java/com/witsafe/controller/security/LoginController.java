@@ -28,7 +28,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login" ,method = RequestMethod.POST)
 	public String login(SecUser user, Model model, HttpServletRequest request) {
-		log.info("Login user=====" + user);
+		log.info("Login user=====" + user.getUsername());
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
 		String remember = WebUtils.getCleanParam(request, "remember");
@@ -38,7 +38,7 @@ public class LoginController {
 		    	    token.setRememberMe(true);
 		    	}
 			subject.login(token);
-			return "redirect:/index";
+			return "redirect:/home.do";
 		} catch(UnknownAccountException ue) {
 			token.clear();
 			model.addAttribute("error", "登录失败，您输入的账号不存在");

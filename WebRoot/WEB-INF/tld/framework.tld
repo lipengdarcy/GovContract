@@ -9,7 +9,7 @@
 	<uri></uri>
 	<tag>
 		<name>page</name>
-		<tagclass>com.witsafe.taglibs.PageTag</tagclass>
+		<tagclass>com.witsafe.framework.taglibs.PageTag</tagclass>
 		<attribute>
 			<name>totalRecords</name>
 			<required>true</required>
@@ -39,7 +39,7 @@
    	
 	<tag>
 		<name>select</name>
-		<tagclass>com.witsafe.taglibs.SelectTag</tagclass>
+		<tagclass>com.witsafe.framework.taglibs.SelectTag</tagclass>
 		<attribute>
 			<name>type</name>
 			<required>true</required>
@@ -89,6 +89,6 @@
    	
    	<tag>
    		<name>menu</name>
-   		<tagclass>com.witsafe.taglibs.MenuTag</tagclass>
+   		<tagclass>com.witsafe.framework.taglibs.MenuTag</tagclass>
    	</tag>
 </taglib>

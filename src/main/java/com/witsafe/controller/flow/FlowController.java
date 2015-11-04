@@ -157,7 +157,7 @@ public class FlowController {
         if(StringUtils.isNotEmpty(ccOperator)) {
             facets.getEngine().order().createCCOrder(orderId, ShiroUtils.getUsername(), ccOperator.split(","));
         }
-        return "redirect:/snaker/task/active";
+        return "redirect:/snaker/task/active.do";
     }
 
     /**
@@ -231,6 +231,6 @@ public class FlowController {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("result", model.getResult());
         facets.execute(model.getTaskId(), ShiroUtils.getUsername(), params);
-        return "redirect:/snaker/task/active";
+        return "redirect:/snaker/task/active.do";
     }
 }

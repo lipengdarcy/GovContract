@@ -33,10 +33,7 @@ import org.snaker.engine.model.TaskModel.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author yuqs
- * @since 0.1
- */
+
 @Service
 public class SnakerEngineFacets {
 	@Autowired

@@ -29,4 +29,6 @@ public interface SecMenuMapper {
     int updateByPrimaryKeySelective(SecMenu record);
 
     int updateByPrimaryKey(SecMenu record);
+    
+    List<SecMenu> getAllowedAccessMenu(Integer id);
 }

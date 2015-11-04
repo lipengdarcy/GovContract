@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
-import com.witsafe.contracts.dao.AccountMapper;
-import com.witsafe.contracts.model.Account;
-import com.witsafe.contracts.model.AccountExample;
+import com.witsafe.dao.AccountMapper;
+import com.witsafe.model.Account;
+import com.witsafe.model.AccountExample;
 
 @Service
 public class AccountService {

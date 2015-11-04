@@ -69,7 +69,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
 		<!-- mapper xml location -->
-		<property name="mapperLocations" value="classpath*:com/witsafe/contracts/**/*Mapper.xml"></property>  
+		<property name="mapperLocations" value="classpath*:com/witsafe/mapping/**/*Mapper.xml"></property>  
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -82,7 +82,7 @@
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean id="MapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.witsafe.contracts.dao" />
+		<property name="basePackage" value="com.witsafe.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 

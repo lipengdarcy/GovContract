@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.witsafe.contracts.dao.security.SecResourceMapper;
-import com.witsafe.contracts.model.security.SecResource;
-import com.witsafe.contracts.model.security.SecResourceExample;
+import com.witsafe.dao.security.SecResourceMapper;
+import com.witsafe.model.security.SecResource;
+import com.witsafe.model.security.SecResourceExample;
 
 /**
  * 资源管理类

@@ -14,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
-import com.witsafe.contracts.dao.NationstandardMapper;
-import com.witsafe.contracts.model.Nationstandard;
-import com.witsafe.contracts.model.NationstandardExample;
-import com.witsafe.contracts.model.NationstandardWithBLOBs;
+import com.witsafe.dao.NationstandardMapper;
 import com.witsafe.framework.common.Constant;
 import com.witsafe.framework.common.util.HtmlUtil;
+import com.witsafe.model.Nationstandard;
+import com.witsafe.model.NationstandardExample;
+import com.witsafe.model.NationstandardWithBLOBs;
 
 @Service
 public class NationstandardService implements Runnable {

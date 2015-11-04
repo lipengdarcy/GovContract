@@ -2,11 +2,11 @@ package com.witsafe.service.security;
 
 import java.util.List;
 
-import com.witsafe.contracts.dao.security.SecRoleMapper;
-import com.witsafe.contracts.model.security.SecRole;
-import com.witsafe.contracts.model.security.SecRoleExample;
+import com.witsafe.dao.security.SecRoleMapper;
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
+import com.witsafe.model.security.SecRole;
+import com.witsafe.model.security.SecRoleExample;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

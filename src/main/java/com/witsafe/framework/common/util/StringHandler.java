@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
-import com.witsafe.contracts.entity.common.PayKeyLoginEntity;
+import com.witsafe.model.common.PayKeyLoginEntity;
 
 public class StringHandler {
 

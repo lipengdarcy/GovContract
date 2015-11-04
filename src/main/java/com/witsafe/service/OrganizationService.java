@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.witsafe.contracts.dao.OrganizationMapper;
-import com.witsafe.contracts.model.Account;
-import com.witsafe.contracts.model.AccountExample;
-import com.witsafe.contracts.model.Organization;
-import com.witsafe.contracts.model.OrganizationExample;
+import com.witsafe.dao.OrganizationMapper;
+import com.witsafe.model.Account;
+import com.witsafe.model.AccountExample;
+import com.witsafe.model.Organization;
+import com.witsafe.model.OrganizationExample;
 
 @Service
 public class OrganizationService {

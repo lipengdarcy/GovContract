@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.witsafe.contracts.entity.common.MessageEntity;
 import com.witsafe.framework.common.util.date.DateStyle;
 import com.witsafe.framework.common.util.date.DateUtil;
+import com.witsafe.model.common.MessageEntity;
 
 
 public class HttpRequest {

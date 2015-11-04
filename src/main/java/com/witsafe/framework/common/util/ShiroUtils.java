@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
-import com.witsafe.contracts.model.security.SecUser;
 import com.witsafe.framework.security.shiro.ShiroPrincipal;
+import com.witsafe.model.security.SecUser;
 
 
 /**

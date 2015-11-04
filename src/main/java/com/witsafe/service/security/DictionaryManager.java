@@ -9,10 +9,10 @@ import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.witsafe.contracts.dao.ConfDictionaryMapper;
-import com.witsafe.contracts.model.ConfDictionary;
+import com.witsafe.dao.ConfDictionaryMapper;
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
+import com.witsafe.model.ConfDictionary;
 
 /**
  * 配置字典管理类

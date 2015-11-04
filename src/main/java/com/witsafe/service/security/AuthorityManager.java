@@ -6,15 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.witsafe.contracts.dao.security.SecAuthorityMapper;
-import com.witsafe.contracts.dao.security.SecAuthorityResourceMapper;
-import com.witsafe.contracts.model.security.SecAuthority;
-import com.witsafe.contracts.model.security.SecAuthorityExample;
-import com.witsafe.contracts.model.security.SecAuthorityResource;
-import com.witsafe.contracts.model.security.SecAuthorityResourceExample;
-import com.witsafe.contracts.model.security.SecResource;
+import com.witsafe.dao.security.SecAuthorityMapper;
+import com.witsafe.dao.security.SecAuthorityResourceMapper;
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
+import com.witsafe.model.security.SecAuthority;
+import com.witsafe.model.security.SecAuthorityExample;
+import com.witsafe.model.security.SecAuthorityResource;
+import com.witsafe.model.security.SecAuthorityResourceExample;
+import com.witsafe.model.security.SecResource;
 
 /**
  * 权限管理类

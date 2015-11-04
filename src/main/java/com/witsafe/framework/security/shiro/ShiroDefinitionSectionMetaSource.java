@@ -11,8 +11,8 @@ import org.apache.shiro.config.Ini.Section;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.witsafe.contracts.model.security.SecAuthority;
-import com.witsafe.contracts.model.security.SecResource;
+import com.witsafe.model.security.SecAuthority;
+import com.witsafe.model.security.SecResource;
 import com.witsafe.service.security.AuthorityManager;
 import com.witsafe.service.security.ResourceManager;
 

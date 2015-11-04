@@ -11,7 +11,7 @@ import java.util.Map;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import com.witsafe.contracts.entity.common.UnionPayResult;
+import com.witsafe.model.common.UnionPayResult;
 
 
 public class Test {

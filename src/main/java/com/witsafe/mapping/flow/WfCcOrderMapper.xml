@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.witsafe.dao.flow.WfCcOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.model.flow.WfCcOrder" >
+    <result column="order_Id" property="orderId" jdbcType="VARCHAR" />
+    <result column="actor_Id" property="actorId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_Time" property="createTime" jdbcType="VARCHAR" />
+    <result column="finish_Time" property="finishTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_Id, actor_Id, status, creator, create_Time, finish_Time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.flow.WfCcOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wf_cc_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.witsafe.model.flow.WfCcOrderExample" >
+    delete from wf_cc_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.witsafe.model.flow.WfCcOrder" >
+    insert into wf_cc_order (order_Id, actor_Id, status, 
+      creator, create_Time, finish_Time
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{actorId,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{finishTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.witsafe.model.flow.WfCcOrder" >
+    insert into wf_cc_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_Id,
+      </if>
+      <if test="actorId != null" >
+        actor_Id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createTime != null" >
+        create_Time,
+      </if>
+      <if test="finishTime != null" >
+        finish_Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="actorId != null" >
+        #{actorId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.witsafe.model.flow.WfCcOrderExample" resultType="java.lang.Integer" >
+    select count(*) from wf_cc_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wf_cc_order
+    <set >
+      <if test="record.orderId != null" >
+        order_Id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actorId != null" >
+        actor_Id = #{record.actorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_Time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finishTime != null" >
+        finish_Time = #{record.finishTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wf_cc_order
+    set order_Id = #{record.orderId,jdbcType=VARCHAR},
+      actor_Id = #{record.actorId,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=BIT},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      create_Time = #{record.createTime,jdbcType=VARCHAR},
+      finish_Time = #{record.finishTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,14 +1,14 @@
 package com.witsafe.service.security;
 
 
-import com.witsafe.contracts.dao.DfFieldMapper;
-import com.witsafe.contracts.dao.DfFormMapper;
-import com.witsafe.contracts.model.DfField;
-import com.witsafe.contracts.model.DfForm;
+import com.witsafe.dao.DfFieldMapper;
+import com.witsafe.dao.DfFormMapper;
 import com.witsafe.framework.common.util.ShiroUtils;
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
 import com.witsafe.framework.utils.DateUtils;
+import com.witsafe.model.DfField;
+import com.witsafe.model.DfForm;
 import com.witsafe.service.SnakerEngineFacets;
 
 import org.apache.commons.lang.ArrayUtils;

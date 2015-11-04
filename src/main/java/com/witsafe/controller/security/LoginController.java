@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.witsafe.contracts.model.security.SecUser;
+import com.witsafe.model.security.SecUser;
 
 /**
  * 系统登录Controller

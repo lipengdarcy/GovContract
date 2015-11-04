@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.witsafe.contracts.model.security.SecUser;
+import com.witsafe.model.security.SecUser;
 
 /**
  * 自定义认证主体

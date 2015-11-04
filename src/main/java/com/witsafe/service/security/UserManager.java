@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.witsafe.contracts.dao.security.SecUserMapper;
-import com.witsafe.contracts.model.security.SecUser;
-import com.witsafe.contracts.model.security.SecUserExample;
+import com.witsafe.dao.security.SecUserMapper;
 import com.witsafe.framework.utils.Digests;
 import com.witsafe.framework.utils.EncodeUtils;
+import com.witsafe.model.security.SecUser;
+import com.witsafe.model.security.SecUserExample;
 
 /**
  * 用户管理类

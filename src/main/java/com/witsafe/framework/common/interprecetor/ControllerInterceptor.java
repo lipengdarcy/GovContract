@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.witsafe.contracts.entity.common.StatusHtml;
+import com.witsafe.model.common.StatusHtml;
 
 /**
  * @Description TODO

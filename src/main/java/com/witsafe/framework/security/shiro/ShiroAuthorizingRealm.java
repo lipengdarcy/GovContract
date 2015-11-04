@@ -21,8 +21,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
-import com.witsafe.contracts.model.security.SecUser;
 import com.witsafe.framework.utils.EncodeUtils;
+import com.witsafe.model.security.SecUser;
 import com.witsafe.service.security.AuthorityManager;
 import com.witsafe.service.security.UserManager;
 

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.witsafe.contracts.dao.security.SecMenuMapper;
-import com.witsafe.contracts.model.security.SecMenu;
-import com.witsafe.contracts.model.security.SecMenuExample;
+import com.witsafe.dao.security.SecMenuMapper;
+import com.witsafe.model.security.SecMenu;
+import com.witsafe.model.security.SecMenuExample;
 
 /**
  * 菜单管理类

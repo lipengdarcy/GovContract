@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.witsafe.contracts.model.security.SecAuthority;
-import com.witsafe.contracts.model.security.SecResource;
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
+import com.witsafe.model.security.SecAuthority;
+import com.witsafe.model.security.SecResource;
 import com.witsafe.service.security.AuthorityManager;
 import com.witsafe.service.security.ResourceManager;
 

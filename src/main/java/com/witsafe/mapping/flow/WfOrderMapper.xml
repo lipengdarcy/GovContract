@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.witsafe.dao.flow.WfOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.model.flow.WfOrder" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="parent_Id" property="parentId" jdbcType="VARCHAR" />
+    <result column="process_Id" property="processId" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_Time" property="createTime" jdbcType="VARCHAR" />
+    <result column="expire_Time" property="expireTime" jdbcType="VARCHAR" />
+    <result column="last_Update_Time" property="lastUpdateTime" jdbcType="VARCHAR" />
+    <result column="last_Updator" property="lastUpdator" jdbcType="VARCHAR" />
+    <result column="priority" property="priority" jdbcType="BIT" />
+    <result column="parent_Node_Name" property="parentNodeName" jdbcType="VARCHAR" />
+    <result column="order_No" property="orderNo" jdbcType="VARCHAR" />
+    <result column="variable" property="variable" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, parent_Id, process_Id, creator, create_Time, expire_Time, last_Update_Time, last_Updator, 
+    priority, parent_Node_Name, order_No, variable, version
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.flow.WfOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wf_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wf_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.witsafe.model.flow.WfOrderExample" >
+    delete from wf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.witsafe.model.flow.WfOrder" >
+    insert into wf_order (id, parent_Id, process_Id, 
+      creator, create_Time, expire_Time, 
+      last_Update_Time, last_Updator, priority, 
+      parent_Node_Name, order_No, variable, 
+      version)
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{processId,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{expireTime,jdbcType=VARCHAR}, 
+      #{lastUpdateTime,jdbcType=VARCHAR}, #{lastUpdator,jdbcType=VARCHAR}, #{priority,jdbcType=BIT}, 
+      #{parentNodeName,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{variable,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.witsafe.model.flow.WfOrder" >
+    insert into wf_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_Id,
+      </if>
+      <if test="processId != null" >
+        process_Id,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createTime != null" >
+        create_Time,
+      </if>
+      <if test="expireTime != null" >
+        expire_Time,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_Update_Time,
+      </if>
+      <if test="lastUpdator != null" >
+        last_Updator,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="parentNodeName != null" >
+        parent_Node_Name,
+      </if>
+      <if test="orderNo != null" >
+        order_No,
+      </if>
+      <if test="variable != null" >
+        variable,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null" >
+        #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdator != null" >
+        #{lastUpdator,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=BIT},
+      </if>
+      <if test="parentNodeName != null" >
+        #{parentNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="variable != null" >
+        #{variable,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.witsafe.model.flow.WfOrderExample" resultType="java.lang.Integer" >
+    select count(*) from wf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wf_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        parent_Id = #{record.parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processId != null" >
+        process_Id = #{record.processId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null" >
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_Time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expireTime != null" >
+        expire_Time = #{record.expireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        last_Update_Time = #{record.lastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdator != null" >
+        last_Updator = #{record.lastUpdator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null" >
+        priority = #{record.priority,jdbcType=BIT},
+      </if>
+      <if test="record.parentNodeName != null" >
+        parent_Node_Name = #{record.parentNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNo != null" >
+        order_No = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.variable != null" >
+        variable = #{record.variable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wf_order
+    set id = #{record.id,jdbcType=VARCHAR},
+      parent_Id = #{record.parentId,jdbcType=VARCHAR},
+      process_Id = #{record.processId,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      create_Time = #{record.createTime,jdbcType=VARCHAR},
+      expire_Time = #{record.expireTime,jdbcType=VARCHAR},
+      last_Update_Time = #{record.lastUpdateTime,jdbcType=VARCHAR},
+      last_Updator = #{record.lastUpdator,jdbcType=VARCHAR},
+      priority = #{record.priority,jdbcType=BIT},
+      parent_Node_Name = #{record.parentNodeName,jdbcType=VARCHAR},
+      order_No = #{record.orderNo,jdbcType=VARCHAR},
+      variable = #{record.variable,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.model.flow.WfOrder" >
+    update wf_order
+    <set >
+      <if test="parentId != null" >
+        parent_Id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null" >
+        process_Id = #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_Time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null" >
+        expire_Time = #{expireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_Update_Time = #{lastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdator != null" >
+        last_Updator = #{lastUpdator,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=BIT},
+      </if>
+      <if test="parentNodeName != null" >
+        parent_Node_Name = #{parentNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_No = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="variable != null" >
+        variable = #{variable,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.model.flow.WfOrder" >
+    update wf_order
+    set parent_Id = #{parentId,jdbcType=VARCHAR},
+      process_Id = #{processId,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      create_Time = #{createTime,jdbcType=VARCHAR},
+      expire_Time = #{expireTime,jdbcType=VARCHAR},
+      last_Update_Time = #{lastUpdateTime,jdbcType=VARCHAR},
+      last_Updator = #{lastUpdator,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=BIT},
+      parent_Node_Name = #{parentNodeName,jdbcType=VARCHAR},
+      order_No = #{orderNo,jdbcType=VARCHAR},
+      variable = #{variable,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

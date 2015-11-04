@@ -36,7 +36,6 @@ public interface SecUserMapper {
 	 * @param userId
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public List<String> getAuthoritiesName(Integer userId);
 	
 	/**
@@ -44,7 +43,6 @@ public interface SecUserMapper {
 	 * @param userId
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public List<String> getRolesName(Integer userId) ;
 	
 }

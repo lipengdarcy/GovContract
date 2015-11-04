@@ -1,6 +1,6 @@
 package com.witsafe.contracts.entity.common;
 
-import com.witsafe.contracts.common.util.IEnum;
+import com.witsafe.framework.common.util.IEnum;
 
 
 

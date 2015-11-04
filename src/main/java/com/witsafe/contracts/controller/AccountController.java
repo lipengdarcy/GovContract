@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.witsafe.contracts.common.Constant;
 import com.witsafe.contracts.entity.common.ResponseData;
 import com.witsafe.contracts.model.Account;
-import com.witsafe.contracts.service.AccountService;
+import com.witsafe.framework.common.Constant;
+import com.witsafe.service.AccountService;
 
 
 /**

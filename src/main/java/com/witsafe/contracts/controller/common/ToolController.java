@@ -18,11 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.witsafe.contracts.common.Constant;
 import com.witsafe.contracts.dao.NationstandardMapper;
 import com.witsafe.contracts.model.Nationstandard;
-import com.witsafe.contracts.service.AccountService;
-import com.witsafe.contracts.service.NationstandardService;
+import com.witsafe.framework.common.Constant;
+import com.witsafe.service.AccountService;
+import com.witsafe.service.NationstandardService;
 
 
 

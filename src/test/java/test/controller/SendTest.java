@@ -3,7 +3,7 @@ package test.controller;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
-import com.witsafe.contracts.common.util.Mail;
+import com.witsafe.framework.common.util.Mail;
 
 public class SendTest {
 	public static void sendMail() {

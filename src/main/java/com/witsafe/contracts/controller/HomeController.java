@@ -21,9 +21,9 @@ import com.witsafe.contracts.model.Nationstandard;
 import com.witsafe.contracts.model.NationstandardWithBLOBs;
 import com.witsafe.contracts.model.Organization;
 import com.witsafe.contracts.model.OrganizationExample;
-import com.witsafe.contracts.service.AccountService;
-import com.witsafe.contracts.service.NationstandardService;
-import com.witsafe.contracts.service.OrganizationService;
+import com.witsafe.service.AccountService;
+import com.witsafe.service.NationstandardService;
+import com.witsafe.service.OrganizationService;
 
 /**
  * @Description 主页操作，包括查看，编辑，删除通讯录，维护组织机构等

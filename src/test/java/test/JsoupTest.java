@@ -14,11 +14,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.witsafe.contracts.common.Constant;
-import com.witsafe.contracts.common.util.HtmlUtil;
 import com.witsafe.contracts.model.Nationstandard;
 import com.witsafe.contracts.model.NationstandardWithBLOBs;
-import com.witsafe.contracts.service.NationstandardService;
+import com.witsafe.framework.common.Constant;
+import com.witsafe.framework.common.util.HtmlUtil;
+import com.witsafe.service.NationstandardService;
 
 public class JsoupTest implements Runnable {
 	

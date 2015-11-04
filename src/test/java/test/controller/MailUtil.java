@@ -1,6 +1,6 @@
 package test.controller;
 
-import com.witsafe.contracts.common.util.Mail;
+import com.witsafe.framework.common.util.Mail;
 
 /**
  * 邮件服务类

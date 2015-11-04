@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/cache 
         http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
 
-	<context:component-scan base-package="com.witsafe.contracts" />
+	<context:component-scan base-package="com.witsafe" />
 
 
 	<!-- 缓存配置 -->
@@ -34,6 +34,11 @@
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
 		<property name="cacheManager" ref="cacheManagerFactory" />
 	</bean>
+	
+	<!-- 脚本执行类，自动执行数据初始化，shiro的前置条件 -->
+	<bean id="executor" class="com.witsafe.framework.ScriptsExecutor" init-method="run">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
 
 	<!-- 静态资源访问 -->
@@ -56,7 +61,7 @@
 			<mvc:mapping path="/module**/**" />
 			<mvc:mapping path="/field**/**" />
 			<mvc:mapping path="/permission/*" />			
-			<bean class="com.witsafe.contracts.common.interprecetor.ControllerInterceptor"></bean>
+			<bean class="com.witsafe.framework.common.interprecetor.ControllerInterceptor"></bean>
 		</mvc:interceptor>
 		
 		<mvc:interceptor>
@@ -65,7 +70,7 @@
 			<mvc:mapping path="/order/**" />
 			<mvc:mapping path="/ucenter/**" />
 			<mvc:mapping path="/business/**" />
-			<bean class="com.witsafe.contracts.common.interprecetor.FControllerInterceptor"></bean>
+			<bean class="com.witsafe.framework.common.interprecetor.FControllerInterceptor"></bean>
 		</mvc:interceptor>
 		
 	</mvc:interceptors>
@@ -92,7 +97,7 @@
 		</property>
 
 		<property name="webBindingInitializer">
-			<bean class="com.witsafe.contracts.common.executor.DataBindingInitializer" />
+			<bean class="com.witsafe.framework.common.executor.DataBindingInitializer" />
 		</property>
 	</bean>
 
@@ -109,7 +114,7 @@
 
 	<!-- 当Spring容器启动完成后执行下面的这个Bean -->
 	<bean
-		class="com.witsafe.contracts.common.executor.InstantiationTracingBeanPostProcessor" />
+		class="com.witsafe.framework.common.executor.InstantiationTracingBeanPostProcessor" />
 
 
 	<bean id="multipartResolver"
@@ -118,6 +123,12 @@
 		<!-- 设置上传文件的最大尺寸为10MB -->
 		<property name="maxUploadSize" value="104857600"/>
         <property name="maxInMemorySize" value="4096"/>
+	</bean>
+	
+	<mvc:view-controller path="/" view-name="redirect:/index"/>
+	
+	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
 

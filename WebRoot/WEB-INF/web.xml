@@ -19,6 +19,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		classpath*:spring/spring-dao.xml
+		classpath*:spring/spring-security.xml
 		classpath*:spring/spring-snaker.xml
 		classpath*:spring/spring-servlet.xml
 		</param-value>
@@ -33,7 +34,7 @@
 	
 	<!-- 自定义监听器 -->
 	<listener>
-		<listener-class>com.witsafe.contracts.common.listener.MyContextLoaderListener</listener-class>
+		<listener-class>com.witsafe.framework.common.listener.MyContextLoaderListener</listener-class>
 	</listener>
 	
 	<filter>
@@ -52,6 +53,23 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- 定义shiro安全认证过滤器-->
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>	
+
+ 	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 	<servlet>
 		<servlet-name>spring</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

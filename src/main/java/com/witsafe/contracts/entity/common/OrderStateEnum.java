@@ -8,7 +8,7 @@ package com.witsafe.contracts.entity.common;
  * @author hsrj05
  *
  */
-public enum OrderStateEnum implements com.witsafe.contracts.common.util.IEnum {
+public enum OrderStateEnum implements com.witsafe.framework.common.util.IEnum {
 
 	PreConfirm(0, "待确认"), Confirmed(1, "已确认"), PreVerify(2, "待验证"), Verified(3,
 			"已验证"), PrePaid(4, "待支付"), Paid(5, "已支付"), PreSend(6, "待发货"), Sended(

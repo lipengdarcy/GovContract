@@ -9,14 +9,15 @@
     <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
     <result column="publish_date" jdbcType="DATE" property="publishDate" />
     <result column="effect_date" jdbcType="DATE" property="effectDate" />
-    <result column="standardNo_replace" jdbcType="VARCHAR" property="standardnoReplace" />
+    <result column="name_replace" jdbcType="LONGVARCHAR" property="name_replace" />
     <result column="type_ch" jdbcType="VARCHAR" property="typeCh" />
     <result column="type_iso" jdbcType="VARCHAR" property="typeIso" />
     <result column="publisher" jdbcType="VARCHAR" property="publisher" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.witsafe.contracts.model.Nationstandard">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.witsafe.contracts.model.NationstandardWithBLOBs">
     <result column="valid_range" jdbcType="LONGVARCHAR" property="validRange" />
-    <result column="name_replace" jdbcType="LONGVARCHAR" property="name_replace" />
+    <result column="standardNo_replace" jdbcType="VARCHAR" property="standardnoReplace" />
+
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,11 +78,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, standardNo, name_ch, name_en, publish_date, effect_date, standardNo_replace, 
+    id, standardNo, name_ch, name_en, publish_date, effect_date,  
     name_replace, type_ch, type_iso, publisher
   </sql>
   <sql id="Blob_Column_List">
-    valid_range
+    valid_range, standardNo_replace
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.witsafe.contracts.model.NationstandardExample" resultMap="ResultMapWithBLOBs">
     select

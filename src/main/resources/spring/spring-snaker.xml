@@ -6,7 +6,7 @@
 	<description>SnakerEngine配置 </description>
 	
 	<!-- 流程引擎配置 -->
-	<bean class="org.snaker.engine.spring.SpringSnakerEngine">
+	<bean id="snakerEngine" class="org.snaker.engine.spring.SpringSnakerEngine">
 		<property name="processService" ref="processService"/>
 		<property name="orderService" ref="orderService"/>
 		<property name="taskService" ref="taskService"/>

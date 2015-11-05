@@ -31,12 +31,16 @@ import org.snaker.engine.entity.Task;
 import org.snaker.engine.helper.StreamHelper;
 import org.snaker.engine.model.TaskModel.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class SnakerEngineFacets {
+	
+	//id为snakerEngine的bean定义在spring-snaker.xml
 	@Autowired
+	@Qualifier("snakerEngine") 
 	private SnakerEngine engine;
 	
 	public void initFlows() {

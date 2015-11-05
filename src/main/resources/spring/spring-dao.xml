@@ -15,6 +15,13 @@
         http://www.springframework.org/schema/util/spring-util.xsd
         ">
 
+	<!-- application-dao.xml文件中只配置关于dao和service等非action层的扫描路径 -->
+	<context:component-scan
+		base-package="com.witsafe.service, com.witsafe.dao, com.witsafe.framework.taglibs" />
+
+	<!-- 启用注解 -->
+	<context:annotation-config />
+
 	<!-- 数据库连接配置信息 -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -69,15 +76,70 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
 		<!-- mapper xml location -->
-		<property name="mapperLocations" value="classpath*:com/witsafe/mapping/**/*Mapper.xml"></property>  
+		<property name="mapperLocations"
+			value="classpath*:com/witsafe/mapping/**/*Mapper.xml"></property>
 		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="org.snaker.engine.entity" />
 	</bean>
+
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
-	<!-- 可通过注解控制事务sys_ -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 可通过注解控制事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- snaker配置事务 -->
+			<tx:method name="start*" propagation="REQUIRED" />
+			<tx:method name="execute*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="assign*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="complete*" propagation="REQUIRED" />
+			<tx:method name="finish*" propagation="REQUIRED" />
+			<tx:method name="terminate*" propagation="REQUIRED" />
+			<tx:method name="take*" propagation="REQUIRED" />
+			<tx:method name="deploy*" propagation="REQUIRED" />
+			<tx:method name="undeploy*" propagation="REQUIRED" />
+			<tx:method name="redeploy*" propagation="REQUIRED" />
+
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="query*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="search*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="is*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- or execution(* org.snaker.framework.flow.service..*.*(..)) -->
+
+	<aop:config proxy-target-class="true">
+		<!-- snaker增加拦截点： -->
+		<aop:pointcut id="snakerMethod"
+			expression="execution(* org.snaker.engine..*.*(..))" />
+		<aop:advisor pointcut-ref="snakerMethod" advice-ref="txAdvice" />
+	</aop:config>
+	<!--第一个*表示匹配所有类型的返回值 -->
+	<!--第二个*表示匹配所有的类（前面的..表示包及其所有子包） -->
+	<!--第三个*表示匹配类中所有的方法 -->
+	<!--最后括号中..表示匹配方法所有参数 -->
+
+
+
+
+
+
 
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->

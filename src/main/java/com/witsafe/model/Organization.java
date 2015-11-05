@@ -1,7 +1,14 @@
 package com.witsafe.model;
 
-public class Organization {
-    private Integer id;
+import java.io.Serializable;
+
+public class Organization implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -976344875150804912L;
+
+	private Integer id;
 
     private Integer pid;
 

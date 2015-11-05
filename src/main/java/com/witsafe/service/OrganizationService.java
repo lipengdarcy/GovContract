@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.witsafe.dao.OrganizationMapper;
-import com.witsafe.model.Account;
-import com.witsafe.model.AccountExample;
 import com.witsafe.model.Organization;
 import com.witsafe.model.OrganizationExample;
 

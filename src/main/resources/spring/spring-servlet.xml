@@ -12,7 +12,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/cache 
         http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
-
+        
+        
+           
 	<!-- 在spring-servlet.xml文件中只配置关于controller层的扫描路径 <context:component-scan base-package="com.windy.fxshop.*.action" /> -->
 	<context:component-scan base-package="com.witsafe.controller" />
 
@@ -42,11 +44,15 @@
     </bean>
 
 
+
+
 	<!-- 静态资源访问 -->
 	<mvc:resources location="/" mapping="/*.html" />
 	<mvc:resources location="/" mapping="/*.js" />
 	<mvc:resources location="/" mapping="/*.css" />
 	<mvc:resources location="/themes/" mapping="/themes/**" />
+	<mvc:resources location="/styles/" mapping="/styles/**" />
+	<mvc:resources location="/scripts/" mapping="/scripts/**" />
 
 
 	<!-- 拦截器 -->

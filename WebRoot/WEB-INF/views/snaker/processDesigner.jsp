@@ -40,7 +40,7 @@
 				alert(data);
 				$.ajax({
 					type:'POST',
-					url:"${ctx}/snaker/process/deployXml.do",
+					url:"${ctx}/snaker/process/deployXml",
 					data:"model=" + data + "&id=${processId}",
 					async: false,
 					globle:false,
@@ -50,7 +50,7 @@
 					},
 					success: function(data){
 						if(data == true) {
-							window.location.href = "${ctx}/snaker/process/list.do";
+							window.location.href = "${ctx}/snaker/process/list";
 						} else {
 							alert('数据处理错误！');
 						}

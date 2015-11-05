@@ -43,7 +43,7 @@
 		</div>
 
 		<div id="login-content" class="clearfix">
-			<form action="${ctx }/login.do" method="post">
+			<form action="${ctx }/login" method="post">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="username">账号：</label>

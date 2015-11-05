@@ -6,8 +6,8 @@
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" depends-on="executor">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login.do" />
-		<property name="successUrl" value="index.do" />
+		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="index" />
 		<property name="unauthorizedUrl" value="/common/403.jsp" />
 		<property name="filterChainDefinitionMap" ref="definitionMetaSource"/>
 	</bean>

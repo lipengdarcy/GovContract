@@ -17,11 +17,11 @@
       <li class="top_aqtc" ><a href="javascript:void(0)" onclick="window.parent.location.href='${ctx }/logout'">安全退出<b></b></a></li>
     </ul>
   </div>
-</div>
+
 <div id="admin-nav-wrap">
   <div class="admin-nav">
     <ul>
-      <li><a href="http://snakerflow.com/" target="_blank">官网首页</a></li>
+      <li><a href="${ctx }/home.do" target="_blank">回到首页</a></li>
     </ul>
   </div>
 </div>

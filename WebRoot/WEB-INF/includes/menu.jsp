@@ -13,9 +13,9 @@ function GetQueryString(name)
 <div class="user-menu-list">
 	<div class="user-tab">功能菜单</div>
 	<ul id="memberNav">
-		<li navid=10><i></i><a href="${ctx }/home.do?&navid=10">组织机构</a></li>
-		<li navid=11><i></i><a href="${ctx }/home/standardPage.do?&navid=11">国家标准</a></li>
-		<li navid=12><i></i><a href="${ctx }/home/index.do?&navid=12">工作流</a></li>
+		<li navid=10><i></i><a href="${ctx }/home?&navid=10">组织机构</a></li>
+		<li navid=11><i></i><a href="${ctx }/home/standardPage?&navid=11">国家标准</a></li>
+		<li navid=12><i></i><a href="${ctx }/home/index?&navid=12">工作流</a></li>
 	</ul>
 </div>
 <!--01-->

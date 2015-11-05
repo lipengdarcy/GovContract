@@ -99,7 +99,7 @@
 		<script type="text/javascript">
 		$.ajax({
 				type:'GET',
-				url:"${ctx}/snaker/process/json",
+				url:"${ctx}/snaker/process/json.do",
 				data:"processId=${processId}&orderId=${order.id}",
 				async: false,
 				globle:false,

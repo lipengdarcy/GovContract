@@ -66,15 +66,15 @@
 						<span>密码：</span>
 					</td>
 					<td class="td_table_2">
-						<input type="password" class="input_240" id="plainPassword" name="plainPassword"
-							value="${user.plainPassword }" />
+						<input type="password" class="input_240" id="plainPassword" name="plainpassword"
+							value="${user.plainpassword }" />
 					</td>
 					<td class="td_table_1">
 						<span>确认密码：</span>
 					</td>
 					<td class="td_table_2">
 						<input type="password" class="input_240" id="passwordConfirm"
-							name="passwordConfirm" value="${user.plainPassword }" />
+							name="passwordConfirm" value="${user.plainpassword }" />
 					</td>
 				</tr>
 				<tr>

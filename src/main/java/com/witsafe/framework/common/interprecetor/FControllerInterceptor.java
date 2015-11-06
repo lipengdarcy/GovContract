@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.witsafe.framework.common.Constant;
 
 
@@ -21,7 +20,6 @@ import com.witsafe.framework.common.Constant;
  */
 @Component
 public class FControllerInterceptor implements HandlerInterceptor {
-	private static Logger loggererror = Logger.getLogger("ErrorLogger");
 	private static Logger loggerinfo = Logger.getLogger("InfoLogger");
 
 	/*

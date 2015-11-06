@@ -83,6 +83,6 @@ public class AccountController {
 
 		HttpSession session = request.getSession();
 		session.removeAttribute("account");
-		return "redirect:/account.do";
+		return "redirect:/account";
 	}
 }

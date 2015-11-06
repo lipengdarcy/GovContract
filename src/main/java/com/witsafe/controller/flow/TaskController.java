@@ -175,7 +175,7 @@ public class TaskController {
 	@RequestMapping(value = "exec", method=RequestMethod.GET)
 	public String activeTaskExec(Model model, String taskId) {
 		facets.execute(taskId, ShiroUtils.getUsername(), null);
-		return "redirect:/snaker/task/active.do";
+		return "redirect:/snaker/task/active";
 	}
 	
 	/**
@@ -192,7 +192,7 @@ public class TaskController {
 		} catch(Exception e) {
 			error = "?error=1";
 		}
-		return "redirect:/snaker/task/active.do" + error;
+		return "redirect:/snaker/task/active" + error;
 	}
 	
 	/**
@@ -223,6 +223,6 @@ public class TaskController {
 			returnMessage = e.getMessage();
 		}
 		model.addAttribute("returnMessage", returnMessage);
-		return "redirect:/snaker/task/history.do";
+		return "redirect:/snaker/task/history";
 	}
 }

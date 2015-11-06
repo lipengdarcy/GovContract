@@ -130,7 +130,7 @@ public class MenuTagBuilder implements TagBuilder {
 			buffer.append("<a href='");
 			buffer.append(servletContext.getContextPath());
 			buffer.append(menu.getDescription());
-			buffer.append(".do' target='mainFrame' ");
+			buffer.append("' target='mainFrame' ");
 			buffer.append(">");
 			buffer.append(menu.getName());
 			buffer.append("</a>");

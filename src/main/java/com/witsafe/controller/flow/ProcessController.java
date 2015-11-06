@@ -83,7 +83,7 @@ public class ProcessController {
 	@RequestMapping(value = "init", method=RequestMethod.GET)
 	public String processInit() {
 		facets.initFlows();
-		return "redirect:/snaker/process/list.do";
+		return "redirect:/snaker/process/list";
 	}
 	
 	/**
@@ -153,7 +153,7 @@ public class ProcessController {
 	@RequestMapping(value = "delete/{id}", method=RequestMethod.GET)
 	public String processDelete(@PathVariable("id") String id) {
 		facets.getEngine().process().undeploy(id);
-		return "redirect:/snaker/process/list.do";
+		return "redirect:/snaker/process/list";
 	}
 	
 	/**
@@ -183,7 +183,7 @@ public class ProcessController {
 				}
 			}
 		}
-		return "redirect:/snaker/process/list.do";
+		return "redirect:/snaker/process/list";
 	}
 	
 	/**
@@ -222,7 +222,7 @@ public class ProcessController {
 	@RequestMapping(value = "start", method=RequestMethod.GET)
 	public String processStart(Model model, String processName) {
 		facets.startInstanceByName(processName, null, ShiroUtils.getUsername(), null);
-		return "redirect:/snaker/process/list.do";
+		return "redirect:/snaker/process/list";
 	}
 	
 	@RequestMapping(value = "json", method=RequestMethod.GET)

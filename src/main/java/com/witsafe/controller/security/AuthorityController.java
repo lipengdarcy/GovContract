@@ -119,7 +119,7 @@ public class AuthorityController {
 			}
 		}
 		authorityManager.save(authority);*/
-		return "redirect:/security/authority.do";
+		return "redirect:/security/authority";
 	}
 	
 	/**
@@ -130,6 +130,6 @@ public class AuthorityController {
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		//authorityManager.delete(id);
-		return "redirect:/security/authority.do";
+		return "redirect:/security/authority";
 	}
 }

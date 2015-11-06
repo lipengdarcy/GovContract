@@ -12,7 +12,7 @@
 	</head>
 
 	<body>
-	<form id="mainForm" action="${ctx}/snaker/process/list.do" method="get">
+	<form id="mainForm" action="${ctx}/snaker/process/list" method="get">
 		<input type="hidden" name="pageNo" id="pageNo" value="${page.pageNo}"/>
 		<table width="100%" border="0" align="center" cellpadding="0"
 				class="table_all_border" cellspacing="0" style="margin-bottom: 0px;border-bottom: 0px">
@@ -49,9 +49,9 @@
 			<tr>
 				<td align="left">
 				<shiro:hasPermission name="PROCESSDEPLOY">
-					<input type='button' onclick="addNew('${ctx}/snaker/process/designer.do')" class='button_70px' value='设计'/>
-					<input type='button' onclick="addNew('${ctx}/snaker/process/deploy.do')" class='button_70px' value='部署'/>
-					<input type='button' onclick="addNew('${ctx}/snaker/process/init.do')" class='button_70px' value='初始化'/>
+					<input type='button' onclick="addNew('${ctx}/snaker/process/designer')" class='button_70px' value='设计'/>
+					<input type='button' onclick="addNew('${ctx}/snaker/process/deploy')" class='button_70px' value='部署'/>
+					<input type='button' onclick="addNew('${ctx}/snaker/process/init')" class='button_70px' value='初始化'/>
 				</shiro:hasPermission>
 					<input type='submit' class='button_70px' value='查询'/>
 				</td>
@@ -93,9 +93,9 @@
 					<td class="td_list_2" align=left nowrap>
 						<a href="${ctx}${process.instanceUrl }.do?processId=${process.id }&processName=${process.name }" class="btnStart" title="启动流程">启动流程</a>
 						<shiro:hasPermission name="PROCESSDEPLOY">
-						<a href="${ctx}/snaker/process/edit/${process.id }.do" class="btnEdit" title="编辑">编辑</a>
-						<a href="${ctx}/snaker/process/designer.do?processId=${process.id }" class="btnDesigner" title="设计">设计</a>
-						<a href="${ctx}/snaker/process/delete/${process.id }.do" class="btnDel" title="删除" onclick="return confirmDel();">删除</a>
+						<a href="${ctx}/snaker/process/edit/${process.id }" class="btnEdit" title="编辑">编辑</a>
+						<a href="${ctx}/snaker/process/designer?processId=${process.id }" class="btnDesigner" title="设计">设计</a>
+						<a href="${ctx}/snaker/process/delete/${process.id }" class="btnDel" title="删除" onclick="return confirmDel();">删除</a>
 						</shiro:hasPermission>
 					</td>
 				</tr>

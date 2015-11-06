@@ -96,7 +96,7 @@ public class MenuController {
 			menu.setParentMenu(parentMenuId);
 		}
 		menuManager.save(menu);
-		return "redirect:/security/menu.do";
+		return "redirect:/security/menu";
 	}
 	
 	/**
@@ -107,6 +107,6 @@ public class MenuController {
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Integer id) {
 		menuManager.delete(id);
-		return "redirect:/security/menu.do";
+		return "redirect:/security/menu";
 	}
 }

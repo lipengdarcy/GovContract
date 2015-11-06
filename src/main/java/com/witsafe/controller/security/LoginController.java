@@ -38,7 +38,7 @@ public class LoginController {
 		    	    token.setRememberMe(true);
 		    	}
 			subject.login(token);
-			return "redirect:/home.do";
+			return "redirect:/home";
 		} catch(UnknownAccountException ue) {
 			token.clear();
 			model.addAttribute("error", "登录失败，您输入的账号不存在");

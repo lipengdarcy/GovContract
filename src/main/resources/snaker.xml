@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <config>
-	<bean name="task" class="com.witsafe.contracts.common.flow.ExtTaskParser"/>
+	<bean name="task" class="com.witsafe.framework.common.flow.ExtTaskParser"/>
 	<bean class="org.snaker.engine.access.dialect.MySqlDialect"/>
 	<bean class="org.snaker.engine.impl.LogInterceptor"/>
 	<bean class="org.snaker.engine.spring.SpelExpression"/>
 	<bean class="org.snaker.engine.impl.SurrogateInterceptor"/>
-	<bean class="com.witsafe.contracts.common.flow.CustomAccessStrategy"/>
+	<bean class="com.witsafe.framework.common.flow.CustomAccessStrategy"/>
 </config>

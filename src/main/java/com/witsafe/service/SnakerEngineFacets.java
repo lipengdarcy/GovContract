@@ -40,7 +40,7 @@ public class SnakerEngineFacets {
 	
 	//id为snakerEngine的bean定义在spring-snaker.xml
 	@Autowired
-	@Qualifier("snakerEngine") 
+	//@Qualifier("snakerEngine") 
 	private SnakerEngine engine;
 	
 	public void initFlows() {

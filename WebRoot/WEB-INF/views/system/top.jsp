@@ -21,7 +21,7 @@
 <div id="admin-nav-wrap">
   <div class="admin-nav">
     <ul>
-      <li><a href="${ctx }/home.do" target="_blank">回到首页</a></li>
+      <li><a href="${ctx }/home" target="_blank">回到首页</a></li>
     </ul>
   </div>
 </div>

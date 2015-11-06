@@ -73,11 +73,11 @@
 		</div>
 
 		<div id="login-extra">
-<!-- 			<p>
-				没有账号? <a href="javascript:;">注册</a>
-			</p> -->
+ 			<p>
+				没有账号? <a href="register">注册</a>
+			</p> 
 			<p>
-				忘记密码? <a href="forgot_password.html">找回密码</a>
+				忘记密码? <a href="findpwd1">找回密码</a>
 			</p>
 		</div>
 	</div>

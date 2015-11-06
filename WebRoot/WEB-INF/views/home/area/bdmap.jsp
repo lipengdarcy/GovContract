@@ -37,7 +37,7 @@
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=40159f4141eaaaea4163c9c998905c6b"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
 <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
-<title>门店或者工厂百度地图位置显示</title>
+<title>百度地图位置显示</title>
 </head>
 <body>
 <ul>

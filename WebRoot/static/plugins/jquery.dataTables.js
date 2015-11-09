@@ -965,23 +965,23 @@
 			 *   by javascript
 			 */
 			this.oLanguage = {
-				"sProcessing": "Processing...",
-				"sLengthMenu": "Show _MENU_ entries",
-				"sZeroRecords": "No matching records found",
-				"sEmptyTable": "No data available in table",
-				"sLoadingRecords": "Loading...",
-				"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
-				"sInfoEmpty": "Showing 0 to 0 of 0 entries",
-				"sInfoFiltered": "(filtered from _MAX_ total entries)",
+				"sProcessing": "正在载入...",
+				"sLengthMenu": "每页显示条数  _MENU_ ",
+				"sZeroRecords": "没有相关记录",
+				"sEmptyTable": "没有相关记录",
+				"sLoadingRecords": "装载中...",
+				"sInfo": "第 _START_ 到 _END_ 条记录，共  _TOTAL_ 条 ",
+				"sInfoEmpty": "第 0 到 0 条记录，共 0 条",
+				"sInfoFiltered": "(从 _MAX_ 条记录中检索)",
 				"sInfoPostFix": "",
 				"sInfoThousands": ",",
-				"sSearch": "Search:",
+				"sSearch": "搜索:",
 				"sUrl": "",
 				"oPaginate": {
-					"sFirst":    "First",
-					"sPrevious": "Previous",
-					"sNext":     "Next",
-					"sLast":     "Last"
+					"sFirst":    "首页",
+					"sPrevious": "上一页",
+					"sNext":     "下一页",
+					"sLast":     "尾页"
 				},
 				"fnInfoCallback": null
 			};

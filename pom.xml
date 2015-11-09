@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>WitSafe</groupId>
-	<artifactId>GovernmentContracts</artifactId>
+	<artifactId>Platform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>政企通讯录信息管理平台</name>
+	<name>安职环保云平台</name>
 
 
 	<properties>

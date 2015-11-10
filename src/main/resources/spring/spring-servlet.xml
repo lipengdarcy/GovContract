@@ -43,16 +43,9 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-
-
-
-	<!-- 静态资源访问 -->
-	
+	<!-- 静态资源访问 -->	
 	<mvc:resources location="/static/" mapping="/static/**" />
-	<mvc:resources location="/styles/" mapping="/styles/**" />
-	<mvc:resources location="/scripts/" mapping="/scripts/**" />
-
-
+	
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<!-- 多个拦截器,顺序执行 -->
@@ -130,7 +123,7 @@
         <property name="maxInMemorySize" value="4096"/>
 	</bean>
 	
-	<mvc:view-controller path="/" view-name="redirect:/index"/>
+	<mvc:view-controller path="/" view-name="redirect:/home"/>
 	
 	<bean class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"/>

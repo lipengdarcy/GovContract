@@ -32,6 +32,7 @@ public class LoginController {
 				user.getUsername(), user.getPassword());
 		String remember = WebUtils.getCleanParam(request, "remember");
 		log.info("remember=" + remember);
+
 		try {
 			if (remember != null && remember.equalsIgnoreCase("on")) {
 				token.setRememberMe(true);
@@ -40,12 +41,12 @@ public class LoginController {
 			return "redirect:/home";
 		} catch (UnknownAccountException ue) {
 			token.clear();
-			model.addAttribute("error", "登录失败，您输入的账号不存在");
+			model.addAttribute("error", ue.getMessage());
 			return "security/login/login";
 		} catch (IncorrectCredentialsException ie) {
 			token.clear();
 			model.addAttribute("username", user.getUsername());
-			model.addAttribute("error", "登录失败，密码不匹配");
+			model.addAttribute("error", ie.getMessage());
 			return "security/login/login";
 		} catch (RuntimeException re) {
 			token.clear();
@@ -58,6 +59,16 @@ public class LoginController {
 	// 登录页面
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
+		return "security/login/login";
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout() {
+		Subject subject = SecurityUtils.getSubject();
+		if (subject.isAuthenticated()) {
+			subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
+			log.info("用户" + subject.getPrincipal() + "退出登录");
+		}
 		return "security/login/login";
 	}
 

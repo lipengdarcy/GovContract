@@ -1,4 +1,4 @@
-package com.witsafe.controller;
+package com.witsafe.controller.business.workflow;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

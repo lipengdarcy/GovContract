@@ -102,6 +102,14 @@ public class HomeController {
 	public String right(Model model) {
 		return "system/right";
 	}
+	
+	/**
+	 * 组织机构页面
+	 */
+	@RequestMapping(value = "/organizationPage")
+	public String organizationPage(ModelMap m) {
+		return "home/organization";
+	}
 
 	/**
 	 * 新增机构

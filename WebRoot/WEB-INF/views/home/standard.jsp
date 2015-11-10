@@ -3,59 +3,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>国家标准</title>
-<link rel="stylesheet" type="text/css"
-	href="${ctx }/themes/default/css/jquery-ui.css" />
-<%@ include file="/WEB-INF/includes/header.jsp"%>
-<link rel="stylesheet" type="text/css"
-	href="${ctx }/themes/default/css/validationEngine.jquery.css" />
-<link rel="stylesheet" type="text/css"
-	href="${ctx }/themes/grey/css/user.css" />
+<%@ include file="/WEB-INF/includes/include.jsp"%>
 <script type="text/javascript"
-	src="${ctx }/themes/admin/xheditor/xheditor-1.2.1.min.js"></script>
-<script type="text/javascript"
-	src="${ctx }/themes/admin/xheditor/xheditor_lang/zh-cn.js"></script>
-<script type="text/javascript"
-	src="${ctx }/scripts/jquery.validationEngine-zh_CN.js"></script>
-<script type="text/javascript"
-	src="${ctx }/scripts/jquery.validationEngine.js"></script>
+	src="${ctx}/static/js/demo.formelements.js"></script>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${ctx }/scripts/jqgrid/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${ctx }/scripts/jqgrid/ui.jqgrid.css" />
+	
+<script src="${ctx }/scripts/jqgrid/i18n/grid.locale-en.js"
+	type="text/javascript"></script>
+<script src="${ctx }/scripts/jqgrid/jquery.jqGrid.src.js"
+	type="text/javascript"></script>
 
-
-
-
-
-<script type="text/javascript" src="${ctx }/scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
-<script type="text/javascript" src="${ctx }/scripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-<link rel="stylesheet" type="text/css" href="${ctx }/scripts/fancybox/jquery.fancybox-1.3.4.css" media="screen"></link>
-
-
-
+<title>职业卫生监测管理平台</title>
 </head>
 
 <body>
-	<%@ include file="/WEB-INF/includes/headerTop.jsp"%>
-	<div class="user-main">
-		<div class="wrap clearfix">
-			<div class="crumbs">
-				<strong>| <a href="${ctx }/home.do">首页</a>
-				</strong>&gt; <a href="${ctx }/home.do">组织机构</a>
+	<!-- 页面顶部 -->
+	<%@ include file="/WEB-INF/includes/header.jsp"%>
+
+	<div id="mws-wrapper">
+
+		<!-- 页面左侧菜单 -->
+		<%@ include file="/WEB-INF/includes/menu.jsp"%>
+
+		
+		<div id="mws-container" class="clearfix">
+			<!-- begin页面主体  -->
+			<div class="container">
+			
+			<table id="list2"></table>
+			<div id="pager2"></div>
+
 			</div>
-			<div class="user-menu left">
-				<%@ include file="/WEB-INF/includes/menu.jsp"%>
-			</div>
-			<div class="user-content right">
+			<!-- end页面主体  -->
+			
+			<!-- 页面底部 -->
+			<%@ include file="/WEB-INF/includes/footer.jsp"%>
 
-				<table id="list2"></table>
-				<div id="pager2"></div>
-
-
-
-			</div>
 		</div>
 	</div>
-	<div class="main-mask" id="coor-panel-mask"></div>
-	<%@ include file="/WEB-INF/includes/footer.jsp"%>
 
 </body>
 
@@ -267,6 +255,4 @@ function showDetails(id){
 		});
 	}
 </script>
-
-
 </html>

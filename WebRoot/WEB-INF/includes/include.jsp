@@ -1,5 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+	
 <!-- Required Stylesheets -->
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/css/reset.css" media="screen" />

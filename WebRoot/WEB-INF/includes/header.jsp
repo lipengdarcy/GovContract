@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
-	
+
 <!-- 样式切换 -->
 <div id="mws-themer">
 	<div id="mws-themer-hide"></div>
@@ -46,7 +46,7 @@
 <div id="mws-header" class="clearfix">
 	<div id="mws-logo-container">
 		<div id="mws-logo-wrap">
-			<img src="images/mws-logo.png" alt="mws admin" />
+			<img src="${ctx}/static/images/mws-logo.png" alt="mws admin" />
 		</div>
 	</div>
 
@@ -86,14 +86,16 @@
 			<div class="mws-dropdown-box">
 				<div class="mws-dropdown-content">
 					<ul class="mws-messages">
-						<li class="read"><a href="#"> <span class="sender">张三</span> <span class="message"> Lorem ipsum dolor sit amet
+						<li class="read"><a href="#"> <span class="sender">张三</span>
+								<span class="message"> Lorem ipsum dolor sit amet
 									consectetur adipiscing elit, et al commore </span> <span class="time">
 									January 21, 2012 </span>
 						</a></li>
-						<li class="read"><a href="#"> <span class="sender">李四</span> <span class="message"> Lorem ipsum dolor sit amet </span> <span
+						<li class="read"><a href="#"> <span class="sender">李四</span>
+								<span class="message"> Lorem ipsum dolor sit amet </span> <span
 								class="time"> January 21, 2012 </span>
 						</a></li>
-												
+
 					</ul>
 					<div class="mws-dropdown-viewall">
 						<a href="#">查看所有消息</a>
@@ -108,11 +110,13 @@
 			<div id="mws-user-functions">
 				<div id="mws-username">欢迎你, 管理员</div>
 				<ul>
-					<li><a href="#">个人中心</a></li>
-					<li><a href="#">密码更改</a></li>
-					<li><a href="index-2.html">退出</a></li>
+					<li><a href="#">[个人中心]</a></li>
+					<li><a href="#">[密码更改]</a></li>
+					<li><a href="javascript:void(0)"
+						onclick="window.parent.location.href='${ctx }/logout'">[退出]</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+

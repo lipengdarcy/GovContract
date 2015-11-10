@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	/* Core JS Functions */
+	//alert("mws.js");
 	
 	/* Collapsible Panels */
 	$(".mws-panel.mws-collapsible .mws-panel-header")

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	//alert("themer.js");
+	
 	var baseColor = "#c5d52b";
 	var textColor = "#c5d52b";
 	var textGlowColor = {r: 197, g: 213, b: 42, a: 0.5};

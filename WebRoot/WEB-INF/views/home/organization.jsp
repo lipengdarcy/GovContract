@@ -4,8 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ include file="/WEB-INF/includes/include.jsp"%>
-<script type="text/javascript"
-	src="${ctx}/static/js/demo.formelements.js"></script>
+
+	
+
 <script type="text/javascript"
 	src="${ctx }/static/js/ztree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript"
@@ -13,6 +14,15 @@
 <script type="text/javascript"
 	src="${ctx }/static/js/ztree/jquery.ztree.exedit-3.5.js"></script>
 
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${ctx }/static/js/jqgrid/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${ctx }/static/js/jqgrid/ui.jqgrid.css" />
+	
+<script src="${ctx }/static/js/jqgrid/i18n/grid.locale-en.js"
+	type="text/javascript"></script>
+<script src="${ctx }/static/js/jqgrid/jquery.jqGrid.src.js"
+	type="text/javascript"></script>
 
 
 <link rel="stylesheet" href="${ctx}/static/css/ztree/demo.css"
@@ -31,9 +41,10 @@
 </style>
 
 <script type="text/javascript" src="${ctx }/static/js/page/organization.js"></script>
-<script type="text/javascript" >
+<script type="text/javascript">
+
 $(document).ready(function() {	
-	alert("grid page init!");
+	//alert("grid page init!");
 	});
 </script>
 

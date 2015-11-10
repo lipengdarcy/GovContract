@@ -4,16 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ include file="/WEB-INF/includes/include.jsp"%>
-<script type="text/javascript"
-	src="${ctx}/static/js/demo.formelements.js"></script>
+
 <link rel="stylesheet" type="text/css" media="screen"
-	href="${ctx }/scripts/jqgrid/jquery-ui.css" />
+	href="${ctx }/static/js/jqgrid/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen"
-	href="${ctx }/scripts/jqgrid/ui.jqgrid.css" />
+	href="${ctx }/static/js/jqgrid/ui.jqgrid.css" />
 	
-<script src="${ctx }/scripts/jqgrid/i18n/grid.locale-en.js"
+<script src="${ctx }/static/js/jqgrid/i18n/grid.locale-en.js"
 	type="text/javascript"></script>
-<script src="${ctx }/scripts/jqgrid/jquery.jqGrid.src.js"
+<script src="${ctx }/static/js/jqgrid/jquery.jqGrid.src.js"
 	type="text/javascript"></script>
 
 <title>职业卫生监测管理平台</title>

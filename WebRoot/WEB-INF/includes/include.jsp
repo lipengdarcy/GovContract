@@ -1,5 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
+
+
 <!-- Required Stylesheets -->
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/css/reset.css" media="screen" />
@@ -87,8 +88,11 @@
 	src="${ctx}/static/plugins/jquery.mousewheel.js"></script>
 <script type="text/javascript"
 	src="${ctx}/static/plugins/spinner/ui.spinner.js"></script>
-<script type="text/javascript" src="${ctx}/static/js/jquery-ui.js"></script>
+<!-- 对话框插件  -->
+<script type="text/javascript"
+	src="${ctx }/static/plugins/art-dialog/dialog-min.js"></script>
 
+<script type="text/javascript" src="${ctx}/static/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/mws.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/demo.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/themer.js"></script>

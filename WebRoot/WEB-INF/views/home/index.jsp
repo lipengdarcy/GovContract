@@ -6,6 +6,10 @@
 <%@ include file="/WEB-INF/includes/include.jsp"%>
 <script type="text/javascript"
 	src="${ctx}/static/js/demo.formelements.js"></script>
+
+<script type="text/javascript"
+	src="${ctx}/static/js/jquery-1.11.3.js"></script>
+	
 <title>职业卫生监测管理平台</title>
 </head>
 
@@ -22,6 +26,7 @@
 		<div id="mws-container" class="clearfix">
 			<!-- begin页面主体  -->
 			<div class="container">
+			主页
 
 	
 
@@ -38,4 +43,10 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+
+$(document).ready(function() {	
+	alert("grid page init!");
+	});
+</script>
 </html>

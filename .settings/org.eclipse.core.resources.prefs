@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/includes/header.jsp=UTF-8
+encoding//WebRoot/WEB-INF/includes/include.jsp=UTF-8
 encoding//WebRoot/WEB-INF/includes/menu.jsp=UTF-8
 encoding//WebRoot/WEB-INF/views/home/index.jsp=UTF-8
 encoding//src/main/java=UTF-8

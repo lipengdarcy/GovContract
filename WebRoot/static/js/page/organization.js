@@ -2,12 +2,12 @@
 
 $(document).ready(function() {
 	
-	alert("grid page init!");
+	//alert("grid page init!");
 	
 
 
 	$("#memberTable").jqGrid({
-		url : 'home/getOrgMembers.do',
+		url : 'getOrgMembers.do',
 		datatype : "json",
 		colNames : [ 'id', 'orgid', '用户名', '真实姓名', '电话', '手机' ],
 		colModel : [ {
@@ -136,7 +136,7 @@ $(document).ready(function() {
 	//查询机构
 	var orgList = [];
 	$.ajax({
-		url : 'home/queryOrg.do',
+		url : 'queryOrg.do',
 		data : {},
 		type : 'post',
 		dataType : 'json',
@@ -175,7 +175,7 @@ function addOrg(pid, name) {
 		height : 50
 	});
 	$.ajax({
-		url : 'home/addOrg.do',
+		url : 'addOrg.do',
 		data : {
 			pid : pid,
 			name : name
@@ -203,7 +203,7 @@ function editOrg(id, name) {
 		height : 50
 	});
 	$.ajax({
-		url : 'home/editOrg.do',
+		url : 'editOrg.do',
 		data : {
 			id : id,
 			name : name
@@ -230,7 +230,7 @@ function delOrg(id) {
 		height : 50
 	});
 	$.ajax({
-		url : 'home/delOrg.do',
+		url : 'delOrg.do',
 		data : {
 			orgid : id
 		},

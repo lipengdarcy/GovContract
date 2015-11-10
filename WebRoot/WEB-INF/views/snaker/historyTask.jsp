@@ -1,73 +1,76 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page language="java" pageEncoding="UTF-8" %>
-<%@ include file="/common/taglibs.jsp"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/includes/commons/taglibs.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%@ include file="/WEB-INF/includes/include.jsp"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-	<head>
-		<title>历史完成任务</title>
-		<%@ include file="/common/meta.jsp"%>
-		<link rel="stylesheet" href="${ctx}/styles/css/style.css" type="text/css" media="all" />
-		<script src="${ctx}/styles/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/table.js" type="text/javascript"></script>
-	</head>
+<title>历史完成任务</title>
+</head>
 
-	<body>
-	<form id="mainForm" action="${ctx}/snaker/task/history" method="get">
-		<input type="hidden" name="pageNo" id="pageNo" value="${page.pageNo}"/>
-		<table width="100%" border="0" align="center" cellpadding="0"
-				class="table_all_border" cellspacing="0" style="margin-bottom: 0px;border-bottom: 0px">
-			<tr>
-				<td class="td_table_top" align="center">
-					历史完成任务
-				</td>
-			</tr>
-		</table>
-		<table class="table_all" align="center" border="0" cellpadding="0"
-			cellspacing="0" style="margin-top: 0px">
-			<tr>
-				<td align=center width=30% class="td_list_1" nowrap>
-					流程名称
-				</td>
-				<td align=center width=30% class="td_list_1" nowrap>
-					流程编号
-				</td>
-				<td align=center width=20% class="td_list_1" nowrap>
-					流程启动时间
-				</td>
-				<td align=center width=20% class="td_list_1" nowrap>
-					任务名称
-				</td>
-				<td align=center width=20% class="td_list_1" nowrap>
-					任务创建时间
-				</td>
-			</tr>
-			<c:forEach items="${page.result}" var="item">
-				<tr>
-					<td class="td_list_2" align=left nowrap>
-						${item.processName}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${item.orderNo}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${item.orderCreateTime}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${item.taskName}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${item.taskCreateTime}&nbsp;
-					</td>
-				</tr>
-			</c:forEach>
-			<frame:page curPage="${page.pageNo}" totalPages="${page.totalPages }" totalRecords="${page.totalCount }"/>
-		</table>
-	</form>
-	</body>
-	<c:if test="${not empty param.returnMessage }">
-	<script type="text/javascript">
-		alert("${param.returnMessage }");
-	</script>
-	</c:if>
+<body>
+
+	<!-- 页面顶部 -->
+	<%@ include file="/WEB-INF/includes/header.jsp"%>
+
+
+
+	<div id="mws-wrapper">
+
+		<!-- 页面左侧菜单 -->
+		<%@ include file="/WEB-INF/includes/menu.jsp"%>
+
+		<!-- 页面主体  -->
+		<div id="mws-container" class="clearfix">
+			<div class="container">
+
+				<!--1.历史完成任务 begin -->
+				<div class="mws-panel grid_8">
+					<div class="mws-panel-header">
+						<span class="mws-i-24 i-table-1">历史完成任务<font color="red">[共:${page.totalCount}项]&nbsp;&nbsp;</font>
+						</span>
+					</div>
+					<div class="mws-panel-body">
+						<table class="mws-datatable-fn mws-table">
+							<thead>
+								<tr>
+									<th>流程名称</th>
+									<th>流程编号</th>
+									<th>流程启动时间</th>
+									<th>任务名称</th>
+									<th>任务创建时间</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<c:forEach items="${page.result}" var="item">
+									<tr>
+										<td class="td_list_2" align=left nowrap>
+											${item.processName}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${item.orderNo}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${item.orderCreateTime}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${item.taskName}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${item.taskCreateTime}&nbsp;</td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--1.历史完成任务 end -->
+
+			</div>
+
+			<!-- 页面底部 -->
+			<%@ include file="/WEB-INF/includes/footer.jsp"%>
+
+		</div>
+	</div>
+
+</body>
 </html>

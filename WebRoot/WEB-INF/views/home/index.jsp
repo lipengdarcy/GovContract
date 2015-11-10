@@ -46,7 +46,7 @@
 <script type="text/javascript">
 
 $(document).ready(function() {	
-	alert("grid page init!");
+	//alert("index page!");
 	});
 </script>
 </html>

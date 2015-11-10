@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/common/taglibs.jsp"%>
+<%@ include file="/WEB-INF/includes/commons/taglibs.jsp"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
 		<title>权限管理</title>
-		<%@ include file="/common/meta.jsp"%>
+		<%@ include file="/WEB-INF/includes/commons/meta.jsp"%>
 		<link rel="stylesheet" href="${ctx}/styles/css/style.css" type="text/css" media="all" />
 		<script src="${ctx}/styles/js/jquery-1.8.3.min.js" type="text/javascript"></script>
 		<script src="${ctx}/styles/js/table.js" type="text/javascript"></script>

@@ -1,16 +1,16 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%@ include file="/common/taglibs.jsp"%>
+<%@ include file="/WEB-INF/includes/commons/taglibs.jsp"%>
 <!doctype html>
 <html lang="en">
 <head>
 <title>Top</title>
-<%@ include file="/common/meta.jsp"%>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<link href="${ctx}/styles/css/index.css" rel="stylesheet" type="text/css" />
+	<link href="${ctx}/static/css/snaker/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="header">
-  <div class="logo"><img src="${ctx }/styles/images/snaker.png" alt="Snaker"/></div>
+  <div class="logo"><img src="${ctx }/static/css/images/snaker.png" alt="Snaker"/></div>
     <ul class="qj">
       <li style="width: 100px;"><span><shiro:principal/></span></li>
       <li></li>

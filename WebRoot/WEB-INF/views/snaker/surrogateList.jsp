@@ -1,96 +1,122 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/common/taglibs.jsp"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/includes/commons/taglibs.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%@ include file="/WEB-INF/includes/include.jsp"%>
+<script src="${ctx}/static/js/table.js" type="text/javascript"></script>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-	<head>
-		<title>委托授权管理</title>
-		<%@ include file="/common/meta.jsp"%>
-		<link rel="stylesheet" href="${ctx}/styles/css/style.css" type="text/css" media="all" />
-		<script src="${ctx}/styles/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/table.js" type="text/javascript"></script>
-	</head>
+<title>委托授权管理</title>
+</head>
 
-	<body>
-	<form id="mainForm" action="${ctx}/snaker/surrogate" method="get">
-		<input type="hidden" name="pageNo" id="pageNo" value="${page.pageNo}"/>
-		<table width="100%" border="0" align="center" cellpadding="0"
-				class="table_all_border" cellspacing="0" style="margin-bottom: 0px;border-bottom: 0px">
-			<tr>
-				<td class="td_table_top" align="center">
-					委托授权管理
-				</td>
-			</tr>
-		</table>
-		<table class="table_all" align="center" border="0" cellpadding="0"
-			cellspacing="0" style="margin-top: 0px">
-			<tr>
-				<td class="td_table_1">
-					<span>资源名称：</span>
-				</td>
-				<td class="td_table_2" colspan="3">
-					<input type="text" class="input_240" name="filter_LIKES_name" value="${param['filter_LIKES_name']}"/>
-				</td>
-			</tr>
-		</table>
-		<table align="center" border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<td align="left">
-				<shiro:hasPermission name="RESOURCEEDIT">
-					<input type='button' onclick="addNew('${ctx}/snaker/surrogate/create')" class='button_70px' value='新建'/>
-				</shiro:hasPermission>
-					<input type='submit' class='button_70px' value='查询'/>
-				</td>
-			</tr>
-		</table>
-		<table class="table_all" align="center" border="0" cellpadding="0"
-			cellspacing="0">
-			<tr>
-				<td align=center width=20% class="td_list_1" nowrap>
-					流程名称
-				</td>
-				<td align=center width=20% class="td_list_1" nowrap>
-					授权人
-				</td>
-				<td align=center width=20% class="td_list_1" nowrap>
-					代理人
-				</td>
-				<td align=center width=20% class="td_list_1" nowrap>
-					开始时间
-				</td>
-				<td align=center width=20% class="td_list_1" nowrap>
-					结束时间
-				</td>
-				<td align=center width=10% class="td_list_1" nowrap>
-					操作
-				</td>				
-			</tr>
-			<c:forEach items="${page.result}" var="surrogate">
-				<tr>
-					<td class="td_list_2" align=left nowrap>
-						${surrogate.processName}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${surrogate.operator}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${surrogate.surrogate}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${surrogate.sdate}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						${surrogate.edate}&nbsp;
-					</td>
-					<td class="td_list_2" align=left nowrap>
-						<a href="${ctx}/snaker/surrogate/delete/${surrogate.id }" class="btnDel" title="删除" onclick="return confirmDel();">删除</a>
-						<a href="${ctx}/snaker/surrogate/update/${surrogate.id }" class="btnEdit" title="编辑">编辑</a>
-						<a href="${ctx}/snaker/surrogate/view/${surrogate.id }" class="btnView" title="查看">查看</a>
-					</td>
-				</tr>
-			</c:forEach>
-			<frame:page curPage="${page.pageNo}" totalPages="${page.totalPages }" totalRecords="${page.totalCount }" lookup="${lookup }"/>
-		</table>
-	</form>
-	</body>
+<body>
+
+	<!-- 页面顶部 -->
+	<%@ include file="/WEB-INF/includes/header.jsp"%>
+
+
+
+	<div id="mws-wrapper">
+
+		<!-- 页面左侧菜单 -->
+		<%@ include file="/WEB-INF/includes/menu.jsp"%>
+
+		<!-- 页面主体  -->
+		<div id="mws-container" class="clearfix">
+			<div class="container">
+
+
+				<div class="mws-panel grid_8">
+					<div class="mws-panel-header">
+						<span class="mws-i-24 i-list">委托授权查询</span>
+					</div>
+					<div class="mws-panel-body">
+
+
+						<form class="mws-form" action="${ctx}/snaker/surrogate"
+							method="get">
+							<input type="hidden" name="pageNo" id="pageNo"
+								value="${page.pageNo}" />
+							<div class="mws-form-inline">
+								<div class="mws-form-row">
+									<label>资源名称：</label>
+									<div class="mws-form-item small">
+										<input type="text" class="mws-textinput"
+											name="filter_LIKES_name"
+											value="${param['filter_LIKES_name']}" />
+									</div>
+								</div>
+
+							</div>
+							<div class="mws-button-row">
+								<shiro:hasPermission name="PROCESSDEPLOY">
+									<input type="button" value="新建" class="mws-button green"
+										onclick="addNew('${ctx}/snaker/surrogate/create')" />
+								</shiro:hasPermission>
+								<input type='submit' class="mws-button black" value='查询' />
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+
+
+				<!--1.委托授权管理 begin -->
+				<div class="mws-panel grid_8">
+					<div class="mws-panel-header">
+						<span class="mws-i-24 i-table-1">查询结果<font color="red">[共:${page.totalCount}项]&nbsp;&nbsp;</font>
+						</span>
+					</div>
+					<div class="mws-panel-body">
+						<table class="mws-datatable-fn mws-table">
+							<thead>
+								<tr>
+									<th>流程名称</th>
+									<th>授权人</th>
+									<th>代理人</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<c:forEach items="${page.result}" var="surrogate">
+									<tr>
+										<td class="td_list_2" align=left nowrap>
+											${surrogate.processName}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${surrogate.operator}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${surrogate.surrogate}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${surrogate.sdate}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap>
+											${surrogate.edate}&nbsp;</td>
+										<td class="td_list_2" align=left nowrap><a
+											href="${ctx}/snaker/surrogate/delete/${surrogate.id }"
+											class="btnDel" title="删除" onclick="return confirmDel();">删除</a>
+											<a href="${ctx}/snaker/surrogate/update/${surrogate.id }"
+											class="btnEdit" title="编辑">编辑</a> <a
+											href="${ctx}/snaker/surrogate/view/${surrogate.id }"
+											class="btnView" title="查看">查看</a></td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--1.委托授权管理 end -->
+
+			</div>
+
+			<!-- 页面底部 -->
+			<%@ include file="/WEB-INF/includes/footer.jsp"%>
+
+		</div>
+	</div>
+
+</body>
 </html>

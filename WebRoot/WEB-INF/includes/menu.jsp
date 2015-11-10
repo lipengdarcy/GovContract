@@ -16,11 +16,18 @@
 		<ul>
 			<li><a href="${ctx }/home" class="mws-i-24 i-home">主页</a></li>
 			<li><a href="${ctx }/snaker/task/active" class="mws-i-24 i-day-calendar">待办任务</a></li>			
-			<li class="active"><a href="#" class="mws-i-24 i-list">工作流</a>
+			<li class="active"><a href="#" class="mws-i-24 i-list">流程管理</a>
+				<ul>
+					<li><a href="${ctx }/snaker/task/active">待办任务</a></li>
+					<li><a href="${ctx }/snaker/flow/order">流程实例</a></li>
+					<li><a href="${ctx }/snaker/task/history">历史任务</a></li>
+					<li><a href="${ctx }/snaker/process/list">流程定义</a></li>
+					<li><a href="${ctx }/snaker/surrogate/list">委托授权</a></li>
+				</ul></li>
+			<li class="active"><a href="#" class="mws-i-24 i-list">组织机构</a>
 				<ul>
 					<li><a href="${ctx }/home/organizationPage">组织机构</a></li>
 					<li><a href="${ctx }/home/standardPage">国家标准</a></li>
-					<li><a href="${ctx }/home/index">工作流</a></li>
 				</ul></li>
 						
 		

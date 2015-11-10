@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ include file="/WEB-INF/includes/include.jsp"%>
-<script type="text/javascript"
-	src="${ctx}/static/js/demo.formelements.js"></script>
+
 <title>待办任务</title>
 </head>
 

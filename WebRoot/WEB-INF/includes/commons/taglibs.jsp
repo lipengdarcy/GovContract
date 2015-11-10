@@ -3,4 +3,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="/WEB-INF/tld/framework.tld" prefix="frame"%>
 <c:set var="ctx"  value="http://${header['host']}${pageContext.request.contextPath}"/>

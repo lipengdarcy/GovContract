@@ -69,7 +69,7 @@
 	<!-- Let's use some enterprise caching support for better performance. You 
 		can replace this with any enterprise caching framework implementation that 
 		you like (Terracotta+Ehcache, Coherence, GigaSpaces, etc -->
-	<bean id="shirocacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+	<bean id="shirocacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager">
 		<!-- Set a net.sf.ehcache.CacheManager instance here if you already have 
 			one. If not, a new one will be creaed with a default config: <property name="cacheManager" 
 			ref="ehCacheManager"/> -->

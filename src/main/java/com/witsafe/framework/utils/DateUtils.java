@@ -20,8 +20,8 @@ import org.joda.time.DateTime;
 
 /**
  * 
- * @author yuqs
- * @since 0.1
+ * @author lipeng
+ *Joda Time，一个面向 Java™ 平台的易于使用的开源时间/日期库
  */
 public class DateUtils {
 	private static final String DATE_FORMAT_DEFAULT = "yyyy-MM-dd HH:mm:ss";

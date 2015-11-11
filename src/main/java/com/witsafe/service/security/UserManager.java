@@ -75,7 +75,6 @@ public class UserManager {
 	 * @param userId
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public List<String> getAuthoritiesName(Integer userId) {
 		return secUserMapper.getAuthoritiesName(userId);
 	}
@@ -86,7 +85,6 @@ public class UserManager {
 	 * @param userId
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public List<String> getRolesName(Integer userId) {
 
 		return secUserMapper.getRolesName(userId);

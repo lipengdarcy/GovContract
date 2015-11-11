@@ -12,10 +12,11 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/cache 
         http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
-        
-        
-           
-	<!-- 在spring-servlet.xml文件中只配置关于controller层的扫描路径 <context:component-scan base-package="com.windy.fxshop.*.action" /> -->
+
+
+
+	<!-- 在spring-servlet.xml文件中只配置关于controller层的扫描路径 <context:component-scan 
+		base-package="com.windy.fxshop.*.action" /> -->
 	<context:component-scan base-package="com.witsafe.controller" />
 
 
@@ -31,21 +32,62 @@
 	<!-- 若只想使用Spring自身提供的缓存器,则注释掉下面的两个关于Ehcache配置的bean,并启用上面的SimpleCacheManager即可 -->
 	<!-- Spring提供的基于的Ehcache实现的缓存管理器 -->
 	<bean id="cacheManagerFactory"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:shared="true">
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:shared="true">
 		<property name="configLocation" value="classpath:ehcache/ehcache.xml" />
 	</bean>
+	
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
 		<property name="cacheManager" ref="cacheManagerFactory" />
 	</bean>
-	
-	<!-- 脚本执行类，自动执行数据初始化，shiro的前置条件 -->
-	<bean id="executor" class="com.witsafe.framework.ScriptsExecutor" init-method="run">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
 
-	<!-- 静态资源访问 -->	
+
+
+
+
+	<!-- 配置一个简单的缓存工厂bean对象 -->
+	<bean id="methodCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManagerFactory" />
+		<!-- 使用缓存 关联ehcache.xml中的缓存配置 -->
+		<property name="cacheName" value="methodCache" />
+	</bean>
+
+
+
+	<!-- 配置一个缓存拦截器对象，处理具体的缓存业务 -->
+	<bean id="methodCacheInterceptor" class="com.witsafe.framework.ehcache.MethodCacheInterceptor">
+		<property name="cache" ref="methodCache" />
+	</bean>
+
+
+
+	<!-- 参与缓存的切入点对象 (切入点对象，确定何时何地调用拦截器) -->
+	<bean id="methodCachePointCut"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<!-- 配置缓存aop切面 -->
+		<property name="advice" ref="methodCacheInterceptor" />
+		<!-- 配置哪些方法参与缓存策略 -->
+		<!-- .表示符合任何单一字元 ### +表示符合前一个字元一次或多次 ### *表示符合前一个字元零次或多次 ### \Escape任何Regular 
+			expression使用到的符号 -->
+		<!-- .*表示前面的前缀(包括包名) 表示print方法 -->
+		<property name="patterns">
+			<list>
+				<value>com.hoo.rest.*RestService*\.*get.*</value>
+				<value>com.hoo.rest.*RestService*\.*search.*</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 脚本执行类，自动执行数据初始化，shiro的前置条件 -->
+	<bean id="executor" class="com.witsafe.framework.ScriptsExecutor"
+		init-method="run">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 静态资源访问 -->
 	<mvc:resources location="/static/" mapping="/static/**" />
-	
+
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<!-- 多个拦截器,顺序执行 -->
@@ -58,19 +100,21 @@
 			<mvc:mapping path="/user**/**" />
 			<mvc:mapping path="/module**/**" />
 			<mvc:mapping path="/field**/**" />
-			<mvc:mapping path="/permission/*" />			
-			<bean class="com.witsafe.framework.common.interprecetor.ControllerInterceptor"></bean>
+			<mvc:mapping path="/permission/*" />
+			<bean
+				class="com.witsafe.framework.common.interprecetor.ControllerInterceptor"></bean>
 		</mvc:interceptor>
-		
+
 		<mvc:interceptor>
 			<!-- 如果不配置或/*,将拦截所有的Controller 前台拦截器 -->
 			<!-- <mvc:mapping path="/*" /> -->
 			<mvc:mapping path="/order/**" />
 			<mvc:mapping path="/ucenter/**" />
 			<mvc:mapping path="/business/**" />
-			<bean class="com.witsafe.framework.common.interprecetor.FControllerInterceptor"></bean>
+			<bean
+				class="com.witsafe.framework.common.interprecetor.FControllerInterceptor"></bean>
 		</mvc:interceptor>
-		
+
 	</mvc:interceptors>
 
 	<!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射，添加拦截器，类级别的处理器映射 -->
@@ -99,7 +143,7 @@
 		</property>
 	</bean>
 
-	
+
 
 	<bean id="viewResolverCommon"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -119,14 +163,14 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8"></property>
 		<!-- 设置上传文件的最大尺寸为10MB -->
-		<property name="maxUploadSize" value="104857600"/>
-        <property name="maxInMemorySize" value="4096"/>
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="4096" />
 	</bean>
-	
-	<mvc:view-controller path="/" view-name="redirect:/home"/>
-	
+
+	<mvc:view-controller path="/" view-name="redirect:/home" />
+
 	<bean class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 

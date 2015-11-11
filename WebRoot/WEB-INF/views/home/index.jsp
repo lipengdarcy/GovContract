@@ -4,11 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ include file="/WEB-INF/includes/include.jsp"%>
-<script type="text/javascript"
-	src="${ctx}/static/js/demo.formelements.js"></script>
-
-<script type="text/javascript"
-	src="${ctx}/static/js/jquery-1.11.3.js"></script>
 	
 <title>职业卫生监测管理平台</title>
 </head>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ include file="/common/taglibs.jsp"%>
+<%@ include file="/WEB-INF/includes/commons/taglibs.jsp"%>
 
 <!DOCTYPE HTML>
 <html>

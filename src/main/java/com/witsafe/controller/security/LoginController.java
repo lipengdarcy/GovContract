@@ -28,6 +28,7 @@ public class LoginController {
 	public String login(SecUser user, Model model, HttpServletRequest request) {
 		log.info("Login user=====" + user.getUsername());
 		Subject subject = SecurityUtils.getSubject();
+		//1、收集实体/凭据信息 
 		UsernamePasswordToken token = new UsernamePasswordToken(
 				user.getUsername(), user.getPassword());
 		String remember = WebUtils.getCleanParam(request, "remember");
@@ -37,6 +38,7 @@ public class LoginController {
 			if (remember != null && remember.equalsIgnoreCase("on")) {
 				token.setRememberMe(true);
 			}
+			//2、提交实体/凭据信息 
 			subject.login(token);
 			return "redirect:/home";
 		} catch (UnknownAccountException ue) {
@@ -65,9 +67,10 @@ public class LoginController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout() {
 		Subject subject = SecurityUtils.getSubject();
+		String userName = subject.getPrincipal().toString();
 		if (subject.isAuthenticated()) {
 			subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
-			log.info("用户" + subject.getPrincipal() + "退出登录");
+			log.info("用户" + userName + "退出登录");
 		}
 		return "security/login/login";
 	}

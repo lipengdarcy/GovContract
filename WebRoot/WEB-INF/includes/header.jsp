@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
-
+<%@ include file="/WEB-INF/includes/commons/taglibs.jsp"%>
 <!-- 样式切换 -->
 <div id="mws-themer">
 	<div id="mws-themer-hide"></div>
@@ -108,7 +108,7 @@
 				<img src="${ctx}/static/example/profile.jpg" alt="User Photo" />
 			</div>
 			<div id="mws-user-functions">
-				<div id="mws-username">欢迎你, 管理员</div>
+				<div id="mws-username">欢迎你, <span><shiro:principal/></span></div>
 				<ul>
 					<li><a href="#">[个人中心]</a></li>
 					<li><a href="#">[密码更改]</a></li>

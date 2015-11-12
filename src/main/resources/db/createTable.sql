@@ -367,3 +367,168 @@ CREATE TABLE flow_borrow (
 
 -- 删除完成后设置 
 SET FOREIGN_KEY_CHECKS = 1; 
+
+
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     2015/11/12 10:57:42                          */
+/*==============================================================*/
+
+
+drop table if exists sec_Permission;
+
+drop table if exists sec_Resource;
+
+drop table if exists sec_Role;
+
+drop table if exists sec_RoleGroup;
+
+drop table if exists sec_RolePermission;
+
+drop table if exists sec_UserPermission;
+
+drop table if exists sec_UserPermissionJob;
+
+drop table if exists sec_UserRole;
+
+/*==============================================================*/
+/* Table: sec_Permission                                        */
+/*==============================================================*/
+create table sec_Permission
+(
+   ID                   int not null comment 'ID',
+   code                 varchar(100) comment '权限编码',
+   name                 varchar(100) comment '权限名称',
+   resourceId           int comment '资源id',
+   description          longtext comment '权限描述',
+   primary key (ID)
+);
+
+alter table sec_Permission comment '权限';
+
+/*==============================================================*/
+/* Table: sec_Resource                                          */
+/*==============================================================*/
+create table sec_Resource
+(
+   ID                   int not null comment 'ID',
+   pid                  int comment '资源上级id',
+   resourceCode         varchar(100) comment '资源编码',
+   resourceName         varchar(100) comment '资源名称',
+   link                 varchar(200) comment '资源链接',
+   description          longtext comment '资源描述',
+   `order`              int comment '排序',
+   isMenu               tinyint comment '是否菜单',
+   menuName             varchar(100) comment '菜单名称',
+   isActive             tinyint comment '是否可用',
+   primary key (ID)
+);
+
+alter table sec_Resource comment '资源';
+
+/*==============================================================*/
+/* Table: sec_Role                                              */
+/*==============================================================*/
+create table sec_Role
+(
+   ID                   int not null comment 'ID',
+   groupId              int comment '角色组id',
+   name                 varchar(100) comment '角色名称',
+   description          varchar(1000) comment '角色描述',
+   isActive             tinyint comment '是否可用',
+   primary key (ID)
+);
+
+alter table sec_Role comment '角色';
+
+/*==============================================================*/
+/* Table: sec_RoleGroup                                         */
+/*==============================================================*/
+create table sec_RoleGroup
+(
+   ID                   int not null comment 'ID',
+   name                 varchar(100) comment '角色组名称',
+   isActive             tinyint comment '是否可用',
+   primary key (ID)
+);
+
+alter table sec_RoleGroup comment '角色组';
+
+/*==============================================================*/
+/* Table: sec_RolePermission                                    */
+/*==============================================================*/
+create table sec_RolePermission
+(
+   ID                   int not null comment 'ID',
+   rid                  int comment '角色id',
+   permissionId         int comment '权限id',
+   isActive             tinyint comment '是否可用',
+   primary key (ID)
+);
+
+alter table sec_RolePermission comment '角色权限';
+
+/*==============================================================*/
+/* Table: sec_UserPermission                                    */
+/*==============================================================*/
+create table sec_UserPermission
+(
+   ID                   int comment 'ID',
+   uid                 int comment '用户id',
+   permissionId         int comment '权限id',
+   isActive             tinyint comment '是否可用'
+);
+
+alter table sec_UserPermission comment '用户权限';
+
+/*==============================================================*/
+/* Table: sec_UserPermissionJob                                 */
+/*==============================================================*/
+create table sec_UserPermissionJob
+(
+   ID                   int not null comment 'ID',
+   userPermissionId     int comment '用户权限id',
+   createTime           datetime comment '创建时间',
+   expireTime           datetime comment '到期时间',
+   updateTime           datetime comment '执行时间',
+   status               tinyint comment '状态',
+   primary key (ID)
+);
+
+alter table sec_UserPermissionJob comment '针对购买一定时限的企业用户，定时更新该用户的有效字段，如一个月后，该用户的状态由有效变为无效，该工作由系统job自动执行';
+
+/*==============================================================*/
+/* Table: sec_UserRole                                          */
+/*==============================================================*/
+create table sec_UserRole
+(
+   ID                   int not null comment 'ID',
+   uid                  int comment '用户id',
+   rid                  int comment '角色id',
+   isActive             tinyint comment '是否可用',
+   primary key (ID)
+);
+
+alter table sec_UserRole comment '用户角色';
+
+alter table sec_Permission add constraint FK_R_6 foreign key (resourceId)
+      references sec_Resource (ID) on delete restrict on update restrict;
+
+alter table sec_Role add constraint FK_R_1 foreign key (groupId)
+      references sec_RoleGroup (ID) on delete restrict on update restrict;
+
+alter table sec_RolePermission add constraint FK_R_8 foreign key (rid)
+      references sec_Role (ID) on delete restrict on update restrict;
+
+alter table sec_RolePermission add constraint FK_R_9 foreign key (permissionId)
+      references sec_Permission (ID) on delete restrict on update restrict;
+
+alter table sec_UserPermission add constraint FK_R_4 foreign key (permissionId)
+      references sec_Permission (ID) on delete restrict on update restrict;
+
+alter table sec_UserPermissionJob add constraint FK_R_2 foreign key (userPermissionId)
+      references sec_UserPermission (ID) on delete restrict on update restrict;
+
+alter table sec_UserRole add constraint FK_R_3 foreign key (rid)
+      references sec_Role (ID) on delete restrict on update restrict;
+

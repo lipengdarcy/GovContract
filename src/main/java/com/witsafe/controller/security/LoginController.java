@@ -72,7 +72,7 @@ public class LoginController {
 			subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
 			log.info("用户" + userName + "退出登录");
 		}
-		return "security/login/login";
+		return "redirect:/login";
 	}
 
 	// 注册页面

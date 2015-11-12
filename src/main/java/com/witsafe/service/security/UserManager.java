@@ -89,7 +89,7 @@ public class UserManager {
 	 * @param userId
 	 * @return
 	 */
-	public List<String> getAuthoritiesName(Integer userId) {
+	public List<String> getPermissionName(Integer userId) {
 		SecPermissionExample e = new SecPermissionExample();
 		secPermissionMapper.selectByExample(e);
 		return secUserMapper.getAuthoritiesName(userId);

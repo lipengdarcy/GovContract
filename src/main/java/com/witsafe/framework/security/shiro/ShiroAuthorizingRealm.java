@@ -1,6 +1,5 @@
 package com.witsafe.framework.security.shiro;
 
-import java.security.acl.Permission;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -65,8 +64,8 @@ public class ShiroAuthorizingRealm extends AuthorizingRealm {
 		log.info("用户【" + username + "】授权开始......");
 		try {
 			if(!subject.isAuthorized()) {
-				//根据用户名称，获取该用户所有的权限列表
-				List<String> authorities = userManager.getAuthoritiesName(userId);
+				//根据用户名称，获取该用户所有的权限、角色列表
+				List<String> authorities = userManager.getPermissionName(userId);
 				List<String> rolelist = userManager.getRolesName(userId);
 				subject.setAuthorities(authorities);
 				subject.setRoles(rolelist);
@@ -115,7 +114,7 @@ public class ShiroAuthorizingRealm extends AuthorizingRealm {
 		log.info("用户【" + username + "】登录成功");
 		byte[] salt = EncodeUtils.hexDecode(user.getSalt());
 		ShiroPrincipal subject = new ShiroPrincipal(user);
-		List<String> authorities = userManager.getAuthoritiesName(user.getId());
+		List<String> authorities = userManager.getPermissionName(user.getId());
 		List<String> rolelist = userManager.getRolesName(user.getId());
 		subject.setAuthorities(authorities);
 		subject.setRoles(rolelist);

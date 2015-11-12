@@ -6,24 +6,35 @@
 	<!-- 根据用户ID查询该用户所拥有的权限列表 -->
 	<select id="getAuthoritiesName" resultType="java.lang.String"
 		parameterType="java.lang.Integer">
-		select a.name from sec_user u
-		left outer join
-		sec_role_user ru on u.id=ru.user_id
-		left outer join sec_role r on
-		ru.role_id=r.id
-		left outer join sec_role_authority ra on r.id =
-		ra.role_id
-		left outer join sec_authority a on ra.authority_id = a.id
-		where u.id= #{userId,jdbcType=INTEGER}
+
+		select a.code from sec_user u
+		join sec_userrole ru on u.id=ru.uid
+		join sec_role r on ru.rid=r.id
+		join sec_rolepermission rp on r.id=rp.rid
+		join sec_permission a on rp.permissionId=a.id
+		where u.id=#{userId,jdbcType=INTEGER}
+
+		union
+
+		select a.code from sec_user u
+		left outer join sec_userpermission up on u.id = up.uid
+		left outer join sec_permission a on up.permissionId=a.id
+		where u.id=#{userId,jdbcType=INTEGER}
+
 	</select>
 
 	<!-- 根据用户ID查询该用户所拥有的角色列表 -->
 	<select id="getRolesName" resultType="java.lang.String"
 		parameterType="java.lang.Integer">
+
 		select r.name from sec_user u
-		left outer join sec_role_user ru on u.id=ru.user_id
-		left outer join sec_role r on ru.role_id=r.id
-		where u.id= #{userId,jdbcType=INTEGER}
+		left outer join
+		sec_userrole ur on u.id=ur.uid
+		left outer join sec_role r on
+		ur.rid=r.id
+		where u.id=
+		#{userId,jdbcType=INTEGER}
+
 	</select>
 
 

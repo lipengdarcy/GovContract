@@ -3,14 +3,14 @@ package com.witsafe.model.security;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecRoleExample {
+public class SecPermissionExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SecRoleExample() {
+    public SecPermissionExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,63 +164,73 @@ public class SecRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andGroupidIsNull() {
-            addCriterion("groupId is null");
+        public Criteria andCodeIsNull() {
+            addCriterion("code is null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidIsNotNull() {
-            addCriterion("groupId is not null");
+        public Criteria andCodeIsNotNull() {
+            addCriterion("code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidEqualTo(Integer value) {
-            addCriterion("groupId =", value, "groupid");
+        public Criteria andCodeEqualTo(String value) {
+            addCriterion("code =", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidNotEqualTo(Integer value) {
-            addCriterion("groupId <>", value, "groupid");
+        public Criteria andCodeNotEqualTo(String value) {
+            addCriterion("code <>", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidGreaterThan(Integer value) {
-            addCriterion("groupId >", value, "groupid");
+        public Criteria andCodeGreaterThan(String value) {
+            addCriterion("code >", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("groupId >=", value, "groupid");
+        public Criteria andCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("code >=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidLessThan(Integer value) {
-            addCriterion("groupId <", value, "groupid");
+        public Criteria andCodeLessThan(String value) {
+            addCriterion("code <", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidLessThanOrEqualTo(Integer value) {
-            addCriterion("groupId <=", value, "groupid");
+        public Criteria andCodeLessThanOrEqualTo(String value) {
+            addCriterion("code <=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidIn(List<Integer> values) {
-            addCriterion("groupId in", values, "groupid");
+        public Criteria andCodeLike(String value) {
+            addCriterion("code like", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidNotIn(List<Integer> values) {
-            addCriterion("groupId not in", values, "groupid");
+        public Criteria andCodeNotLike(String value) {
+            addCriterion("code not like", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidBetween(Integer value1, Integer value2) {
-            addCriterion("groupId between", value1, value2, "groupid");
+        public Criteria andCodeIn(List<String> values) {
+            addCriterion("code in", values, "code");
             return (Criteria) this;
         }
 
-        public Criteria andGroupidNotBetween(Integer value1, Integer value2) {
-            addCriterion("groupId not between", value1, value2, "groupid");
+        public Criteria andCodeNotIn(List<String> values) {
+            addCriterion("code not in", values, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeBetween(String value1, String value2) {
+            addCriterion("code between", value1, value2, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotBetween(String value1, String value2) {
+            addCriterion("code not between", value1, value2, "code");
             return (Criteria) this;
         }
 
@@ -294,133 +304,63 @@ public class SecRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("description is null");
+        public Criteria andResourceidIsNull() {
+            addCriterion("resourceId is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("description is not null");
+        public Criteria andResourceidIsNotNull() {
+            addCriterion("resourceId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("description =", value, "description");
+        public Criteria andResourceidEqualTo(Integer value) {
+            addCriterion("resourceId =", value, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("description <>", value, "description");
+        public Criteria andResourceidNotEqualTo(Integer value) {
+            addCriterion("resourceId <>", value, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("description >", value, "description");
+        public Criteria andResourceidGreaterThan(Integer value) {
+            addCriterion("resourceId >", value, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("description >=", value, "description");
+        public Criteria andResourceidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("resourceId >=", value, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("description <", value, "description");
+        public Criteria andResourceidLessThan(Integer value) {
+            addCriterion("resourceId <", value, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("description <=", value, "description");
+        public Criteria andResourceidLessThanOrEqualTo(Integer value) {
+            addCriterion("resourceId <=", value, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("description like", value, "description");
+        public Criteria andResourceidIn(List<Integer> values) {
+            addCriterion("resourceId in", values, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("description not like", value, "description");
+        public Criteria andResourceidNotIn(List<Integer> values) {
+            addCriterion("resourceId not in", values, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("description in", values, "description");
+        public Criteria andResourceidBetween(Integer value1, Integer value2) {
+            addCriterion("resourceId between", value1, value2, "resourceid");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("description not in", values, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("description between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("description not between", value1, value2, "description");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveIsNull() {
-            addCriterion("isActive is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveIsNotNull() {
-            addCriterion("isActive is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveEqualTo(Byte value) {
-            addCriterion("isActive =", value, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveNotEqualTo(Byte value) {
-            addCriterion("isActive <>", value, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveGreaterThan(Byte value) {
-            addCriterion("isActive >", value, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveGreaterThanOrEqualTo(Byte value) {
-            addCriterion("isActive >=", value, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveLessThan(Byte value) {
-            addCriterion("isActive <", value, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveLessThanOrEqualTo(Byte value) {
-            addCriterion("isActive <=", value, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveIn(List<Byte> values) {
-            addCriterion("isActive in", values, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveNotIn(List<Byte> values) {
-            addCriterion("isActive not in", values, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveBetween(Byte value1, Byte value2) {
-            addCriterion("isActive between", value1, value2, "isactive");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsactiveNotBetween(Byte value1, Byte value2) {
-            addCriterion("isActive not between", value1, value2, "isactive");
+        public Criteria andResourceidNotBetween(Integer value1, Integer value2) {
+            addCriterion("resourceId not between", value1, value2, "resourceid");
             return (Criteria) this;
         }
     }

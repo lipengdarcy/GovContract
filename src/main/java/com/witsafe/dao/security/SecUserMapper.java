@@ -7,42 +7,35 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-
 public interface SecUserMapper {
-    int countByExample(SecUserExample example);
 
-    int deleteByExample(SecUserExample example);
+	// <!-- 根据用户ID查询该用户所拥有的权限列表 -->
+	List<String> getAuthoritiesName(int uid);
 
-    int deleteByPrimaryKey(Integer id);
+	// <!-- 根据用户ID查询该用户所拥有的角色列表 -->
+	List<String> getRolesName(int uid);
 
-    int insert(SecUser record);
+	int countByExample(SecUserExample example);
 
-    int insertSelective(SecUser record);
+	int deleteByExample(SecUserExample example);
 
-    List<SecUser> selectByExample(SecUserExample example);
+	int deleteByPrimaryKey(Integer id);
 
-    SecUser selectByPrimaryKey(Integer id);
+	int insert(SecUser record);
 
-    int updateByExampleSelective(@Param("record") SecUser record, @Param("example") SecUserExample example);
+	int insertSelective(SecUser record);
 
-    int updateByExample(@Param("record") SecUser record, @Param("example") SecUserExample example);
+	List<SecUser> selectByExample(SecUserExample example);
 
-    int updateByPrimaryKeySelective(SecUser record);
+	SecUser selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKey(SecUser record);
-    
-    /**
-	 * 根据用户ID查询该用户所拥有的权限列表
-	 * @param userId
-	 * @return
-	 */
-	public List<String> getAuthoritiesName(Integer userId);
-	
-	/**
-	 * 根据用户ID查询该用户所拥有的角色列表
-	 * @param userId
-	 * @return
-	 */
-	public List<String> getRolesName(Integer userId) ;
-	
+	int updateByExampleSelective(@Param("record") SecUser record,
+			@Param("example") SecUserExample example);
+
+	int updateByExample(@Param("record") SecUser record,
+			@Param("example") SecUserExample example);
+
+	int updateByPrimaryKeySelective(SecUser record);
+
+	int updateByPrimaryKey(SecUser record);
 }

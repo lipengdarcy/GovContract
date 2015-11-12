@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.witsafe.dao.security.SecRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.witsafe.model.security.SecRole" >
+<mapper namespace="com.witsafe.dao.security.SecRolepermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.model.security.SecRolepermission" >
     <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="groupId" property="groupid" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="permissionId" property="permissionid" jdbcType="INTEGER" />
     <result column="isActive" property="isactive" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, groupId, name, description, isActive
+    ID, rid, permissionId, isActive
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.security.SecRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.security.SecRolepermissionExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sec_role
+    from sec_rolepermission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,39 +85,36 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from sec_role
+    from sec_rolepermission
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from sec_role
+    delete from sec_rolepermission
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.model.security.SecRoleExample" >
-    delete from sec_role
+  <delete id="deleteByExample" parameterType="com.witsafe.model.security.SecRolepermissionExample" >
+    delete from sec_rolepermission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.model.security.SecRole" >
-    insert into sec_role (ID, groupId, name, 
-      description, isActive)
-    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{isactive,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.witsafe.model.security.SecRolepermission" >
+    insert into sec_rolepermission (ID, rid, permissionId, 
+      isActive)
+    values (#{id,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{permissionid,jdbcType=INTEGER}, 
+      #{isactive,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.model.security.SecRole" >
-    insert into sec_role
+  <insert id="insertSelective" parameterType="com.witsafe.model.security.SecRolepermission" >
+    insert into sec_rolepermission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
       </if>
-      <if test="groupid != null" >
-        groupId,
+      <if test="rid != null" >
+        rid,
       </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="description != null" >
-        description,
+      <if test="permissionid != null" >
+        permissionId,
       </if>
       <if test="isactive != null" >
         isActive,
@@ -128,40 +124,34 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="groupid != null" >
-        #{groupid,jdbcType=INTEGER},
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
+      <if test="permissionid != null" >
+        #{permissionid,jdbcType=INTEGER},
       </if>
       <if test="isactive != null" >
         #{isactive,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.model.security.SecRoleExample" resultType="java.lang.Integer" >
-    select count(*) from sec_role
+  <select id="countByExample" parameterType="com.witsafe.model.security.SecRolepermissionExample" resultType="java.lang.Integer" >
+    select count(*) from sec_rolepermission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update sec_role
+    update sec_rolepermission
     <set >
       <if test="record.id != null" >
         ID = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.groupid != null" >
-        groupId = #{record.groupid,jdbcType=INTEGER},
+      <if test="record.rid != null" >
+        rid = #{record.rid,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.permissionid != null" >
+        permissionId = #{record.permissionid,jdbcType=INTEGER},
       </if>
       <if test="record.isactive != null" >
         isActive = #{record.isactive,jdbcType=TINYINT},
@@ -172,27 +162,23 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update sec_role
+    update sec_rolepermission
     set ID = #{record.id,jdbcType=INTEGER},
-      groupId = #{record.groupid,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
+      rid = #{record.rid,jdbcType=INTEGER},
+      permissionId = #{record.permissionid,jdbcType=INTEGER},
       isActive = #{record.isactive,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.model.security.SecRole" >
-    update sec_role
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.model.security.SecRolepermission" >
+    update sec_rolepermission
     <set >
-      <if test="groupid != null" >
-        groupId = #{groupid,jdbcType=INTEGER},
+      <if test="rid != null" >
+        rid = #{rid,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
+      <if test="permissionid != null" >
+        permissionId = #{permissionid,jdbcType=INTEGER},
       </if>
       <if test="isactive != null" >
         isActive = #{isactive,jdbcType=TINYINT},
@@ -200,11 +186,10 @@
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.model.security.SecRole" >
-    update sec_role
-    set groupId = #{groupid,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.model.security.SecRolepermission" >
+    update sec_rolepermission
+    set rid = #{rid,jdbcType=INTEGER},
+      permissionId = #{permissionid,jdbcType=INTEGER},
       isActive = #{isactive,jdbcType=TINYINT}
     where ID = #{id,jdbcType=INTEGER}
   </update>

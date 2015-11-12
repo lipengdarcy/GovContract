@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.witsafe.dao.security.SecRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.witsafe.model.security.SecRole" >
+<mapper namespace="com.witsafe.dao.security.SecUserpermissionjobMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.model.security.SecUserpermissionjob" >
     <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="groupId" property="groupid" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="isActive" property="isactive" jdbcType="TINYINT" />
+    <result column="userPermissionId" property="userpermissionid" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="expireTime" property="expiretime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, groupId, name, description, isActive
+    ID, userPermissionId, createTime, expireTime, updateTime, status
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.security.SecRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.security.SecUserpermissionjobExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sec_role
+    from sec_userpermissionjob
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +87,96 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from sec_role
+    from sec_userpermissionjob
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from sec_role
+    delete from sec_userpermissionjob
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.witsafe.model.security.SecRoleExample" >
-    delete from sec_role
+  <delete id="deleteByExample" parameterType="com.witsafe.model.security.SecUserpermissionjobExample" >
+    delete from sec_userpermissionjob
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.model.security.SecRole" >
-    insert into sec_role (ID, groupId, name, 
-      description, isActive)
-    values (#{id,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{isactive,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.witsafe.model.security.SecUserpermissionjob" >
+    insert into sec_userpermissionjob (ID, userPermissionId, createTime, 
+      expireTime, updateTime, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{userpermissionid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{expiretime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.model.security.SecRole" >
-    insert into sec_role
+  <insert id="insertSelective" parameterType="com.witsafe.model.security.SecUserpermissionjob" >
+    insert into sec_userpermissionjob
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
       </if>
-      <if test="groupid != null" >
-        groupId,
+      <if test="userpermissionid != null" >
+        userPermissionId,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="createtime != null" >
+        createTime,
       </if>
-      <if test="description != null" >
-        description,
+      <if test="expiretime != null" >
+        expireTime,
       </if>
-      <if test="isactive != null" >
-        isActive,
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="status != null" >
+        status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="groupid != null" >
-        #{groupid,jdbcType=INTEGER},
+      <if test="userpermissionid != null" >
+        #{userpermissionid,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
+      <if test="expiretime != null" >
+        #{expiretime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isactive != null" >
-        #{isactive,jdbcType=TINYINT},
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.model.security.SecRoleExample" resultType="java.lang.Integer" >
-    select count(*) from sec_role
+  <select id="countByExample" parameterType="com.witsafe.model.security.SecUserpermissionjobExample" resultType="java.lang.Integer" >
+    select count(*) from sec_userpermissionjob
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update sec_role
+    update sec_userpermissionjob
     <set >
       <if test="record.id != null" >
         ID = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.groupid != null" >
-        groupId = #{record.groupid,jdbcType=INTEGER},
+      <if test="record.userpermissionid != null" >
+        userPermissionId = #{record.userpermissionid,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.expiretime != null" >
+        expireTime = #{record.expiretime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.isactive != null" >
-        isActive = #{record.isactive,jdbcType=TINYINT},
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -172,40 +184,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update sec_role
+    update sec_userpermissionjob
     set ID = #{record.id,jdbcType=INTEGER},
-      groupId = #{record.groupid,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
-      isActive = #{record.isactive,jdbcType=TINYINT}
+      userPermissionId = #{record.userpermissionid,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      expireTime = #{record.expiretime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.model.security.SecRole" >
-    update sec_role
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.model.security.SecUserpermissionjob" >
+    update sec_userpermissionjob
     <set >
-      <if test="groupid != null" >
-        groupId = #{groupid,jdbcType=INTEGER},
+      <if test="userpermissionid != null" >
+        userPermissionId = #{userpermissionid,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
+      <if test="expiretime != null" >
+        expireTime = #{expiretime,jdbcType=TIMESTAMP},
       </if>
-      <if test="isactive != null" >
-        isActive = #{isactive,jdbcType=TINYINT},
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.witsafe.model.security.SecRole" >
-    update sec_role
-    set groupId = #{groupid,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      isActive = #{isactive,jdbcType=TINYINT}
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.model.security.SecUserpermissionjob" >
+    update sec_userpermissionjob
+    set userPermissionId = #{userpermissionid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      expireTime = #{expiretime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -2,10 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.witsafe.dao.security.SecResourceMapper" >
   <resultMap id="BaseResultMap" type="com.witsafe.model.security.SecResource" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="source" property="source" jdbcType="VARCHAR" />
-    <result column="menu" property="menu" jdbcType="INTEGER" />
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="resourceCode" property="resourcecode" jdbcType="VARCHAR" />
+    <result column="resourceName" property="resourcename" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="isMenu" property="ismenu" jdbcType="TINYINT" />
+    <result column="menuName" property="menuname" jdbcType="VARCHAR" />
+    <result column="isActive" property="isactive" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.witsafe.model.security.SecResource" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,8 +74,27 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, source, menu
+    ID, pid, resourceCode, resourceName, link, order, isMenu, menuName, isActive
   </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.witsafe.model.security.SecResourceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sec_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.security.SecResourceExample" >
     select
     <if test="distinct" >
@@ -82,15 +109,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from sec_resource
-    where id = #{id,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sec_resource
-    where id = #{id,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.witsafe.model.security.SecResourceExample" >
     delete from sec_resource
@@ -99,39 +128,79 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.witsafe.model.security.SecResource" >
-    insert into sec_resource (id, name, source, 
-      menu)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
-      #{menu,jdbcType=INTEGER})
+    insert into sec_resource (ID, pid, resourceCode, 
+      resourceName, link, order, 
+      isMenu, menuName, isActive, 
+      description)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{resourcecode,jdbcType=VARCHAR}, 
+      #{resourcename,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{order,jdbcType=INTEGER}, 
+      #{ismenu,jdbcType=TINYINT}, #{menuname,jdbcType=VARCHAR}, #{isactive,jdbcType=TINYINT}, 
+      #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.witsafe.model.security.SecResource" >
     insert into sec_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        id,
+        ID,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="pid != null" >
+        pid,
       </if>
-      <if test="source != null" >
-        source,
+      <if test="resourcecode != null" >
+        resourceCode,
       </if>
-      <if test="menu != null" >
-        menu,
+      <if test="resourcename != null" >
+        resourceName,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+      <if test="ismenu != null" >
+        isMenu,
+      </if>
+      <if test="menuname != null" >
+        menuName,
+      </if>
+      <if test="isactive != null" >
+        isActive,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
       </if>
-      <if test="source != null" >
-        #{source,jdbcType=VARCHAR},
+      <if test="resourcecode != null" >
+        #{resourcecode,jdbcType=VARCHAR},
       </if>
-      <if test="menu != null" >
-        #{menu,jdbcType=INTEGER},
+      <if test="resourcename != null" >
+        #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="ismenu != null" >
+        #{ismenu,jdbcType=TINYINT},
+      </if>
+      <if test="menuname != null" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -145,28 +214,67 @@
     update sec_resource
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        ID = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=INTEGER},
       </if>
-      <if test="record.source != null" >
-        source = #{record.source,jdbcType=VARCHAR},
+      <if test="record.resourcecode != null" >
+        resourceCode = #{record.resourcecode,jdbcType=VARCHAR},
       </if>
-      <if test="record.menu != null" >
-        menu = #{record.menu,jdbcType=INTEGER},
+      <if test="record.resourcename != null" >
+        resourceName = #{record.resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.link != null" >
+        link = #{record.link,jdbcType=VARCHAR},
+      </if>
+      <if test="record.order != null" >
+        order = #{record.order,jdbcType=INTEGER},
+      </if>
+      <if test="record.ismenu != null" >
+        isMenu = #{record.ismenu,jdbcType=TINYINT},
+      </if>
+      <if test="record.menuname != null" >
+        menuName = #{record.menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isactive != null" >
+        isActive = #{record.isactive,jdbcType=TINYINT},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sec_resource
+    set ID = #{record.id,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
+      resourceCode = #{record.resourcecode,jdbcType=VARCHAR},
+      resourceName = #{record.resourcename,jdbcType=VARCHAR},
+      link = #{record.link,jdbcType=VARCHAR},
+      order = #{record.order,jdbcType=INTEGER},
+      isMenu = #{record.ismenu,jdbcType=TINYINT},
+      menuName = #{record.menuname,jdbcType=VARCHAR},
+      isActive = #{record.isactive,jdbcType=TINYINT},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByExample" parameterType="map" >
     update sec_resource
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      source = #{record.source,jdbcType=VARCHAR},
-      menu = #{record.menu,jdbcType=INTEGER}
+    set ID = #{record.id,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
+      resourceCode = #{record.resourcecode,jdbcType=VARCHAR},
+      resourceName = #{record.resourcename,jdbcType=VARCHAR},
+      link = #{record.link,jdbcType=VARCHAR},
+      order = #{record.order,jdbcType=INTEGER},
+      isMenu = #{record.ismenu,jdbcType=TINYINT},
+      menuName = #{record.menuname,jdbcType=VARCHAR},
+      isActive = #{record.isactive,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,23 +282,59 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.model.security.SecResource" >
     update sec_resource
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
       </if>
-      <if test="source != null" >
-        source = #{source,jdbcType=VARCHAR},
+      <if test="resourcecode != null" >
+        resourceCode = #{resourcecode,jdbcType=VARCHAR},
       </if>
-      <if test="menu != null" >
-        menu = #{menu,jdbcType=INTEGER},
+      <if test="resourcename != null" >
+        resourceName = #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="ismenu != null" >
+        isMenu = #{ismenu,jdbcType=TINYINT},
+      </if>
+      <if test="menuname != null" >
+        menuName = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null" >
+        isActive = #{isactive,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.witsafe.model.security.SecResource" >
+    update sec_resource
+    set pid = #{pid,jdbcType=INTEGER},
+      resourceCode = #{resourcecode,jdbcType=VARCHAR},
+      resourceName = #{resourcename,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      order = #{order,jdbcType=INTEGER},
+      isMenu = #{ismenu,jdbcType=TINYINT},
+      menuName = #{menuname,jdbcType=VARCHAR},
+      isActive = #{isactive,jdbcType=TINYINT},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.witsafe.model.security.SecResource" >
     update sec_resource
-    set name = #{name,jdbcType=VARCHAR},
-      source = #{source,jdbcType=VARCHAR},
-      menu = #{menu,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    set pid = #{pid,jdbcType=INTEGER},
+      resourceCode = #{resourcecode,jdbcType=VARCHAR},
+      resourceName = #{resourcename,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      order = #{order,jdbcType=INTEGER},
+      isMenu = #{ismenu,jdbcType=TINYINT},
+      menuName = #{menuname,jdbcType=VARCHAR},
+      isActive = #{isactive,jdbcType=TINYINT}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

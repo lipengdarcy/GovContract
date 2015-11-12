@@ -3,14 +3,14 @@ package com.witsafe.model.security;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecAuthorityResourceExample {
+public class SecRolegroupExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SecAuthorityResourceExample() {
+    public SecRolegroupExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,123 +104,193 @@ public class SecAuthorityResourceExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andAuthorityIdIsNull() {
-            addCriterion("authority_id is null");
+        public Criteria andIdIsNull() {
+            addCriterion("ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdIsNotNull() {
-            addCriterion("authority_id is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdEqualTo(Integer value) {
-            addCriterion("authority_id =", value, "authorityId");
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("ID =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdNotEqualTo(Integer value) {
-            addCriterion("authority_id <>", value, "authorityId");
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("ID <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdGreaterThan(Integer value) {
-            addCriterion("authority_id >", value, "authorityId");
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("ID >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("authority_id >=", value, "authorityId");
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ID >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdLessThan(Integer value) {
-            addCriterion("authority_id <", value, "authorityId");
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("ID <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdLessThanOrEqualTo(Integer value) {
-            addCriterion("authority_id <=", value, "authorityId");
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("ID <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdIn(List<Integer> values) {
-            addCriterion("authority_id in", values, "authorityId");
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("ID in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdNotIn(List<Integer> values) {
-            addCriterion("authority_id not in", values, "authorityId");
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("ID not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdBetween(Integer value1, Integer value2) {
-            addCriterion("authority_id between", value1, value2, "authorityId");
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("ID between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andAuthorityIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("authority_id not between", value1, value2, "authorityId");
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("ID not between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdIsNull() {
-            addCriterion("resource_id is null");
+        public Criteria andNameIsNull() {
+            addCriterion("name is null");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdIsNotNull() {
-            addCriterion("resource_id is not null");
+        public Criteria andNameIsNotNull() {
+            addCriterion("name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdEqualTo(Integer value) {
-            addCriterion("resource_id =", value, "resourceId");
+        public Criteria andNameEqualTo(String value) {
+            addCriterion("name =", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdNotEqualTo(Integer value) {
-            addCriterion("resource_id <>", value, "resourceId");
+        public Criteria andNameNotEqualTo(String value) {
+            addCriterion("name <>", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdGreaterThan(Integer value) {
-            addCriterion("resource_id >", value, "resourceId");
+        public Criteria andNameGreaterThan(String value) {
+            addCriterion("name >", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("resource_id >=", value, "resourceId");
+        public Criteria andNameGreaterThanOrEqualTo(String value) {
+            addCriterion("name >=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdLessThan(Integer value) {
-            addCriterion("resource_id <", value, "resourceId");
+        public Criteria andNameLessThan(String value) {
+            addCriterion("name <", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdLessThanOrEqualTo(Integer value) {
-            addCriterion("resource_id <=", value, "resourceId");
+        public Criteria andNameLessThanOrEqualTo(String value) {
+            addCriterion("name <=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdIn(List<Integer> values) {
-            addCriterion("resource_id in", values, "resourceId");
+        public Criteria andNameLike(String value) {
+            addCriterion("name like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdNotIn(List<Integer> values) {
-            addCriterion("resource_id not in", values, "resourceId");
+        public Criteria andNameNotLike(String value) {
+            addCriterion("name not like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdBetween(Integer value1, Integer value2) {
-            addCriterion("resource_id between", value1, value2, "resourceId");
+        public Criteria andNameIn(List<String> values) {
+            addCriterion("name in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andResourceIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("resource_id not between", value1, value2, "resourceId");
+        public Criteria andNameNotIn(List<String> values) {
+            addCriterion("name not in", values, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameBetween(String value1, String value2) {
+            addCriterion("name between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotBetween(String value1, String value2) {
+            addCriterion("name not between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveIsNull() {
+            addCriterion("isActive is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveIsNotNull() {
+            addCriterion("isActive is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveEqualTo(Byte value) {
+            addCriterion("isActive =", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveNotEqualTo(Byte value) {
+            addCriterion("isActive <>", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveGreaterThan(Byte value) {
+            addCriterion("isActive >", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveGreaterThanOrEqualTo(Byte value) {
+            addCriterion("isActive >=", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveLessThan(Byte value) {
+            addCriterion("isActive <", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveLessThanOrEqualTo(Byte value) {
+            addCriterion("isActive <=", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveIn(List<Byte> values) {
+            addCriterion("isActive in", values, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveNotIn(List<Byte> values) {
+            addCriterion("isActive not in", values, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveBetween(Byte value1, Byte value2) {
+            addCriterion("isActive between", value1, value2, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveNotBetween(Byte value1, Byte value2) {
+            addCriterion("isActive not between", value1, value2, "isactive");
             return (Criteria) this;
         }
     }

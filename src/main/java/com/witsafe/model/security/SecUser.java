@@ -1,15 +1,7 @@
 package com.witsafe.model.security;
 
-import java.io.Serializable;
-
-public class SecUser implements Serializable{
-	
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 8751954560701636570L;
-
-	private Integer id;
+public class SecUser {
+    private Integer id;
 
     private String address;
 

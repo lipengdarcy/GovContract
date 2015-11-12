@@ -5,11 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.witsafe.dao.security.SecPermissionMapper;
 import com.witsafe.dao.security.SecUserMapper;
+import com.witsafe.dao.security.SecUserpermissionMapper;
+import com.witsafe.dao.security.SecUserroleMapper;
 import com.witsafe.framework.utils.Digests;
 import com.witsafe.framework.utils.EncodeUtils;
+import com.witsafe.model.security.SecPermissionExample;
 import com.witsafe.model.security.SecUser;
 import com.witsafe.model.security.SecUserExample;
+import com.witsafe.model.security.SecUserroleExample;
 
 /**
  * 用户管理类
@@ -24,6 +29,15 @@ public class UserManager {
 
 	@Autowired
 	private SecUserMapper secUserMapper;
+	
+	@Autowired
+	private SecPermissionMapper secPermissionMapper;
+	
+	@Autowired
+	private SecUserpermissionMapper secUserpermissionMapper;
+	
+	@Autowired
+	private SecUserroleMapper secUserroleMapper;
 
 	/**
 	 * 根据用户id，获取用户实体
@@ -76,6 +90,8 @@ public class UserManager {
 	 * @return
 	 */
 	public List<String> getAuthoritiesName(Integer userId) {
+		SecPermissionExample e = new SecPermissionExample();
+		secPermissionMapper.selectByExample(e);
 		return secUserMapper.getAuthoritiesName(userId);
 	}
 
@@ -86,6 +102,8 @@ public class UserManager {
 	 * @return
 	 */
 	public List<String> getRolesName(Integer userId) {
+		SecUserroleExample e = new SecUserroleExample();
+		secUserroleMapper.selectByExample(e);
 
 		return secUserMapper.getRolesName(userId);
 	}

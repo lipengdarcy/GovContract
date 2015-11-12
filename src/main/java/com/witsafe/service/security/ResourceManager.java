@@ -17,9 +17,7 @@ public class ResourceManager {
 	//注入资源持久化对象
 	@Autowired
 	private SecResourceMapper secResourceMapper;
-	//注入权限持久化对象
-	@Autowired
-	private AuthorityManager authorityManager;
+
 
 	/**
 	 * 查询所有资源记录
@@ -28,6 +26,16 @@ public class ResourceManager {
 		return secResourceMapper.selectByExample(new SecResourceExample());
 
 	}
+	
+	/**
+	 * 查询用户允许访问的资源
+	 */
+	public List<SecResource> getAllowedAccessMenu(Integer uid) {
+		return secResourceMapper.selectByExample(new SecResourceExample());
+
+	}
+	
+	
 	
 	
 	

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
-import com.witsafe.model.security.SecAuthority;
+import com.witsafe.model.security.SecPermission;
 import com.witsafe.model.security.SecRole;
-import com.witsafe.service.security.AuthorityManager;
+import com.witsafe.service.security.PermissionManager;
 import com.witsafe.service.security.RoleManager;
 
 /**
@@ -26,12 +26,12 @@ import com.witsafe.service.security.RoleManager;
 @Controller
 @RequestMapping(value = "/security/role")
 public class RoleController {
-	//注入角色管理对象
+
 	@Autowired
 	private RoleManager roleManager;
-	//注入权限管理对象
+
 	@Autowired
-	private AuthorityManager authorityManager;
+	private PermissionManager permissionManager;
 	
 	/**
 	 * 分页查询角色，返回角色列表视图
@@ -61,7 +61,7 @@ public class RoleController {
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String create(Model model) {
 		model.addAttribute("role", new SecRole());
-		model.addAttribute("authorities", authorityManager.getAll());
+		model.addAttribute("authorities", permissionManager.getAll());
 		return "security/roleEdit";
 	}
 
@@ -74,7 +74,7 @@ public class RoleController {
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		SecRole entity  = roleManager.getById(id);
-		List<SecAuthority> authorities = authorityManager.getAll();
+		List<SecPermission> authorities = permissionManager.getAll();
 		/*List<SecAuthority> auths = entity.getAuthorities();
 		for(SecAuthority auth : authorities) {
 			for(Authority selAuth : auths) {

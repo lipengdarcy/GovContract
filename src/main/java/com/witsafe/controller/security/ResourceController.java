@@ -19,8 +19,7 @@ import com.witsafe.service.security.ResourceManager;
 
 /**
  * 资源管理Controller
- * @author yuqs
- * @since 0.1
+ * @author lipeng
  */
 @Controller
 @RequestMapping(value = "/security/resource")
@@ -93,7 +92,7 @@ public class ResourceController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String update(SecResource resource, Integer parentMenuId) {
 		if(parentMenuId != null && parentMenuId.longValue() > 0) {
-			resource.setMenu(parentMenuId);
+			//resource.setMenu(parentMenuId);
 		}
 		//resourceManager.save(resource);
 		return "redirect:/security/resource";

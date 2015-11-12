@@ -3,9 +3,13 @@ package com.witsafe.model.security;
 public class SecRole {
     private Integer id;
 
-    private String description;
+    private Integer groupid;
 
     private String name;
+
+    private String description;
+
+    private Byte isactive;
 
     public Integer getId() {
         return id;
@@ -13,6 +17,22 @@ public class SecRole {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getGroupid() {
+        return groupid;
+    }
+
+    public void setGroupid(Integer groupid) {
+        this.groupid = groupid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getDescription() {
@@ -23,11 +43,11 @@ public class SecRole {
         this.description = description == null ? null : description.trim();
     }
 
-    public String getName() {
-        return name;
+    public Byte getIsactive() {
+        return isactive;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setIsactive(Byte isactive) {
+        this.isactive = isactive;
     }
 }

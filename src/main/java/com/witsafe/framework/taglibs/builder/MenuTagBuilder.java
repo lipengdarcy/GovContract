@@ -15,7 +15,9 @@ import com.witsafe.framework.common.util.ShiroUtils;
 import com.witsafe.framework.taglibs.TagBuilder;
 import com.witsafe.framework.taglibs.TagDTO;
 import com.witsafe.model.security.SecMenu;
-import com.witsafe.service.security.MenuManager;
+import com.witsafe.model.security.SecResource;
+import com.witsafe.service.security.ResourceManager;
+
 
 /**
  * 自定义菜单标签处理类。 根据当前认证实体获取允许访问的所有菜单，并输出特定导航菜单的html
@@ -76,8 +78,10 @@ public class MenuTagBuilder implements TagBuilder {
 	 * @return
 	 */
 	private List<SecMenu> getAllowedAccessMenu() {
-		MenuManager menuManager = springContext.getBean(MenuManager.class);
-		return menuManager.getAllowedAccessMenu(ShiroUtils.getUserId());
+		ResourceManager menuManager = springContext.getBean(ResourceManager.class);
+		List<SecResource> list = menuManager.getAllowedAccessMenu(ShiroUtils.getUserId());
+		List<SecMenu> menuList = new ArrayList();
+		return menuList;
 	}
 
 	/**

@@ -1,11 +1,11 @@
 package com.witsafe.model.security;
 
-public class SecAuthority {
+public class SecRolegroup {
     private Integer id;
 
-    private String description;
-
     private String name;
+
+    private Byte isactive;
 
     public Integer getId() {
         return id;
@@ -15,19 +15,19 @@ public class SecAuthority {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public Byte getIsactive() {
+        return isactive;
+    }
+
+    public void setIsactive(Byte isactive) {
+        this.isactive = isactive;
     }
 }

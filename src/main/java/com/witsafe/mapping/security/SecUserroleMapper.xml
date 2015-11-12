@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.witsafe.dao.security.SecRoleAuthorityMapper" >
-  <resultMap id="BaseResultMap" type="com.witsafe.model.security.SecRoleAuthority" >
-    <result column="role_id" property="roleId" jdbcType="INTEGER" />
-    <result column="authority_id" property="authorityId" jdbcType="INTEGER" />
+<mapper namespace="com.witsafe.dao.security.SecUserroleMapper" >
+  <resultMap id="BaseResultMap" type="com.witsafe.model.security.SecUserrole" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="isActive" property="isactive" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    role_id, authority_id
+    ID, uid, rid, isActive
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.security.SecRoleAuthorityExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.witsafe.model.security.SecUserroleExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sec_role_authority
+    from sec_userrole
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -80,49 +82,79 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.witsafe.model.security.SecRoleAuthorityExample" >
-    delete from sec_role_authority
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sec_userrole
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sec_userrole
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.witsafe.model.security.SecUserroleExample" >
+    delete from sec_userrole
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.witsafe.model.security.SecRoleAuthority" >
-    insert into sec_role_authority (role_id, authority_id)
-    values (#{roleId,jdbcType=INTEGER}, #{authorityId,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.witsafe.model.security.SecUserrole" >
+    insert into sec_userrole (ID, uid, rid, 
+      isActive)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, 
+      #{isactive,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.witsafe.model.security.SecRoleAuthority" >
-    insert into sec_role_authority
+  <insert id="insertSelective" parameterType="com.witsafe.model.security.SecUserrole" >
+    insert into sec_userrole
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="roleId != null" >
-        role_id,
+      <if test="id != null" >
+        ID,
       </if>
-      <if test="authorityId != null" >
-        authority_id,
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="isactive != null" >
+        isActive,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="roleId != null" >
-        #{roleId,jdbcType=INTEGER},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="authorityId != null" >
-        #{authorityId,jdbcType=INTEGER},
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="isactive != null" >
+        #{isactive,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.witsafe.model.security.SecRoleAuthorityExample" resultType="java.lang.Integer" >
-    select count(*) from sec_role_authority
+  <select id="countByExample" parameterType="com.witsafe.model.security.SecUserroleExample" resultType="java.lang.Integer" >
+    select count(*) from sec_userrole
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update sec_role_authority
+    update sec_userrole
     <set >
-      <if test="record.roleId != null" >
-        role_id = #{record.roleId,jdbcType=INTEGER},
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.authorityId != null" >
-        authority_id = #{record.authorityId,jdbcType=INTEGER},
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.rid != null" >
+        rid = #{record.rid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isactive != null" >
+        isActive = #{record.isactive,jdbcType=TINYINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -130,11 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update sec_role_authority
-    set role_id = #{record.roleId,jdbcType=INTEGER},
-      authority_id = #{record.authorityId,jdbcType=INTEGER}
+    update sec_userrole
+    set ID = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      rid = #{record.rid,jdbcType=INTEGER},
+      isActive = #{record.isactive,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.witsafe.model.security.SecUserrole" >
+    update sec_userrole
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="isactive != null" >
+        isActive = #{isactive,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.witsafe.model.security.SecUserrole" >
+    update sec_userrole
+    set uid = #{uid,jdbcType=INTEGER},
+      rid = #{rid,jdbcType=INTEGER},
+      isActive = #{isactive,jdbcType=TINYINT}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

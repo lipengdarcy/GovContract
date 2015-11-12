@@ -1,3 +1,6 @@
+SET FOREIGN_KEY_CHECKS = 0; 
+
+
 DROP TABLE IF EXISTS sys_param;
 CREATE TABLE sys_param (
     id INT NOT NULL AUTO_INCREMENT,
@@ -362,3 +365,5 @@ CREATE TABLE flow_borrow (
 
 -- snaker工作流相关表 结束
 
+-- 删除完成后设置 
+SET FOREIGN_KEY_CHECKS = 1; 

@@ -1,5 +1,6 @@
 package com.witsafe.framework.security.shiro;
 
+import java.security.acl.Permission;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,13 +21,12 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.witsafe.framework.utils.EncodeUtils;
 import com.witsafe.model.security.SecUser;
-import com.witsafe.service.security.AuthorityManager;
+import com.witsafe.service.security.PermissionManager;
 import com.witsafe.service.security.UserManager;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * shiro的认证授权域
@@ -42,7 +42,7 @@ public class ShiroAuthorizingRealm extends AuthorizingRealm {
 	private UserManager userManager;
    
    @Autowired
-  	private AuthorityManager authorityManager;
+  	private PermissionManager authorityManager;
 	
 	/**
 	 * 构造函数，设置安全的初始化信息

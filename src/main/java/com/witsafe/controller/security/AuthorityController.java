@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
-import com.witsafe.model.security.SecAuthority;
+import com.witsafe.model.security.SecPermission;
 import com.witsafe.model.security.SecResource;
-import com.witsafe.service.security.AuthorityManager;
+import com.witsafe.service.security.PermissionManager;
 import com.witsafe.service.security.ResourceManager;
 
 /**
@@ -28,7 +28,7 @@ import com.witsafe.service.security.ResourceManager;
 public class AuthorityController {
 	//注入权限管理对象
 	@Autowired
-	private AuthorityManager authorityManager;
+	private PermissionManager permissionManager;
 	//注入资源管理对象
 	@Autowired
 	private ResourceManager resourceManager;
@@ -41,7 +41,7 @@ public class AuthorityController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model, Page<SecAuthority> page, HttpServletRequest request) {
+	public String list(Model model, Page<SecPermission> page, HttpServletRequest request) {
 		List<PropertyFilter> filters = PropertyFilter.buildFromHttpRequest(request);
 		//设置默认排序方式
 		if (!page.isOrderBySetted()) {
@@ -60,7 +60,7 @@ public class AuthorityController {
 	 */
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String create(Model model) {
-		model.addAttribute("authority", new SecAuthority());
+		model.addAttribute("authority", new SecPermission());
 		model.addAttribute("resources", resourceManager.getAll());
 		return "security/authorityEdit";
 	}
@@ -73,7 +73,7 @@ public class AuthorityController {
 	 */
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
-		SecAuthority entity = authorityManager.getById(id);
+		SecPermission entity = permissionManager.getById(id);
 		List<SecResource> resources = resourceManager.getAll();
 		/*List<SecResource> resss = entity.getResources();
 		for(SecResource res : resources) {
@@ -101,7 +101,7 @@ public class AuthorityController {
 	 */
 	@RequestMapping(value = "view/{id}", method = RequestMethod.GET)
 	public String view(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("authority", authorityManager.getById(id));
+		model.addAttribute("authority", permissionManager.getById(id));
 		return "security/authorityView";
 	}
 	
@@ -111,7 +111,7 @@ public class AuthorityController {
 	 * @return
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(SecAuthority authority, Long[] orderIndexs) {
+	public String update(SecPermission authority, Long[] orderIndexs) {
 		/*if(orderIndexs != null) {
 			for(Long order : orderIndexs) {
 				SecResource res = new SecResource(order);

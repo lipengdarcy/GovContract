@@ -18,15 +18,21 @@ public interface SecResourceMapper {
 
     int insertSelective(SecResource record);
 
+    List<SecResource> selectByExampleWithBLOBs(SecResourceExample example);
+
     List<SecResource> selectByExample(SecResourceExample example);
 
     SecResource selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") SecResource record, @Param("example") SecResourceExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") SecResource record, @Param("example") SecResourceExample example);
+
     int updateByExample(@Param("record") SecResource record, @Param("example") SecResourceExample example);
 
     int updateByPrimaryKeySelective(SecResource record);
+
+    int updateByPrimaryKeyWithBLOBs(SecResource record);
 
     int updateByPrimaryKey(SecResource record);
 }

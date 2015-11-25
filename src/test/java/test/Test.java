@@ -48,7 +48,6 @@ public class Test {
 			Date d = sdf.parse("20150820144412");
 			System.out.println(d);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

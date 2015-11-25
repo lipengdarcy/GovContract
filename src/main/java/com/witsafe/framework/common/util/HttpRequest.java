@@ -165,14 +165,14 @@ public class HttpRequest {
 
 		// form数据
 		String strmsg = "From={0}&MsgId={1}&DeptId={2}&EmpId={3}&To={4}&Time={5}&Flag={6}&Success={7}&Cardid={8}&MsgType={9}&SendType={10}&Subject={11}&Body={12}";
-		strmsg = StringHandler.formateString(strmsg, e.getFrom(), e.getMsgId(),
+		strmsg = StringHandler.formatString(strmsg, e.getFrom(), e.getMsgId(),
 				e.getDeptId(), e.getEmpId(), e.getTo(), e.getTime(),
 				e.getFlag(), e.getSuccess(), e.getCardid(), e.getMsgType(),
 				e.getSendType(), e.getSubject(), e.getBody(), e.getSign());
 
 		// testkey
 		String sign = strmsg + "&Sign={0}";
-		sign = StringHandler.formateString(sign, e.getSign());
+		sign = StringHandler.formatString(sign, e.getSign());
 
 		// md5加密
 		String v = strmsg + "&vcode=" + getMD5Digest(sign.getBytes("UTF-8"));

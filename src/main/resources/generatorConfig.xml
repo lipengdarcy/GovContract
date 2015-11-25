@@ -34,20 +34,24 @@ mvn命令：mvn mybatis-generator:generate
       <property name="enableSubPackages" value="true"/> 
     </javaClientGenerator>  
     <!-- 要生成哪些表-->  
-   
-
-
-    <table schema="hsshop" tableName="sec_permission"/>
-    <table schema="hsshop" tableName="sec_resource"/>
-    <table schema="hsshop" tableName="sec_role"/>
-
-    <table schema="hsshop" tableName="sec_rolegroup"/>
-    <table schema="hsshop" tableName="sec_rolepermission"/>
-    <table schema="hsshop" tableName="sec_user"/>
-
-    <table schema="hsshop" tableName="sec_userpermission"/>
-    <table schema="hsshop" tableName="sec_userpermissionjob"/>
-    <table schema="hsshop" tableName="sec_userrole"/>
-
+    <table schema="hsshop" tableName="BusinessOrder"/>
+    <table schema="hsshop" tableName="Dept"/>
+    <table schema="hsshop" tableName="individual"/>
+    <table schema="hsshop" tableName="Member"/>
+    <table schema="hsshop" tableName="Project"/>
+    <table schema="hsshop" tableName="Project_Result"/>
+    <table schema="hsshop" tableName="Project_review"/>
+    <table schema="hsshop" tableName="Project_Step"/>
+    <table schema="hsshop" tableName="Project_User"/>
+    <table schema="hsshop" tableName="ProjectRemind"/>
+    <table schema="hsshop" tableName="Sys_News"/>
+    <table schema="hsshop" tableName="W_Columns"/>
+    <table schema="hsshop" tableName="W_Content"/>
+    <table schema="hsshop" tableName="W_Custom_Menu"/>
+    <table schema="hsshop" tableName="W_ReplyKeyword"/>
+    <table schema="hsshop" tableName="W_ReplyKeywordContent"/>
+    <table schema="hsshop" tableName="W_RequestLog"/>
+    <table schema="hsshop" tableName="W_Sites"/>
+    <table schema="hsshop" tableName="W_Sites_Append"/>
   </context> 
 </generatorConfiguration>

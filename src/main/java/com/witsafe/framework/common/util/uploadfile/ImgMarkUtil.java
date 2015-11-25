@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
+@SuppressWarnings("restriction")
 public class ImgMarkUtil {
 
 	/**

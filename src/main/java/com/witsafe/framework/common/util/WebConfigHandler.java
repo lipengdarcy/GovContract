@@ -95,7 +95,7 @@ public class WebConfigHandler {
 			Field fields[] = obj.getClass().getDeclaredFields();
 			for (int fi = 0; fi < fields.length; fi++) {
 				String tagName = fields[fi].getName();
-				String methodName = "get" + StringHandler.upFirstChar(tagName);
+				String methodName = "get" + StringHandler.upcaseFirstLetter(tagName);
 				Method setMethod = obj.getClass().getDeclaredMethod(methodName);
 				String newValue = (String) setMethod.invoke(obj);
 				if (newValue != null) {
@@ -175,7 +175,7 @@ public class WebConfigHandler {
 						if (node.getFirstChild() != null) {
 							String tagVal = node.getFirstChild().getNodeValue();
 							String methodName = "set"
-									+ StringHandler.upFirstChar(tagName);
+									+ StringHandler.upcaseFirstLetter(tagName);
 							Method setMethod = obj
 									.getClass()
 									.getDeclaredMethod(methodName, String.class);

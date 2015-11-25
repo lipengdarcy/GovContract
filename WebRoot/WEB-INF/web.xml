@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<display-name></display-name>
-	<description>GovernmentContracts</description>
+	<description>Platform</description>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>GovernmentContracts.root</param-value>
+		<param-value>Platform.root</param-value>
 	</context-param>
 	<jsp-config>
 		<jsp-property-group>

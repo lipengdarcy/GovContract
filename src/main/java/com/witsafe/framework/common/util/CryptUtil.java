@@ -34,6 +34,7 @@ import sun.misc.BASE64Encoder;
  * @author Ice_Liu
  * 
  */
+@SuppressWarnings("restriction")
 public class CryptUtil {
 	private static final String KEY_MD5 = "MD5";
 	private static final String KEY_SHA = "SHA";

@@ -29,9 +29,8 @@ import org.dom4j.io.XMLWriter;
  * */
 
 public class MybatisUtility {
-	
+
 	private String hostUrl;
-	
 
 	/**
 	 * generatorConfiguration文件中增加table节点
@@ -39,7 +38,7 @@ public class MybatisUtility {
 	 * @return 表名的列表
 	 * 
 	 * */
-	public void addTableToMybatisConfigFile(File inputXml) {
+	public void addTableToMybatisConfigFile(String databaseType, String databaseName, File inputXml) {
 		try {
 			SAXReader saxReader = new SAXReader();
 			Document doc = saxReader.read(inputXml);
@@ -55,15 +54,18 @@ public class MybatisUtility {
 				if (e.getName().equals("table"))
 					context.remove(e);
 			// add
-			List<String> tableList = getTableList();
+			List<String> tableList = null;
+			if (databaseType.equalsIgnoreCase("sqlserver"))
+				tableList = getSqlServerTableList(databaseName) ;
+			else
+				tableList = getMysqlTableList();
 			for (String str : tableList)
-				context.addElement("table").addAttribute("schema", "hsshop")
+				context.addElement("table").addAttribute("schema", "whatever")
 						.addAttribute("tableName", str);
 
 			// 美化格式
 			OutputFormat format = OutputFormat.createPrettyPrint();
 			// 缩减格式 OutputFormat format = OutputFormat.createCompactFormat();
-
 			// 指定XML编码 format.setEncoding("GBK");
 
 			XMLWriter output = new XMLWriter(new FileWriter(inputXml), format);
@@ -86,8 +88,7 @@ public class MybatisUtility {
 	 * @return 表名的列表
 	 * 
 	 * */
-	@SuppressWarnings("unchecked")
-	public List<String> getTableList() {
+	public List<String> getMysqlTableList() {
 
 		List<String> list = new ArrayList<String>();
 		String sql = "select table_name from information_schema.tables where table_schema='witsafe' and table_type='base table'";
@@ -101,6 +102,7 @@ public class MybatisUtility {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("成功加载MySQL驱动程序");
+
 			conn = DriverManager.getConnection(url);
 			stmt = conn.createStatement();
 
@@ -111,6 +113,63 @@ public class MybatisUtility {
 			System.out.println("成功获取数据库表名!");
 		} catch (ClassNotFoundException e) {
 			System.out.println("找不到MySQL驱动程序");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * 获取sql server数据库的所有表
+	 * 
+	 * @return 表名的列表
+	 * 
+	 * */
+	public List<String> getSqlServerTableList(String database) {
+
+		List<String> list = new ArrayList<String>();
+		//WX_JianAn是数据库名
+		String sql = "Select Name FROM" + database + "..SysObjects Where XType='U' order BY Name";
+		Connection conn = null;
+		Statement stmt = null;
+		
+		String sDriverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		String url = "jdbc:sqlserver://115.29.207.187:2433;databaseName=WX_JianAn";
+		String userName = "sa";
+		String password = "GiianHZ5777";	
+
+		try {
+			Class.forName(sDriverName);
+			System.out.println("注册sqlserver驱动成功！");			
+			conn = DriverManager.getConnection(url, userName, password);
+			System.out.println("连接sqlserver成功！");
+			stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+			while (result.next()) {
+				list.add(result.getString(1));
+			}
+			System.out.println("成功获取数据库表名!");
+		} catch (ClassNotFoundException e) {
+			System.out.println("找不到sqlserver驱动程序");
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -261,7 +320,7 @@ public class MybatisUtility {
 		MybatisUtility dom4jParser = new MybatisUtility();
 		File f = new File("src/main/resources/generatorConfig.xml");
 		System.out.println(f.getName() + "配置文件路径:" + f.getAbsolutePath());
-		dom4jParser.addTableToMybatisConfigFile(f);
+		dom4jParser.addTableToMybatisConfigFile("sqlserver", "WX_JianAn", f);
 
 		// String sql = dom4jParser.createTable(new BspProducts());
 		// System.out.println(sql);

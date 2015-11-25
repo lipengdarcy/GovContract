@@ -13,9 +13,6 @@ import sun.misc.BASE64Encoder;
 
 /**
  * 加密/解密工具
- * 
- * @author wang xp
- * @datetime 2015-05-20
  */
 public class EncryptUtil {
 

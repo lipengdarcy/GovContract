@@ -1,16 +1,12 @@
 package com.witsafe.framework.common.util;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +21,7 @@ public class StringHandler {
 	 * @param str
 	 * @return
 	 */
-	public static String upFirstChar(String str) {
+	public static String upcaseFirstLetter(String str) {
 		if (str != null && str.length() > 0) {
 			String name = str.substring(0, 1).toUpperCase() + str.substring(1);
 			return name;
@@ -35,34 +31,7 @@ public class StringHandler {
 
 	}
 
-	// / <summary>
-	// / 获得指定顺序的字符在字符串中的位置索引
-	// / </summary>
-	// / <param name="s">字符串</param>
-	// / <param name="order">顺序</param>
-	// / <returns></returns>
-	public static int IndexOf(String s, int order) {
-		return IndexOf(s, '-', order);
-	}
 
-	// / <summary>
-	// / 获得指定顺序的字符在字符串中的位置索引
-	// / </summary>
-	// / <param name="s">字符串</param>
-	// / <param name="c">字符</param>
-	// / <param name="order">顺序</param>
-	// / <returns></returns>
-	public static int IndexOf(String s, char c, int order) {
-		int length = s.length();
-		for (int i = 0; i < length; i++) {
-			if (c == s.charAt(i)) {
-				if (order == 1)
-					return i;
-				order--;
-			}
-		}
-		return -1;
-	}
 
 	/**
 	 * 判断输入的字符串参数是否为空
@@ -78,50 +47,19 @@ public class StringHandler {
 		}
 	}
 
-	// / <summary>
-	// / 移除前导字符串
-	// / </summary>
-	// / <param name="sourceStr">源字符串</param>
-	// / <param name="trimStr">移除字符串</param>
-	// / <returns></returns>
-	public static String TrimStart(String sourceStr, String trimStr) {
-
-		// sourceStr = "0-186-0-0-0";
-		// trimStr = "0-";
-		if (isEmpty(sourceStr))
-			return "";
-
-		// 186-0-0-0
-		return sourceStr.substring(trimStr.length(), sourceStr.length());
-	}
-
-	// / <summary>
-	// / 移除后导字符串
-	// / </summary>
-	// / <param name="sourceStr">源字符串</param>
-	// / <param name="trimStr">移除字符串</param>
-	// / <returns></returns>
-	public static String TrimEnd(String sourceStr, String trimStr) {
-
-		// sourceStr = "186-0-0-0";
-		// trimStr = "-0-0-0";
-		if (isEmpty(sourceStr))
-			return "";
-
-		// 186
-		return sourceStr.substring(0, sourceStr.length() - trimStr.length());
-	}
+	
+	
 
 	/**
 	 * 格式化字符串
 	 * 
-	 * 例：formateString("xxx{0}bbb",1) = xxx1bbb
+	 * 例：formatString("xxx{0}bbb",1) = xxx1bbb
 	 * 
 	 * @param str
 	 * @param params
 	 * @return
 	 */
-	public static String formateString(String str, String... params) {
+	public static String formatString(String str, String... params) {
 		for (int i = 0; i < params.length; i++) {
 			str = str
 					.replace("{" + i + "}", params[i] == null ? "" : params[i]);
@@ -227,45 +165,9 @@ public class StringHandler {
 		return flag;
 	}
 
-	/**
-	 * 用于将一个参数值对象转化成属性名=属性值的键值对并用&连接 返回 的结果形式如a=1&b=2
-	 * 
-	 * @param obj
-	 * @param extPronames
-	 * @return
-	 * @throws NoSuchMethodException
-	 * @throws SecurityException
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws InvocationTargetException
-	 */
-	public static String pramVoToKeyval(Object obj, List<String> extPronames)
-			throws NoSuchMethodException, SecurityException,
-			IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException {
-		String keyVal = "";
-		Class objClass = obj.getClass();
-		Field[] fs = objClass.getDeclaredFields();
-		for (int i = 0; i < fs.length; i++) {
-			Field field = fs[i];
-			String fname = field.getName();
-			if (!extPronames.contains(fname)) {
-				String metname = "get" + StringHandler.upFirstChar(fname);
-				Method m = objClass.getMethod(metname);
-				Object rs = m.invoke(obj);
-				if (rs != null) {
-					if (!keyVal.equals("")) {
-						keyVal += "&";
-					}
-					keyVal += fname + "=" + rs + "";
-				}
-			}
-		}
-		return keyVal;
-	}
 
 	/**
-	 * TODO(md5加密)
+	 * md5加密
 	 * 
 	 * @param buffer
 	 * @return String 返回类型

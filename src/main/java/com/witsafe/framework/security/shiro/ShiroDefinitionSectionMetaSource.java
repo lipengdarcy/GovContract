@@ -1,10 +1,8 @@
 package com.witsafe.framework.security.shiro;
 
-import java.security.acl.Permission;
 import java.text.MessageFormat;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.config.Ini;
@@ -12,7 +10,6 @@ import org.apache.shiro.config.Ini.Section;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.witsafe.model.security.SecPermission;
 import com.witsafe.model.security.SecResource;
 import com.witsafe.service.security.PermissionManager;
 import com.witsafe.service.security.ResourceManager;

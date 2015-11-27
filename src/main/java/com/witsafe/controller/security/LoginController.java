@@ -1,5 +1,7 @@
 package com.witsafe.controller.security;
 
+import java.text.MessageFormat;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -14,7 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.witsafe.framework.common.Constant;
+import com.witsafe.model.common.ResponseData;
 import com.witsafe.model.security.SecUser;
 
 /**
@@ -24,37 +29,49 @@ import com.witsafe.model.security.SecUser;
 public class LoginController {
 	private static Log log = LogFactory.getLog(LoginController.class);
 
+	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(SecUser user, Model model, HttpServletRequest request) {
+	public ResponseData<String> login(SecUser user, Model model,
+			HttpServletRequest request) {
 		log.info("Login user=====" + user.getUsername());
+
+		ResponseData<String> r = new ResponseData<String>();
+
 		Subject subject = SecurityUtils.getSubject();
-		//1、收集实体/凭据信息 
+		// 1、收集实体/凭据信息
 		UsernamePasswordToken token = new UsernamePasswordToken(
 				user.getUsername(), user.getPassword());
 		String remember = WebUtils.getCleanParam(request, "remember");
 		log.info("remember=" + remember);
 
 		try {
-			if (remember != null && remember.equalsIgnoreCase("on")) {
+			if (remember != null && remember.equalsIgnoreCase("1")) {
 				token.setRememberMe(true);
 			}
-			//2、提交实体/凭据信息 
+			// 2、提交实体/凭据信息
 			subject.login(token);
-			return "redirect:/home";
+			String message = MessageFormat.format(
+					Constant.bundle.getString(Constant.user_login_success),
+					user.getUsername());
+			r.setContent(message);
+			return r;
 		} catch (UnknownAccountException ue) {
 			token.clear();
-			model.addAttribute("error", ue.getMessage());
-			return "security/login/login";
+			r.setCode(-1);
+			r.setContent(ue.getMessage());
+			return r;
 		} catch (IncorrectCredentialsException ie) {
 			token.clear();
-			model.addAttribute("username", user.getUsername());
-			model.addAttribute("error", ie.getMessage());
-			return "security/login/login";
+			r.setCode(-2);
+			String message = Constant.bundle
+					.getString(Constant.user_password_error);
+			r.setContent(message);
+			return r;
 		} catch (RuntimeException re) {
 			token.clear();
-			model.addAttribute("username", user.getUsername());
-			model.addAttribute("error", "登录失败");
-			return "security/login/login";
+			r.setCode(-3);
+			r.setContent(re.getMessage());
+			return r;
 		}
 	}
 
@@ -70,7 +87,10 @@ public class LoginController {
 		String userName = subject.getPrincipal().toString();
 		if (subject.isAuthenticated()) {
 			subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
-			log.info("用户" + userName + "退出登录");
+			String message = MessageFormat.format(
+					Constant.bundle.getString(Constant.user_login_success),
+					userName);			
+			log.info(message);
 		}
 		return "redirect:/login";
 	}

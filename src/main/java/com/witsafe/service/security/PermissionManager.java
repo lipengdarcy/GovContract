@@ -1,6 +1,5 @@
 package com.witsafe.service.security;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.witsafe.dao.security.SecPermissionMapper;
 import com.witsafe.model.security.SecPermission;
 import com.witsafe.model.security.SecPermissionExample;
-import com.witsafe.model.security.SecResource;
 
 /**
  * 权限管理类

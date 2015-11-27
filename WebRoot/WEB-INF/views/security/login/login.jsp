@@ -27,15 +27,17 @@
 				<div class="mws-form-row">
 					<div class="mws-form-item large">
 						<input type="text" name="username" value="admin"
-							class="mws-login-username mws-textinput validate[required]" placeholder="用户名" />
+							class="mws-login-username mws-textinput validate[required]"
+							placeholder="用户名" />
 					</div>
 				</div>
 				<div class="mws-form-row">
 					<div class="mws-form-item large">
-						<input type="password" name="password" value="123456" 
-							class="mws-login-password mws-textinput validate[required]" placeholder="密码" /> <input
-							type="checkbox" name="remember" id="remember" /> <label
-							id="remember-label" for="remember" style="color: white">记住密码</label>
+						<input type="password" name="password" value="123456"
+							class="mws-login-password mws-textinput validate[required]"
+							placeholder="密码" /> <input type="checkbox" name="remember"
+							id="remember" value="1"/> <label id="remember-label" for="remember"
+							style="color: white">记住密码</label>
 					</div>
 				</div>
 				<div class="mws-form-row">
@@ -49,11 +51,13 @@
 		<div id="mws-login-form">
 
 			<p></p>
+			<p></p>
 			<p>
 				没有账号? <a href="register">注册</a>
-				<p>
-					忘记密码? <a href="findpwd1">找回密码</a>
-				</p>
+			</p>
+			<p>
+				忘记密码? <a href="findpwd1">找回密码</a>
+			</p>
 		</div>
 	</div>
 
@@ -77,7 +81,7 @@
 			onValidationComplete : function(form, status) {
 				if (status) {
 					login();
-				}else{
+				} else {
 					$.jGrowl("用户名密码不能为空!", {
 						header : "error"
 					});
@@ -85,29 +89,27 @@
 			}
 		});
 
-
-		$("#loginButton").bind("click", function(event) {
-
-		});
 	});
-	
-	function login(){
-		
+
+	function login() {
+
 		$.ajax({
 			url : '${ctx }/login',
 			data : $("#form").serialize(),
 			type : 'post',
-			dataType : 'xml',
+			dataType : 'json',
 			success : function(data) {
-				var message = "ok" + ${error};
-				$.jGrowl(message, {
-					header : "info"
-				});
+				$.jGrowl(data.content, {
+					header : "登录提示"
+				});				
+				if(data.code==0){
+					window.location.href = "${ctx}/home";
+				}
 			},
 			error : function() {
 				$.jGrowl("异常！请重新尝试或者联系管理员!", {
 					header : "error"
-				});					
+				});
 			}
 		});
 	}

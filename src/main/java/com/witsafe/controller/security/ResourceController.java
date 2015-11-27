@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.witsafe.framework.orm.Page;
 import com.witsafe.framework.orm.PropertyFilter;
-import com.witsafe.model.security.SecMenu;
 import com.witsafe.model.security.SecResource;
 import com.witsafe.service.security.ResourceManager;
 

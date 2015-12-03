@@ -1,5 +1,6 @@
 package test.i18n;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -8,6 +9,8 @@ import java.util.*;
 
 public class I18N {
 	public static void main(String[] args) throws IOException {
+		System.out.println("当前路径： " + (new File("a").getAbsolutePath()));
+		
 		// 以下是中文国际化的过程
 		Properties properties = new Properties();
 		// 设置hello对应的值为"你好，世界！"

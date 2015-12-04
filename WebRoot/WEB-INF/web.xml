@@ -18,6 +18,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+		classpath*:spring/spring-jms.xml
 		classpath*:spring/spring-dao.xml
 		classpath*:spring/spring-shiro.xml
 		classpath*:spring/spring-snaker.xml

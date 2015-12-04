@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd
+        ">
+
+
+     <bean id="listenerContainer" class="org.springframework.jms.listener.SimpleMessageListenerContainer">  
+         <property name="connectionFactory" ref="connectionFactory" ></property>  
+         <property name="destination" ref="destination"></property>  
+         <property name="messageListener" ref="messageListener"></property>  
+     </bean> 
+      
+     <!-- 配置JMS连接工厂 -->  
+     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">  
+        <property name="brokerURL" value="tcp://localhost:61616"></property>  
+     </bean> 
+      
+     <!-- 发送消息的目的地（一个队列） -->  
+     <bean id="destination" class="org.apache.activemq.command.ActiveMQTopic">  
+         
+     <!-- 构造函数传入消息队列的名字 -->  
+        <constructor-arg index="0" value="message" />  
+     </bean>  
+     
+     <!-- 消息监听处理 -->  
+     <!-- 
+     <bean id="messageListener" class="com.travelsky.jms.service.ReceiveMessageListener"></bean> 
+     -->  
+     <!-- 配置JMS模版 -->  
+     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">  
+        <property name="connectionFactory" ref="connectionFactory"></property>  
+        <property name="defaultDestination" ref="destination"></property>  
+     </bean>
+    
+   
+
+</beans>

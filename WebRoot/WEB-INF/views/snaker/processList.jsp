@@ -47,12 +47,12 @@
 
 							</div>
 							<div class="mws-button-row">
-								<shiro:hasPermission name="PROCESSDEPLOY">
+								<%-- <shiro:hasPermission name="PROCESSDEPLOY"> --%>
 									<input type="button" value="设计" class="mws-button green"
 										onclick="addNew('${ctx}/snaker/process/designer')" />
 									<input type="button" value="部署" class="mws-button red"
 										onclick="addNew('${ctx}/snaker/process/deploy')" />
-								</shiro:hasPermission>
+								<%-- </shiro:hasPermission> --%>
 								<input type='submit' class="mws-button black" value='查询' />
 							</div>
 						</form>
@@ -93,8 +93,7 @@
 											${process.version}&nbsp;</td>
 										<td class="td_list_2" align=left nowrap><a
 											href="${ctx}${process.instanceUrl }.do?processId=${process.id }&processName=${process.name }"
-											class="btnStart" title="启动流程">启动流程</a> <shiro:hasPermission
-												name="PROCESSDEPLOY">
+											class="btnStart" title="启动流程">启动流程</a> 
 												<a href="${ctx}/snaker/process/edit/${process.id }"
 													class="btnEdit" title="编辑">编辑</a>
 												<a
@@ -102,7 +101,7 @@
 													class="btnDesigner" title="设计">设计</a>
 												<a href="${ctx}/snaker/process/delete/${process.id }"
 													class="btnDel" title="删除" onclick="return confirmDel();">删除</a>
-											</shiro:hasPermission></td>
+											</td>
 									</tr>
 								</c:forEach>
 

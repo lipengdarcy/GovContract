@@ -6,9 +6,9 @@
 <head>
     <title>动态添加参与者</title>
     <%@ include file="/WEB-INF/includes/commons/meta.jsp"%>
-    <link rel="stylesheet" href="${ctx}/styles/css/style.css" type="text/css" media="all" />
-    <script src="${ctx}/styles/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-    <script src="${ctx}/styles/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="${ctx}/static/css/style.css" type="text/css" media="all" />
+    <script src="${ctx}/static/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="${ctx}/static/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </head>
 
 <body>

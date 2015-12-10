@@ -4,39 +4,46 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 	<head>
-		<title>审批</title>
+		<title>通用工作流程</title>
 		<%@ include file="/WEB-INF/includes/commons/meta.jsp"%>
 		<link rel="stylesheet" href="${ctx}/static/css/snaker/style.css" type="text/css" media="all" />
 		<script src="${ctx}/static/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-		<script src="${ctx}/static/js/snaker/dialog.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/snaker.util.js" type="text/javascript"></script>
 	</head>
 
 	<body>
-		<form id="inputForm" action="${ctx }/snaker/flow/doApproval" method="post" target="mainFrame">
+		<form id="inputForm" action="${ctx }/snaker/flow/process" method="post" target="mainFrame">
 			<input type="hidden" name="processId" value="${processId }" />
 			<input type="hidden" name="orderId" value="${orderId }" />
 			<input type="hidden" name="taskId" value="${taskId }" />
-			<input type="hidden" name="taskName" value="${taskName }" />
 			<table class="table_all" align="center" border="0" cellpadding="0"
-				cellspacing="0" style="margin-top: 0px">
+			cellspacing="0" style="margin-top: 0px">
 				<tr>
-					<td class="td_table_1">
-						<span>审批结果：</span>
-					</td>
+					<td class="td_table_1"><span>编写人：</span></td>
 					<td class="td_table_2" colspan="3">
-						<input type="radio" name="result" value="agree" checked="checked"/>同意
-						<input type="radio" name="result" value="disagree"/>不同意
-						
+						<input type="text" class="input_240" readonly="readonly" name="S_apply.operator" value="${operator  }" />
 					</td>
 				</tr>
 				<tr>
-					<td class="td_table_1">
-						<span>审批意见：</span>
-					</td>
+					<td class="td_table_1"><span>备注：</span></td>
 					<td class="td_table_2" colspan="3">
-						<textarea class="input_textarea_320" id="description" name="description"></textarea>
+						<textarea class="input_textarea_320" id="reason" name="remark"></textarea>
 					</td>
 				</tr>
+				
+				<tr>
+					<td class="td_table_1"><span>审批人：</span></td>
+					<td class="td_table_2" colspan="3">
+						<input type="text" class="input_240" name="S_approve.operator" value="${operator }" />
+					</td>
+				</tr>
+				<tr>
+					<td class="td_table_1"><span>发送给：</span></td>
+					<td class="td_table_2" colspan="3">
+						<input type="text" class="input_240" name="S_content" value="${operator }" />
+					</td>
+				</tr>
+				
 			</table>
 			<table align="center" border="0" cellpadding="0"
 				cellspacing="0">

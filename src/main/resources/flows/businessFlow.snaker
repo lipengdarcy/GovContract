@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process displayName="通用工作流程" instanceUrl="/snaker/flow/all" name="generalFlow">
+<start displayName="start1" layout="24,124,-1,-1" name="start1">
+<transition g="" name="transition1" offset="0,0" to="apply"/>
+</start>
+<end displayName="end1" layout="665,122,-1,-1" name="end1"/>
+<task assignee="apply.operator" displayName="业务申请" form="/flow/apply" layout="117,122,-1,-1" name="apply" performType="ANY">
+<transition g="" name="transition2" offset="0,0" to="approveDept"/>
+</task>
+<task assignee="approve.operator" displayName="审批" form="/flow/approve" layout="280,127,-1,-1" name="approveDept" performType="ANY">
+<transition g="" name="transition3" offset="0,0" to="decision1"/>
+</task>
+<decision displayName="decision1" layout="479,122,-1,-1" name="decision1">
+<transition displayName="通过，流程结束" expr="${content==1}" g="" name="transition4" offset="0,0" to="end1"/>
+<transition displayName="不通过" expr="${content==3}" g="504,228;322,227" name="decision1" offset="-90,32" to="approveDept"/>
+<transition displayName="不通过" expr="${content==2}" g="503,59;161,61" name="transition7" offset="-177,-34" to="apply"/>
+</decision>
+</process>

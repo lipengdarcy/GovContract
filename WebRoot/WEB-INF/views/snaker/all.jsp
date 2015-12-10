@@ -5,13 +5,13 @@
 <html lang="en">
 	<head>
 		<%@ include file="/WEB-INF/includes/commons/meta.jsp"%>
-		<link rel="stylesheet" href="${ctx}/styles/css/style.css" type="text/css" media="all" />
-    	<link rel="stylesheet" href="${ctx}/styles/CleverTabs/context/themes/base/style.css" type="text/css" />
-    	<link rel="stylesheet" href="${ctx}/styles/CleverTabs/context/themes/base/jquery-ui.css" type="text/css" />
-	    <script src="${ctx}/styles/CleverTabs/scripts/jquery.js" type="text/javascript"></script>
-	    <script src="${ctx}/styles/CleverTabs/scripts/jquery-ui.js" type="text/javascript"></script>
-	    <script src="${ctx}/styles/CleverTabs/scripts/jquery.contextMenu.js" type="text/javascript"></script>
-	    <script src="${ctx}/styles/CleverTabs/scripts/jquery.cleverTabs.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="${ctx}/static/css/snaker/style.css" type="text/css" media="all" />
+    	<link rel="stylesheet" href="${ctx}/static/js/CleverTabs/context/themes/base/style.css" type="text/css" />
+    	<link rel="stylesheet" href="${ctx}/static/js/CleverTabs/context/themes/base/jquery-ui.css" type="text/css" />
+	    <script src="${ctx}/static/js/CleverTabs/scripts/jquery.js" type="text/javascript"></script>
+	    <script src="${ctx}/static/js/CleverTabs/scripts/jquery-ui.js" type="text/javascript"></script>
+	    <script src="${ctx}/static/js/CleverTabs/scripts/jquery.contextMenu.js" type="text/javascript"></script>
+	    <script src="${ctx}/static/js/CleverTabs/scripts/jquery.cleverTabs.js" type="text/javascript"></script>
 	    <script type="text/javascript">
         var tabs;
         var taskName = "${task.taskName}";

@@ -6,10 +6,10 @@
 	<head>
 		<title>流程定义</title>
 		<%@ include file="/WEB-INF/includes/commons/meta.jsp"%>
-		<link rel="stylesheet" href="${ctx}/styles/css/style.css" type="text/css" media="all" />
-		<link rel="stylesheet" type="text/css" href="${ctx}/styles/wbox/wbox/wbox.css" />
-		<script src="${ctx}/styles/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="${ctx}/styles/wbox/wbox.js"></script> 
+		<link rel="stylesheet" href="${ctx}/static/css/style.css" type="text/css" media="all" />
+		<link rel="stylesheet" type="text/css" href="${ctx}/static/wbox/wbox/wbox.css" />
+		<script src="${ctx}/static/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="${ctx}/static/wbox/wbox.js"></script> 
 	</head>
 
 	<body>

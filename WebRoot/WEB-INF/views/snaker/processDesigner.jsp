@@ -6,14 +6,14 @@
 	<head>
 		<title>流程展现</title>
 		<%@ include file="/WEB-INF/includes/commons/meta.jsp"%>
-		<link rel="stylesheet" href="${ctx}/styles/css/snaker.css" type="text/css" media="all" />
-		<script src="${ctx}/styles/js/raphael-min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/jquery-ui-1.8.4.custom/js/jquery.min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/jquery-ui-1.8.4.custom/js/jquery-ui.min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/snaker/dialog.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/snaker/snaker.designer.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/snaker/snaker.model.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/snaker/snaker.editors.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="${ctx}/static/css/snaker/snaker.css" type="text/css" media="all" />
+		<script src="${ctx}/static/js/raphael-min.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/jquery-ui-1.8.4/js/jquery.min.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/jquery-ui-1.8.4/js/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/dialog.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/snaker.designer.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/snaker.model.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/snaker.editors.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(function() {
 				var json="${process }";
@@ -22,7 +22,7 @@
 					model=eval("(" + json + ")");
 				}
 				$('#snakerflow').snakerflow({
-					basePath : "${ctx}/styles/js/snaker/",
+					basePath : "${ctx}/static/js/snaker/",
                     ctxPath : "${ctx}",
 					restore : model,
                     formPath : "forms/",
@@ -62,35 +62,35 @@
 <body>
 <div id="toolbox">
 <div id="toolbox_handle">工具集</div>
-<div class="node" id="save"><img src="${ctx}/styles/js/snaker/images/save.gif" />&nbsp;&nbsp;保存</div>
+<div class="node" id="save"><img src="${ctx}/static/js/snaker/images/save.gif" />&nbsp;&nbsp;保存</div>
 <div>
 <hr />
 </div>
 <div class="node selectable" id="pointer">
-    <img src="${ctx}/styles/js/snaker/images/select16.gif" />&nbsp;&nbsp;Select
+    <img src="${ctx}/static/js/snaker/images/select16.gif" />&nbsp;&nbsp;Select
 </div>
 <div class="node selectable" id="path">
-    <img src="${ctx}/styles/js/snaker/images/16/flow_sequence.png" />&nbsp;&nbsp;transition
+    <img src="${ctx}/static/js/snaker/images/16/flow_sequence.png" />&nbsp;&nbsp;transition
 </div>
 <div>
 <hr/>
 </div>
 <div class="node state" id="start" type="start"><img
-	src="${ctx}/styles/js/snaker/images/16/start_event_empty.png" />&nbsp;&nbsp;start</div>
+	src="${ctx}/static/js/snaker/images/16/start_event_empty.png" />&nbsp;&nbsp;start</div>
 <div class="node state" id="end" type="end"><img
-	src="${ctx}/styles/js/snaker/images/16/end_event_terminate.png" />&nbsp;&nbsp;end</div>
+	src="${ctx}/static/js/snaker/images/16/end_event_terminate.png" />&nbsp;&nbsp;end</div>
 <div class="node state" id="task" type="task"><img
-	src="${ctx}/styles/js/snaker/images/16/task_empty.png" />&nbsp;&nbsp;task</div>
+	src="${ctx}/static/js/snaker/images/16/task_empty.png" />&nbsp;&nbsp;task</div>
 <div class="node state" id="task" type="custom"><img
-	src="${ctx}/styles/js/snaker/images/16/task_empty.png" />&nbsp;&nbsp;custom</div>
+	src="${ctx}/static/js/snaker/images/16/task_empty.png" />&nbsp;&nbsp;custom</div>
 <div class="node state" id="task" type="subprocess"><img
-	src="${ctx}/styles/js/snaker/images/16/task_empty.png" />&nbsp;&nbsp;subprocess</div>
+	src="${ctx}/static/js/snaker/images/16/task_empty.png" />&nbsp;&nbsp;subprocess</div>
 <div class="node state" id="fork" type="decision"><img
-	src="${ctx}/styles/js/snaker/images/16/gateway_exclusive.png" />&nbsp;&nbsp;decision</div>
+	src="${ctx}/static/js/snaker/images/16/gateway_exclusive.png" />&nbsp;&nbsp;decision</div>
 <div class="node state" id="fork" type="fork"><img
-	src="${ctx}/styles/js/snaker/images/16/gateway_parallel.png" />&nbsp;&nbsp;fork</div>
+	src="${ctx}/static/js/snaker/images/16/gateway_parallel.png" />&nbsp;&nbsp;fork</div>
 <div class="node state" id="join" type="join"><img
-	src="${ctx}/styles/js/snaker/images/16/gateway_parallel.png" />&nbsp;&nbsp;join</div>
+	src="${ctx}/static/js/snaker/images/16/gateway_parallel.png" />&nbsp;&nbsp;join</div>
 </div>
 
 <div id="properties">

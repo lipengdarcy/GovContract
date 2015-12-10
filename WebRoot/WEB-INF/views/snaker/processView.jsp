@@ -6,14 +6,14 @@
 	<head>
 		<title>流程状态</title>
 		<%@ include file="/WEB-INF/includes/commons/meta.jsp"%>
-		<link rel="stylesheet" href="${ctx}/styles/css/style.css" type="text/css" media="all" />
-		<link rel="stylesheet" href="${ctx}/styles/css/snaker.css" type="text/css" media="all" />
-		<script src="${ctx}/styles/js/raphael-min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/jquery-ui-1.8.4.custom/js/jquery.min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/jquery-ui-1.8.4.custom/js/jquery-ui.min.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/snaker/snaker.designer.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/snaker/snaker.model.js" type="text/javascript"></script>
-		<script src="${ctx}/styles/js/snaker/snaker.editors.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="${ctx}/static/css/snaker/style.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="${ctx}/static/css/snaker/snaker.css" type="text/css" media="all" />
+		<script src="${ctx}/static/js/raphael-min.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/jquery-ui-1.8.4/js/jquery.min.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/jquery-ui-1.8.4/js/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/snaker.designer.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/snaker.model.js" type="text/javascript"></script>
+		<script src="${ctx}/static/js/snaker/snaker.editors.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     function addTaskActor(taskName) {
@@ -26,7 +26,7 @@
 	function display(process, state) {
 		/** view*/
 		$('#snakerflow').snakerflow($.extend(true,{
-			basePath : "${ctx}/styles/js/snaker/",
+			basePath : "${ctx}/static/js/snaker/",
             ctxPath : "${ctx}",
             orderId : "${order.id}",
 			restore : eval("(" + process + ")"),
